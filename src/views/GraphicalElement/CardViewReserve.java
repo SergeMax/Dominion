@@ -8,7 +8,7 @@ public class CardViewReserve {
 
     public CardViewReserve(String image){
         this.imageViewReserve = new ImageView(image);
-        imageViewReserve.setFitHeight(150);
+        imageViewReserve.setFitHeight(100);
         imageViewReserve.setFitWidth(100);
     }
 
