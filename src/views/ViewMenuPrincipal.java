@@ -15,10 +15,10 @@ import javafx.stage.Screen;
 
 public class ViewMenuPrincipal {
     private Group root;
-    private VBox vBox;
+    private VBox vBox, vBox2;
     private Button btnPlay, btnQuit;
     private ImageView titre;
-    private Text text;
+
 
 
 
@@ -30,7 +30,9 @@ public class ViewMenuPrincipal {
         vBox.setMinWidth(Screen.getPrimary().getBounds().getWidth());
         vBox.setMinHeight(Screen.getPrimary().getBounds().getHeight());
         vBox.setAlignment(Pos.CENTER);
-        vBox.setBackground(new Background( new BackgroundImage(new Image("assets/logo/background.jpg"),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        vBox.setBackground(new Background( new BackgroundImage(new
+                Image("assets/logo/background.jpg"),BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 
 
 
@@ -39,8 +41,9 @@ public class ViewMenuPrincipal {
         btnPlay.getStyleClass().add("btn-play");
 
         btnQuit = initButton("QUITTER",20);
-        titre = new ImageView("assets/logo/logo_dominion.png");
 
+        titre = new ImageView("assets/logo/logo_dominion.png");
+        titre.getStyleClass().add("banniere");
         vBox.getChildren().addAll(titre,btnPlay,btnQuit);
 
     }
@@ -54,8 +57,8 @@ public class ViewMenuPrincipal {
         Button b = new Button();
         b.setText(texteBoutton);
         b.setFont(Font.font(size));
-        b.setTextFill(Color.WHITE);
-        b.setBackground(null);
+        b.getStyleClass().add("btnMenu");
+
         return b;
 
     }
