@@ -21,7 +21,6 @@ public class ViewHandler extends Application {
     private ControllerMenuPrincipal controllerMenuPrincipal;
     private ControllerJeu controllerJeu;
     private BorderPane rootGame;
-    private URL css = getClass().getResource("../assets/css/styles.css");
 
 
     @Override
@@ -29,9 +28,8 @@ public class ViewHandler extends Application {
         root = new Group();
         rootGame = new BorderPane();
 
-        scene.getStylesheets().add(css.toExternalForm());
         scene = new Scene(root, 500, 500);
-
+        scene.getStylesheets().add("assets/css/styles.css");
 
         /** ON EDITE LA SCENE */
         primaryStage.setTitle("Dominion");
