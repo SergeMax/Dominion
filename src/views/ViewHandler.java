@@ -11,6 +11,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.net.URL;
+
 public class ViewHandler extends Application {
     private Scene scene;
     private Group root;
@@ -19,13 +21,15 @@ public class ViewHandler extends Application {
     private ControllerMenuPrincipal controllerMenuPrincipal;
     private ControllerJeu controllerJeu;
     private BorderPane rootGame;
+    private URL css = getClass().getResource("../assets/css/styles.css");
+
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         root = new Group();
         rootGame = new BorderPane();
 
-
+        scene.getStylesheets().add(css.toExternalForm());
         scene = new Scene(root, 500, 500);
 
 
@@ -40,9 +44,9 @@ public class ViewHandler extends Application {
         //primaryStage.setResizable(false);
         primaryStage.show();
 
-        if (Config.vueMenuPrincipal){
+        if (Config.vueMenuPrincipal) {
             afficherMenuPrincipale();
-        }else {
+        } else {
             afficherJeu();
         }
 
@@ -50,16 +54,13 @@ public class ViewHandler extends Application {
     }
 
 
-
-    public void afficherMenuPrincipale(){
+    public void afficherMenuPrincipale() {
         viewMenuPrincipal = new ViewMenuPrincipal(root);
         viewMenuPrincipal.clearAndInitRoot();
         controllerMenuPrincipal = new ControllerMenuPrincipal(this);
     }
 
-    public void afficherJeu(){
-
-
+    public void afficherJeu() {
 
 
         viewJeu = new ViewJeu(rootGame);
@@ -74,11 +75,11 @@ public class ViewHandler extends Application {
 
     }
 
-    public ViewMenuPrincipal getViewMenuPrincipal(){
+    public ViewMenuPrincipal getViewMenuPrincipal() {
         return viewMenuPrincipal;
     }
 
-    public ViewJeu getViewJeu(){
+    public ViewJeu getViewJeu() {
         return viewJeu;
     }
 }
