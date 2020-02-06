@@ -2,6 +2,7 @@ package views;
 
 import controllers.ControllerMenuPrincipal;
 import javafx.scene.Group;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 
 public class ViewMenuPrincipal {
