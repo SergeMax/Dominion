@@ -1,5 +1,6 @@
 package models.cartes.types.action;
 
+import models.Joueur;
 import models.cartes.Carte;
 import models.cartes.LocalisationDesCartes;
 import models.cartes.TypeDeCarte;
@@ -15,7 +16,14 @@ public class Forgeron extends Carte {
 
     public Forgeron() {
         setCout(4);
-        getType().add(TypeDeCarte.actions);
+        setType(TypeDeCarte.actions);
         setLocalisation(LocalisationDesCartes.reserve);
+    }
+
+    @Override
+    public void effet(ArrayList<Joueur> joueurs) {
+        for(Joueur joueur: joueurs){
+            if (joueur.);
+        }
     }
 }
