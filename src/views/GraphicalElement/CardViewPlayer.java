@@ -9,7 +9,7 @@ public class CardViewPlayer {
 
     public CardViewPlayer(String image){
         this.imageViewCarte = new ImageView(image);
-        this.imageViewBack = new ImageView("../assets/backCard.png");
+        this.imageViewBack = new ImageView("assets/cartes/backCard.png");
         imageViewCarte.setFitHeight(150);
         imageViewCarte.setFitWidth(100);
         imageViewBack.setFitHeight(150);

@@ -6,17 +6,21 @@ import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import views.GraphicalElement.CardViewPlayer;
 
 import javax.swing.*;
 
 public class ViewJeu {
     private BorderPane root;
+private CardViewPlayer cardViewPlayer;
+    private ImageView imageCardViewPlayer;
 
 
     public ViewJeu(BorderPane root) {
@@ -26,6 +30,14 @@ public class ViewJeu {
         this.root = root;
 
     }
+
+    public ImageView initCard(){
+        cardViewPlayer = new CardViewPlayer("assets/cartes/argent.png");
+        imageCardViewPlayer = cardViewPlayer.getImageViewCarte();
+
+        return imageCardViewPlayer;
+    }
+
     public VBox getMenu()
     {
         VBox vbox = new VBox();
@@ -109,37 +121,55 @@ public class ViewJeu {
         return hbox;
     }
 
-    public VBox getFooter()
+    public HBox getFooter()
     {
-        VBox vbox = new VBox();
+        HBox hbox = new HBox();
+       // hbox.setAlignment(Pos.CENTER_LEFT);
         VBox boxDeckJActif = new VBox();
         boxDeckJActif.setPadding(new Insets(1));
-        boxDeckJActif.setAlignment(Pos.TOP_RIGHT);
+        boxDeckJActif.setAlignment(Pos.CENTER_LEFT);
 
         boxDeckJActif.setMinHeight(180);
-        boxDeckJActif.setMaxWidth(260);
+        boxDeckJActif.setMinWidth(260);
         boxDeckJActif.getStyleClass().add("vbox_style");
 
-        HBox hbox = new HBox(20);
-        hbox.setPadding(new Insets(5));
-        hbox.setAlignment(Pos.CENTER);
+        //hbox2
 
-        hbox.getChildren().addAll(new Text("")
-                , new Text(""), new Text(""));
-        vbox.getChildren().addAll(hbox);
-
-
-        vbox.getChildren().addAll(boxDeckJActif);
+        HBox boxMainActif = new HBox();
+        boxMainActif.setPadding(new Insets(5));
+        boxMainActif.getStyleClass().add("vbox_style");
+        boxMainActif.setAlignment(Pos.CENTER);
+        boxMainActif.setPrefWidth(1500);
 
 
+        HBox hbox2 = new HBox(20);
+        hbox2.setPadding(new Insets(5));
+        hbox2.setAlignment(Pos.CENTER);
 
 
-        vbox.setMinHeight(200);
-        vbox.setMaxHeight(400);
-        vbox.setPadding(new Insets(-15, 50, 0, 10));
-        vbox.getStyleClass().add("vbox_style");
+        ImageView imageCarte = initCard();
+        ImageView imageCarte2 = initCard();
 
-        return vbox;
+        hbox.getChildren().addAll(boxDeckJActif);
+        hbox.getChildren().addAll(boxMainActif);
+        boxMainActif.getChildren().addAll(imageCarte, imageCarte2);
+       // hbox.getChildren().addAll(new Text("")
+         //       , new Text(""), new Text(""));
+
+
+
+
+
+
+
+
+
+        hbox.setMinHeight(200);
+        hbox.setMaxHeight(400);
+        hbox.setPadding(new Insets(-15, 50, 0, 10));
+        hbox.getStyleClass().add("vbox_style");
+
+        return hbox;
     }
 
     public StackPane getCenterPane()
