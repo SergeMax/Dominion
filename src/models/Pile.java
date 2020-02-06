@@ -7,4 +7,15 @@ public class Pile {
     private byte nombre;
     private boolean estVide;
 
+    public Carte getCarte() {
+        return carte;
+    }
+
+    public byte getNombre() {
+        return nombre;
+    }
+
+    public boolean isEstVide() {
+        return estVide;
+    }
 }

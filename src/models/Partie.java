@@ -6,4 +6,12 @@ public class Partie {
     private boolean estFinis;
     private ArrayList<Joueur> joueurs;
     private ArrayList<Pile> piles;
+
+    public Partie(int nombreDeJoueur){
+        estFinis= false;
+        joueurs = new ArrayList<Joueur>();
+        for(int i = 0; i < nombreDeJoueur; i++ ){
+            joueurs.add(new Joueur());
+        }
+    }
 }
