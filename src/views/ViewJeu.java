@@ -35,8 +35,7 @@ public class ViewJeu {
         hbox.getChildren().addAll(new Text("")
                 , new Text(""), new Text(""));
         vbox.getChildren().addAll(new Separator(), hbox);
-        vbox.setBackground(new Background(new BackgroundFill(
-                Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+
 
         vbox.setMaxHeight(100);
         vbox.setMinHeight(90);
@@ -54,8 +53,7 @@ public class ViewJeu {
         VBox vbox = new VBox(50);
         vbox.setPadding(new Insets(0, 20, 0, 20));
         vbox.setAlignment(Pos.CENTER);
-        vbox.setBackground(new Background(new BackgroundFill(
-            Color.LIGHTCYAN, CornerRadii.EMPTY, Insets.EMPTY)));
+
 
         vbox.getChildren().addAll(new Text(""),
                 new Text(""), new Text(""));
@@ -80,8 +78,7 @@ public class ViewJeu {
         VBox boxPvLeft = new VBox();
         boxPvLeft.setPadding(new Insets(1));
         boxPvLeft.setAlignment(Pos.TOP_RIGHT);
-        boxPvLeft.setBackground(new Background(new BackgroundFill(
-                Color.BLUEVIOLET, CornerRadii.EMPTY, Insets.EMPTY)));
+
 
         boxPvLeft.setMaxWidth(100);
         boxPvLeft.setMinWidth(100);
@@ -99,8 +96,7 @@ public class ViewJeu {
         hbox.getChildren().addAll(vbox);
         hbox.getChildren().addAll(boxPvLeft, boxPvRight);
 
-        hbox.setBackground(new Background(new BackgroundFill(
-                Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+
         hbox.setMinWidth(200);
 
         hbox.setMaxHeight(800);
@@ -116,10 +112,10 @@ public class ViewJeu {
         VBox boxDeckJActif = new VBox();
         boxDeckJActif.setPadding(new Insets(1));
         boxDeckJActif.setAlignment(Pos.TOP_RIGHT);
-        boxDeckJActif.setBackground(new Background(new BackgroundFill(
-                Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+
         boxDeckJActif.setMinHeight(180);
         boxDeckJActif.setMaxWidth(260);
+        boxDeckJActif.getStyleClass().add("vbox_style");
 
         HBox hbox = new HBox(20);
         hbox.setPadding(new Insets(5));
@@ -149,43 +145,43 @@ public class ViewJeu {
         stackPane.setAlignment(Pos.TOP_CENTER);
 
         Rectangle rec = new Rectangle();
-        rec.setFill(Color.DODGERBLUE);
+        rec.setOpacity(0.1);
         rec.widthProperty().bind(stackPane.widthProperty().subtract(5));
         rec.heightProperty().bind(stackPane.heightProperty().subtract(5));
 
         VBox boxCarteCentraleEtJoue = new VBox();
         boxCarteCentraleEtJoue.setPadding(new Insets(1));
        // boxCarteCentraleEtJoue.setAlignment(Pos.TOP_CENTER);
-        boxCarteCentraleEtJoue.setBackground(new Background(new BackgroundFill(
-                Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+
 
         boxCarteCentraleEtJoue.setSpacing(20);
+        boxCarteCentraleEtJoue.getStyleClass().add("vbox_style");
 
         HBox boxCarteJoue = new HBox();
         boxCarteJoue.setPadding(new Insets(1));
         boxCarteJoue.setAlignment(Pos.BOTTOM_CENTER);
-        boxCarteJoue.setBackground(new Background(new BackgroundFill(
-                Color.PALEGOLDENROD, CornerRadii.EMPTY, Insets.EMPTY)));
+
         boxCarteJoue.setPrefHeight(300);
         boxCarteJoue.setMinHeight(100);
         boxCarteJoue.setTranslateY(20);
+        boxCarteJoue.getStyleClass().add("vbox_style");
 
 
         HBox boxCarteRandomLigne1 = new HBox();
         boxCarteRandomLigne1.setPadding(new Insets(1));
         boxCarteRandomLigne1.setAlignment(Pos.TOP_CENTER);
-        boxCarteRandomLigne1.setBackground(new Background(new BackgroundFill(
-                Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+        boxCarteRandomLigne1.getStyleClass().add("vbox_style");
         boxCarteRandomLigne1.setMinHeight(150);
+
 
 
         HBox boxCarteRandomLigne2 = new HBox();
         boxCarteRandomLigne2.setPadding(new Insets(1));
         boxCarteRandomLigne2.setAlignment(Pos.TOP_CENTER);
-        boxCarteRandomLigne2.setBackground(new Background(new BackgroundFill(
-                Color.BLUEVIOLET, CornerRadii.EMPTY, Insets.EMPTY)));
+        boxCarteRandomLigne2.setMinHeight(150);
         boxCarteRandomLigne2.setMinHeight(150);
         boxCarteRandomLigne2.setTranslateY(-20);
+        boxCarteRandomLigne2.getStyleClass().add("vbox_style");
 
         boxCarteCentraleEtJoue.getChildren().addAll(boxCarteRandomLigne1, boxCarteRandomLigne2, boxCarteJoue );
 
