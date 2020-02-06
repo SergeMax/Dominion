@@ -1,5 +1,6 @@
 package views;
 
+import config.Config;
 import controllers.ControllerJeu;
 import controllers.ControllerMenuPrincipal;
 import javafx.application.Application;
@@ -27,17 +28,25 @@ public class ViewHandler extends Application {
 
         scene = new Scene(root, 500, 500);
 
+
         /** ON EDITE LA SCENE */
         primaryStage.setTitle("Dominion");
 
         //primaryStage.setFullScreenExitHint("");
-        //primaryStage.setFullScreen(true);
+        primaryStage.setFullScreen(true);
         //primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         //primaryStage.initStyle(StageStyle.UNDECORATED);
-        //primaryStage.setScene(scene);
+        primaryStage.setScene(scene);
         //primaryStage.setResizable(false);
         primaryStage.show();
-        afficherJeu();
+
+        if (Config.vueMenuPrincipal){
+            afficherMenuPrincipale();
+        }else {
+            afficherJeu();
+        }
+
+
     }
 
 
@@ -50,15 +59,17 @@ public class ViewHandler extends Application {
 
     public void afficherJeu(){
 
+
+
+
+        viewJeu = new ViewJeu(rootGame);
+        viewJeu.clearAndInitRoot();
         rootGame.setTop(viewJeu.getMenu());
         rootGame.setRight(viewJeu.getRightHBox());
         rootGame.setBottom(viewJeu.getFooter());
         rootGame.setLeft(viewJeu.getLeftHBox());
         rootGame.setCenter(viewJeu.getCenterPane());
-
-
-        viewJeu = new ViewJeu(rootGame);
-        viewJeu.clearAndInitRoot();
+        scene.setRoot(rootGame);
         controllerJeu = new ControllerJeu(this);
 
     }

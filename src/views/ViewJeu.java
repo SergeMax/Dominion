@@ -4,14 +4,8 @@ import controllers.ControllerJeu;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.Separator;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -29,16 +23,21 @@ public class ViewJeu {
 
 
     }
-    public MenuBar getMenu()
+    public VBox getMenu()
     {
-        MenuBar menuBar = new MenuBar();
+        VBox vbox = new VBox();
 
-        Menu menuFile = new Menu("File");
-        Menu menuEdit = new Menu("Edit");
-        Menu menuHelp = new Menu("Help");
-        menuBar.getMenus().addAll(menuFile, menuEdit, menuHelp);
+        HBox hbox = new HBox(20);
+        hbox.setPadding(new Insets(5));
+        hbox.setAlignment(Pos.CENTER);
+        hbox.setBackground(new Background(new BackgroundFill(
+            Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        return menuBar;
+        hbox.getChildren().addAll(new Text("Footer Item 1")
+                , new Text("Footer Item 2"), new Text("Footer Item 3"));
+        vbox.getChildren().addAll(new Separator(), hbox);
+
+        return vbox;
     }
 
     public HBox getRightHBox()
