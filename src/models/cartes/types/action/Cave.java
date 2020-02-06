@@ -1,7 +1,7 @@
 package models.cartes.types.action;
-import models.cartes.types.Action;
+import models.cartes.Carte;
 
-public class Cave extends Action{
+public class Cave extends Carte {
     /*
         Donne 1 Action
         Effet: Défaussez autant de cartes que vous voulez, puis piochez-en le même nombre.

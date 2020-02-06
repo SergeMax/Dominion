@@ -1,7 +1,8 @@
 package models.cartes.types.action;
-import models.cartes.types.Action;
 
-public class Douves extends Action{
+import models.cartes.Carte;
+
+public class Douves extends Carte {
     /*
         Donne 2 Cartes
         Effet: Lorsqu'un adversaire joue une carte Attaque, vous pouvez dévoiler cette carte de votre main.
