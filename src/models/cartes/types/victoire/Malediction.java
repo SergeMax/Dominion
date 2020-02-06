@@ -1,7 +1,8 @@
 package models.cartes.types.victoire;
-import models.cartes.types.Victoire;
 
-public class Malediction extends Victoire {
+import models.cartes.Carte;
+
+public class Malediction extends Carte {
     /*
         Enlève 1 point de victoire
         Coût: 0 pièce
