@@ -30,12 +30,18 @@ public class ViewJeu {
         HBox hbox = new HBox(20);
         hbox.setPadding(new Insets(5));
         hbox.setAlignment(Pos.CENTER);
-        hbox.setBackground(new Background(new BackgroundFill(
-            Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        hbox.getChildren().addAll(new Text("Footer Item 1")
-                , new Text("Footer Item 2"), new Text("Footer Item 3"));
+
+        hbox.getChildren().addAll(new Text("")
+                , new Text(""), new Text(""));
         vbox.getChildren().addAll(new Separator(), hbox);
+        vbox.setBackground(new Background(new BackgroundFill(
+                Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        vbox.setMaxHeight(200);
+        vbox.setMinHeight(150);
+
+        vbox.setTranslateX(200);
 
         return vbox;
     }
@@ -47,9 +53,11 @@ public class ViewJeu {
         VBox vbox = new VBox(50);
         vbox.setPadding(new Insets(0, 20, 0, 20));
         vbox.setAlignment(Pos.CENTER);
+        vbox.setBackground(new Background(new BackgroundFill(
+            Color.LIGHTCYAN, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        vbox.getChildren().addAll(new Text("Additional Info 1"),
-                new Text("Additional Info 2"), new Text("Additional Info 3"));
+        vbox.getChildren().addAll(new Text(""),
+                new Text(""), new Text(""));
         hbox.getChildren().addAll(new Separator(Orientation.VERTICAL), vbox);
 
         return hbox;
@@ -62,18 +70,27 @@ public class ViewJeu {
         VBox vbox = new VBox(10);
         vbox.setPadding(new Insets(10));
 
-        Text text = new Text("Navigation");
-        text.setFont(Font.font("Helvetica", FontWeight.BOLD, 20));
+        Text text = new Text("");
+        text.setFont(Font.font("", FontWeight.BOLD, 20));
 
         VBox vboxText = new VBox(10);
         for (int i = 1; i <= 10; i++)
         {
-            vboxText.getChildren().add(new Text("Category " + i));
+            vboxText.getChildren().add(new Text(" " + i));
         }
         vboxText.setTranslateX(10);
 
+        //left.setPrefWidth(100);
+        //mainPane.setLeft(left);
+
         vbox.getChildren().addAll(text, vboxText);
         hbox.getChildren().addAll(vbox, new Separator(Orientation.VERTICAL));
+        hbox.setBackground(new Background(new BackgroundFill(
+                Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+        hbox.setMinWidth(200);
+
+        hbox.setMaxHeight(800);
+        hbox.setTranslateY(-200);
 
         return hbox;
     }
@@ -86,9 +103,16 @@ public class ViewJeu {
         hbox.setPadding(new Insets(5));
         hbox.setAlignment(Pos.CENTER);
 
-        hbox.getChildren().addAll(new Text("Footer Item 1")
-                , new Text("Footer Item 2"), new Text("Footer Item 3"));
+        hbox.getChildren().addAll(new Text("")
+                , new Text(""), new Text(""));
         vbox.getChildren().addAll(new Separator(), hbox);
+        vbox.setBackground(new Background(new BackgroundFill(
+                Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+
+
+        vbox.setMinHeight(200);
+        vbox.setMaxHeight(400);
+        vbox.setPadding(new Insets(0, 50, 0, 0));
 
         return vbox;
     }
@@ -100,8 +124,8 @@ public class ViewJeu {
 
         Rectangle rec = new Rectangle();
         rec.setFill(Color.DODGERBLUE);
-        rec.widthProperty().bind(stackPane.widthProperty().subtract(50));
-        rec.heightProperty().bind(stackPane.heightProperty().subtract(50));
+        rec.widthProperty().bind(stackPane.widthProperty().subtract(5));
+        rec.heightProperty().bind(stackPane.heightProperty().subtract(5));
 
         stackPane.getChildren().addAll(rec);
 
