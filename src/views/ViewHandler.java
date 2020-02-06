@@ -11,6 +11,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.net.URL;
+
 public class ViewHandler extends Application {
     private Scene scene;
     private Group root;
@@ -19,13 +21,15 @@ public class ViewHandler extends Application {
     private ControllerMenuPrincipal controllerMenuPrincipal;
     private ControllerJeu controllerJeu;
     private BorderPane rootGame;
+    private URL css = getClass().getResource("../assets/css/styles.css");
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         root = new Group();
         rootGame = new BorderPane();
 
-
+        scene.getStylesheets().add(css.toExternalForm());
         scene = new Scene(root, 500, 500);
 
 
