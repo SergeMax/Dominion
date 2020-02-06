@@ -21,7 +21,7 @@ public class ViewHandler extends Application {
     private BorderPane rootGame;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         root = new Group();
         rootGame = new BorderPane();
 
@@ -40,9 +40,9 @@ public class ViewHandler extends Application {
         //primaryStage.setResizable(false);
         primaryStage.show();
 
-        if (Config.vueMenuPrincipal){
+        if (Config.vueMenuPrincipal) {
             afficherMenuPrincipale();
-        }else {
+        } else {
             afficherJeu();
         }
 
@@ -50,16 +50,13 @@ public class ViewHandler extends Application {
     }
 
 
-
-    public void afficherMenuPrincipale(){
+    public void afficherMenuPrincipale() {
         viewMenuPrincipal = new ViewMenuPrincipal(root);
         viewMenuPrincipal.clearAndInitRoot();
         controllerMenuPrincipal = new ControllerMenuPrincipal(this);
     }
 
-    public void afficherJeu(){
-
-
+    public void afficherJeu() {
 
 
         viewJeu = new ViewJeu(rootGame);
@@ -74,11 +71,11 @@ public class ViewHandler extends Application {
 
     }
 
-    public ViewMenuPrincipal getViewMenuPrincipal(){
+    public ViewMenuPrincipal getViewMenuPrincipal() {
         return viewMenuPrincipal;
     }
 
-    public ViewJeu getViewJeu(){
+    public ViewJeu getViewJeu() {
         return viewJeu;
     }
 }

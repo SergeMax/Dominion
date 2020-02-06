@@ -20,8 +20,6 @@ public class ViewJeu {
 
         this.root = root;
 
-
-
     }
     public VBox getMenu()
     {
