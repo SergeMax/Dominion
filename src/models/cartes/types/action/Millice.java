@@ -1,7 +1,7 @@
 package models.cartes.types.action;
-import models.cartes.types.Action;
+import models.cartes.Carte;
 
-public class Millice extends Action {
+public class Millice extends Carte {
     /*
         Donne 1 pièce
         Effet: Tous vos adversaires défaussent jusqu'à avoir 3 cartes en main.
