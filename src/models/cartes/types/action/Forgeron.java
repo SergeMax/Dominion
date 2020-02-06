@@ -1,6 +1,10 @@
 package models.cartes.types.action;
 
 import models.cartes.Carte;
+import models.cartes.LocalisationDesCartes;
+import models.cartes.TypeDeCarte;
+
+import java.util.ArrayList;
 
 public class Forgeron extends Carte {
     /*
@@ -8,4 +12,10 @@ public class Forgeron extends Carte {
         Coût: 4 pièces
         Action
      */
+
+    public Forgeron() {
+        setCout(4);
+        getType().add(TypeDeCarte.actions);
+        setLocalisation(LocalisationDesCartes.reserve);
+    }
 }
