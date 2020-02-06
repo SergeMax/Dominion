@@ -20,6 +20,10 @@ public class Joueur {
         indiceDansLeDeck=0;
     }
 
+    public void piocheDesCarte(int nbDeCarte){
+
+    }
+
     public void poserUneCarte(Carte carte){
 
     }
