@@ -31,8 +31,8 @@ private CardViewPlayer cardViewPlayer;
 
     }
 
-    public ImageView initCard(){
-        cardViewPlayer = new CardViewPlayer("assets/cartes/argent.png");
+    public ImageView initCard(String cheminCard){
+        cardViewPlayer = new CardViewPlayer(cheminCard);
         imageCardViewPlayer = cardViewPlayer.getImageViewCarte();
 
         return imageCardViewPlayer;
@@ -147,12 +147,16 @@ private CardViewPlayer cardViewPlayer;
         hbox2.setAlignment(Pos.CENTER);
 
 
-        ImageView imageCarte = initCard();
-        ImageView imageCarte2 = initCard();
+        ImageView imageCarte = initCard("assets/cartes/braconier.png");
+        ImageView imageCarte2 = initCard("assets/cartes/atelier.png");
+        ImageView imageCarte3 = initCard("assets/cartes/cuivre.png");
+        ImageView imageCarte4 = initCard("assets/cartes/argent.png");
+        ImageView imageCarte5 = initCard("assets/cartes/domaine.png");
+
 
         hbox.getChildren().addAll(boxDeckJActif);
         hbox.getChildren().addAll(boxMainActif);
-        boxMainActif.getChildren().addAll(imageCarte, imageCarte2);
+        boxMainActif.getChildren().addAll(imageCarte, imageCarte2, imageCarte3, imageCarte4, imageCarte5);
        // hbox.getChildren().addAll(new Text("")
          //       , new Text(""), new Text(""));
 
