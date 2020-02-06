@@ -2,12 +2,12 @@ package views.GraphicalElement;
 
 import javafx.scene.image.ImageView;
 
-public class CardView {
+public class CardViewPlayer {
 
     private ImageView imageViewCarte;
     private ImageView imageViewBack;
 
-    public CardView(String image){
+    public CardViewPlayer(String image){
         this.imageViewCarte = new ImageView(image);
         this.imageViewBack = new ImageView("../assets/backCard.png");
         imageViewCarte.setFitHeight(150);
