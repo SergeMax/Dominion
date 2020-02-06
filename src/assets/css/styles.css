@@ -11,3 +11,16 @@
      -fx-border-width: 3;
      -fx-border-style: dashed;
   }
+.btnMenu {
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-color-text: white;
+}
+.btnMenu:hover {
+    -fx-color: black;
+    -fx-cursor: hand;
+}
+.banniere {
+   -fx-opacity: 0.5;
+}
+
