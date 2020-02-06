@@ -23,7 +23,7 @@ public class Forgeron extends Carte {
     @Override
     public void effet(ArrayList<Joueur> joueurs) {
         for(Joueur joueur: joueurs){
-            if (joueur.);
+            //if (joueur.);
         }
     }
 }
