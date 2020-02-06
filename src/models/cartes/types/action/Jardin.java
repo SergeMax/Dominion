@@ -1,6 +1,8 @@
 package models.cartes.types.action;
 
 import models.cartes.Carte;
+import models.cartes.LocalisationDesCartes;
+import models.cartes.TypeDeCarte;
 
 public class Jardin extends Carte {
     /*
@@ -8,4 +10,10 @@ public class Jardin extends Carte {
         Coût: 4 pièces
         Action - Victoire
      */
+
+    public Jardin() {
+        setCout(4);
+        setType(TypeDeCarte.victoire_action);
+        setLocalisation(LocalisationDesCartes.reserve);
+    }
 }

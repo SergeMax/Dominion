@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public abstract class Carte {
     private int cout;
-    private ArrayList<TypeDeCarte> type;
+    private TypeDeCarte type;
     private LocalisationDesCartes Localisation;
 
     public int getCout() {
@@ -17,11 +17,11 @@ public abstract class Carte {
         this.cout = cout;
     }
 
-    public ArrayList<TypeDeCarte> getType() {
+    public TypeDeCarte getType() {
         return type;
     }
 
-    public void setType(ArrayList<TypeDeCarte> type) {
+    public void setType(TypeDeCarte type) {
         this.type = type;
     }
 
