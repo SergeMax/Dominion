@@ -42,6 +42,7 @@ public class ViewJeu {
         vbox.setMinHeight(90);
 
         vbox.setTranslateX(200);
+        vbox.getStyleClass().add("vbox_style");
 
         return vbox;
     }
@@ -59,6 +60,7 @@ public class ViewJeu {
         vbox.getChildren().addAll(new Text(""),
                 new Text(""), new Text(""));
         hbox.getChildren().addAll(new Separator(Orientation.VERTICAL), vbox);
+        hbox.getStyleClass().add("vbox_style");
 
         return hbox;
     }
@@ -83,12 +85,12 @@ public class ViewJeu {
 
         boxPvLeft.setMaxWidth(100);
         boxPvLeft.setMinWidth(100);
+        boxPvLeft.getStyleClass().add("vbox_style");
 
         VBox boxPvRight = new VBox();
         boxPvRight.setPadding(new Insets(1));
         boxPvRight.setAlignment(Pos.TOP_RIGHT);
-        boxPvRight.setBackground(new Background(new BackgroundFill(
-                Color.DEEPPINK, CornerRadii.EMPTY, Insets.EMPTY)));
+        boxPvRight.getStyleClass().add("vbox_style");
 
         boxPvRight.setMaxWidth(100);
         boxPvRight.setMinWidth(100);
@@ -103,6 +105,7 @@ public class ViewJeu {
 
         hbox.setMaxHeight(800);
         hbox.setTranslateY(-100);
+        hbox.getStyleClass().add("vbox_style");
 
         return hbox;
     }
@@ -129,13 +132,13 @@ public class ViewJeu {
 
         vbox.getChildren().addAll(boxDeckJActif);
 
-        vbox.setBackground(new Background(new BackgroundFill(
-                Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+
 
 
         vbox.setMinHeight(200);
         vbox.setMaxHeight(400);
         vbox.setPadding(new Insets(-15, 50, 0, 10));
+        vbox.getStyleClass().add("vbox_style");
 
         return vbox;
     }
@@ -188,6 +191,7 @@ public class ViewJeu {
 
 
         stackPane.getChildren().addAll(rec, boxCarteCentraleEtJoue);
+
 
 
         return stackPane;
