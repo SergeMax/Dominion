@@ -8,7 +8,11 @@ public class ViewJeu {
     private Group root;
 
     public ViewJeu(Group root) {
+
         this.root = root;
+
+
+
     }
 
     public void clearAndInitRoot(){
