@@ -16,4 +16,8 @@ public class Jardin extends Carte {
         setType(TypeDeCarte.victoire_action);
         setLocalisation(LocalisationDesCartes.reserve);
     }
+
+    /*
+        Compter le nombre de carte type victoire en main+deck+defausse, donner 1 points de victoire pour chacune des cartes
+     */
 }

@@ -1,6 +1,11 @@
 package models.cartes.types.action;
 
+import models.Joueur;
 import models.cartes.Carte;
+import models.cartes.LocalisationDesCartes;
+import models.cartes.TypeDeCarte;
+
+import java.util.ArrayList;
 
 public class Sentinelle extends Carte {
     /*
@@ -10,4 +15,19 @@ public class Sentinelle extends Carte {
         Coût: 5 pièces
         Action
      */
+
+    public Sentinelle() {
+        setCout(5);
+        setType(TypeDeCarte.actions);
+        setLocalisation(LocalisationDesCartes.reserve);
+    }
+
+    @Override
+    public void effet(ArrayList<Joueur> joueurs) {
+        for(Joueur joueur: joueurs){
+            if (joueur.isEntrainDeJouer()){
+                joueur.piocheDesCarte(1);
+            }
+        }
+    }
 }

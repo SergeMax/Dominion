@@ -1,6 +1,8 @@
 package models.cartes.types.action;
 
 import models.cartes.Carte;
+import models.cartes.LocalisationDesCartes;
+import models.cartes.TypeDeCarte;
 
 public class Vassal extends Carte {
     /*
@@ -8,4 +10,10 @@ public class Vassal extends Carte {
         Coût: 3 pièces
         Action
      */
+
+    public Vassal() {
+        setCout(3);
+        setType(TypeDeCarte.actions);
+        setLocalisation(LocalisationDesCartes.reserve);
+    }
 }

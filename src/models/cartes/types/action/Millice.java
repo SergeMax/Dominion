@@ -1,5 +1,10 @@
 package models.cartes.types.action;
+import models.Joueur;
 import models.cartes.Carte;
+import models.cartes.LocalisationDesCartes;
+import models.cartes.TypeDeCarte;
+
+import java.util.ArrayList;
 
 public class Millice extends Carte {
     /*
@@ -8,4 +13,12 @@ public class Millice extends Carte {
         Coût: 4 pièces
         Action - Attaque
      */
+
+    public Millice() {
+        setCout(4);
+        setType(TypeDeCarte.attaque_action);
+        setLocalisation(LocalisationDesCartes.reserve);
+    }
+
+
 }

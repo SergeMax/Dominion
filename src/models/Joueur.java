@@ -64,6 +64,22 @@ public class Joueur {
         return action;
     }
 
+    public void setpV(int pV) {
+        this.pV = pV;
+    }
+
+    public void setMonnaie(byte monnaie) {
+        this.monnaie = monnaie;
+    }
+
+    public void setAction(byte action) {
+        this.action = action;
+    }
+
+    public void setAchat(byte achat) {
+        this.achat = achat;
+    }
+
     public byte getAchat() {
         return achat;
     }

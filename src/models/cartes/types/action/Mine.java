@@ -1,5 +1,7 @@
 package models.cartes.types.action;
 import models.cartes.Carte;
+import models.cartes.LocalisationDesCartes;
+import models.cartes.TypeDeCarte;
 
 public class Mine extends Carte {
     /*
@@ -7,4 +9,10 @@ public class Mine extends Carte {
         Coût: 5 pièces
         Action
      */
+
+    public Mine() {
+        setCout(5);
+        setType(TypeDeCarte.actions);
+        setLocalisation(LocalisationDesCartes.reserve);
+    }
 }

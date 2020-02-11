@@ -1,6 +1,8 @@
 package models.cartes.types.action;
 
 import models.cartes.Carte;
+import models.cartes.LocalisationDesCartes;
+import models.cartes.TypeDeCarte;
 
 public class Renovation extends Carte {
     /*
@@ -8,4 +10,10 @@ public class Renovation extends Carte {
         Coût: 4 pièces
         Action
      */
+
+    public Renovation() {
+        setCout(4);
+        setType(TypeDeCarte.actions);
+        setLocalisation(LocalisationDesCartes.reserve);
+    }
 }

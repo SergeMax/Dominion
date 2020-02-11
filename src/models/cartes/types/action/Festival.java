@@ -1,6 +1,11 @@
 package models.cartes.types.action;
 
+import models.Joueur;
 import models.cartes.Carte;
+import models.cartes.LocalisationDesCartes;
+import models.cartes.TypeDeCarte;
+
+import java.util.ArrayList;
 
 public class Festival extends Carte {
     /*
@@ -8,4 +13,10 @@ public class Festival extends Carte {
         Coût: 5 pièces
         Action
      */
+
+    public Festival() {
+        setCout(5);
+        setType(TypeDeCarte.actions);
+        setLocalisation(LocalisationDesCartes.reserve);
+    }
 }
