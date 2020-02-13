@@ -12,15 +12,20 @@
      -fx-border-style: dashed;
   }
 .btnMenu {
-    -fx-background-color: transparent;
-    -fx-border-color: white;
-    -fx-color-text: white;
+    -fx-background-color: #e4d4a0;
+    -fx-text-fill: #0676aB;
+    -fx-border-color: #a8a8a8;
+    -fx-opacity: 0.5;
+    -fx-pref-width:120;
+    -fx-pref-height:10;
+    -fx-font-weight: bold;
 }
 .btnMenu:hover {
-    -fx-color: black;
     -fx-cursor: hand;
+    -fx-fill: black;
+    -fx-opacity: 1;
 }
 .banniere {
-   -fx-opacity: 0.5;
+   -fx-opacity: 0.6;
 }
 

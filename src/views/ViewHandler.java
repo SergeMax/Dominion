@@ -51,7 +51,6 @@ public class ViewHandler extends Application {
 
     }
 
-
     public void afficherMenuPrincipale() {
         viewMenuPrincipal = new ViewMenuPrincipal(root);
         viewMenuPrincipal.clearAndInitRoot();
