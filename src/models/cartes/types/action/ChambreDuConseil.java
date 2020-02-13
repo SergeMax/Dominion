@@ -25,9 +25,8 @@ public class ChambreDuConseil extends Carte {
         for(Joueur joueur: joueurs){
             if (joueur.isEntrainDeJouer()){
                 joueur.piocheDesCarte(4);
-            }
-            if (joueur.isEntrainDeJouer() == false){
-                joueur.piocheDesCarte(4);
+            }else{
+                joueur.piocheDesCarte(1);
             }
         }
     }
