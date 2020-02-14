@@ -8,7 +8,7 @@ import java.util.Collections;
 public class Joueur {
     private String nom;
     private int pV;
-    private ArrayList<Carte> deck;
+    private Deck deck;
     private int indiceDansLeDeck;
     private byte monnaie;
     private byte action;
@@ -18,6 +18,7 @@ public class Joueur {
 
     public Joueur(){
         indiceDansLeDeck=0;
+        deck = new Deck();
     }
 
     public void piocheDesCarte(int nbDeCarte){
@@ -40,8 +41,8 @@ public class Joueur {
 
     }
 
-    public void melangeSesCartes(){
-        Collections.shuffle(deck);
+    public void placerUnCarteSurLeDessusDuDeck(){
+
     }
 
     public String getNom() {
@@ -52,7 +53,7 @@ public class Joueur {
         return pV;
     }
 
-    public ArrayList<Carte> getDeck() {
+    public Deck getDeck() {
         return deck;
     }
 

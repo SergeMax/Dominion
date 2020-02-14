@@ -7,6 +7,12 @@ public class Pile {
     private byte nombre;
     private boolean estVide;
 
+    public Pile(Carte carte, byte nombre) {
+        this.carte = carte;
+        this.nombre = nombre;
+        this.estVide = false;
+    }
+
     public Carte getCarte() {
         return carte;
     }

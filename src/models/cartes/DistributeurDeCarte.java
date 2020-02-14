@@ -1,5 +1,6 @@
 package models.cartes;
 
+import models.Pile;
 import models.cartes.types.action.*;
 import models.cartes.types.tresor.*;
 import models.cartes.types.victoire.*;
@@ -60,7 +61,41 @@ public class DistributeurDeCarte {
      * @param idCarte : l'id de la carte à instancier (voir enum IdCarte)
      * @return une liste de cartes de même type
      */
-    public static ArrayList<Carte> distribue(int number, IdCarte idCarte) {
+    public static ArrayList<Carte> distribueDeck(int number, IdCarte idCarte) {
+        ArrayList stack = new ArrayList();
+        for (int i = 0; i < number; i++) {
+            try {
+                stack.add(dicoCards.get(idCarte).newInstance());
+            } catch (InstantiationException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return stack;
+    }
+
+    public static Carte distribueOne( IdCarte idCarte) {
+        Carte carte = null;
+            try {
+                carte = dicoCards.get(idCarte).newInstance();
+            } catch (InstantiationException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        return carte;
+    }
+
+    public static ArrayList<Pile> radomPileAction(int number, IdCarte idCarte) {
+        ArrayList stack = new ArrayList();
+        for (int i = 0; i < number; i++) {
+            try {
+                stack.add(dicoCards.get(idCarte).newInstance());
+            } catch (InstantiationException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return stack;
+    }
+
+    public static ArrayList<Pile> distribuePileTresorVictoireMalediction(int number, IdCarte idCarte) {
         ArrayList stack = new ArrayList();
         for (int i = 0; i < number; i++) {
             try {

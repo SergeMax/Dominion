@@ -43,13 +43,4 @@ public abstract class Carte {
     public void effet(ArrayList<Joueur> joueurs){
 
     }
-
-
-    public static void main(String[] args) {
-        Carte carteArtisant = new Artisan();
-        Carte carteMarchand = new Marchand();
-
-        System.out.println(carteArtisant.getUrlImgCarte());
-        System.out.println(carteMarchand.getUrlImgCarte());
-    }
 }
