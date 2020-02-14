@@ -8,37 +8,60 @@ import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import models.Pile;
+import models.cartes.Carte;
 import views.GraphicalElement.CardViewPlayer;
 
-import javax.swing.*;
+import java.util.ArrayList;
+
 
 public class ViewJeu {
     private BorderPane root;
-private CardViewPlayer cardViewPlayer;
+    private CardViewPlayer cardViewPlayer;
     private ImageView imageCardViewPlayer;
-
+    private HBox boxMainActif;
+    private VBox vBoxMenu, boxDeckJActif,boxCarteCentraleEtJoue;
+    private HBox boxCarteRandomLigne1, boxCarteRandomLigne2;
+    private HBox hBoxFooter,hBoxRigth, hBoxLeft;
+    private StackPane centerPane;
 
     public ViewJeu(BorderPane root) {
-
-        root.setBackground(new Background( new BackgroundImage(new Image("assets/background/backgroundJeux.jpg"),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
-
         this.root = root;
+        /* INIT DES ELEMENTS */
+        boxDeckJActif = new VBox();
+        boxMainActif = new HBox(); // Zone carte Main
+        boxCarteCentraleEtJoue = new VBox(); // Zone Carte Central
+        boxCarteRandomLigne1 = new HBox();
+        boxCarteRandomLigne2 = new HBox();
 
+        vBoxMenu = setMenu();
+        hBoxLeft = setLeftHBox();
+        hBoxRigth = setRightHBox();
+        centerPane = setCenterPane();
+        hBoxFooter = setFooter();
+    }
+
+    public void clearAndInitRoot(){
+        root.getChildren().clear();
+        root.setBackground(new Background( new BackgroundImage(new Image("assets/background/backgroundJeux.jpg"),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        root.setTop(vBoxMenu);
+        root.setRight(hBoxRigth);
+        root.setBottom(hBoxFooter);
+        root.setLeft(hBoxLeft);
+        root.setCenter(centerPane);
     }
 
     public ImageView initCard(String cheminCard){
         cardViewPlayer = new CardViewPlayer(cheminCard);
         imageCardViewPlayer = cardViewPlayer.getImageViewCarte();
-
         return imageCardViewPlayer;
     }
 
-    public VBox getMenu()
+    public VBox setMenu()
     {
         VBox vbox = new VBox();
 
@@ -61,7 +84,7 @@ private CardViewPlayer cardViewPlayer;
         return vbox;
     }
 
-    public HBox getRightHBox()
+    public HBox setRightHBox()
     {
         HBox hbox = new HBox();
 
@@ -78,7 +101,7 @@ private CardViewPlayer cardViewPlayer;
         return hbox;
     }
 
-    public HBox getLeftHBox()
+    public HBox setLeftHBox()
     {
         HBox hbox = new HBox();
 
@@ -121,11 +144,11 @@ private CardViewPlayer cardViewPlayer;
         return hbox;
     }
 
-    public HBox getFooter()
+    public HBox setFooter()
     {
         HBox hbox = new HBox();
        // hbox.setAlignment(Pos.CENTER_LEFT);
-        VBox boxDeckJActif = new VBox();
+        boxDeckJActif = new VBox();
         boxDeckJActif.setPadding(new Insets(1));
         boxDeckJActif.setAlignment(Pos.CENTER_LEFT);
 
@@ -135,7 +158,6 @@ private CardViewPlayer cardViewPlayer;
 
         //hbox2
 
-        HBox boxMainActif = new HBox();
         boxMainActif.setPadding(new Insets(5));
         boxMainActif.getStyleClass().add("vbox_style");
         boxMainActif.setAlignment(Pos.CENTER);
@@ -147,26 +169,12 @@ private CardViewPlayer cardViewPlayer;
         hbox2.setAlignment(Pos.CENTER);
 
 
-        ImageView imageCarte = initCard("assets/cartes/braconier.png");
-        ImageView imageCarte2 = initCard("assets/cartes/atelier.png");
-        ImageView imageCarte3 = initCard("assets/cartes/cuivre.png");
-        ImageView imageCarte4 = initCard("assets/cartes/argent.png");
-        ImageView imageCarte5 = initCard("assets/cartes/domaine.png");
-
 
         hbox.getChildren().addAll(boxDeckJActif);
         hbox.getChildren().addAll(boxMainActif);
-        boxMainActif.getChildren().addAll(imageCarte, imageCarte2, imageCarte3, imageCarte4, imageCarte5);
+        //boxMainActif.getChildren().addAll(imageCarte, imageCarte2, imageCarte3, imageCarte4, imageCarte5);
        // hbox.getChildren().addAll(new Text("")
          //       , new Text(""), new Text(""));
-
-
-
-
-
-
-
-
 
         hbox.setMinHeight(200);
         hbox.setMaxHeight(400);
@@ -176,7 +184,9 @@ private CardViewPlayer cardViewPlayer;
         return hbox;
     }
 
-    public StackPane getCenterPane()
+
+
+    public StackPane setCenterPane()
     {
         StackPane stackPane = new StackPane();
         stackPane.setAlignment(Pos.TOP_CENTER);
@@ -186,7 +196,7 @@ private CardViewPlayer cardViewPlayer;
         rec.widthProperty().bind(stackPane.widthProperty().subtract(5));
         rec.heightProperty().bind(stackPane.heightProperty().subtract(5));
 
-        VBox boxCarteCentraleEtJoue = new VBox();
+        boxCarteCentraleEtJoue = new VBox();
         boxCarteCentraleEtJoue.setPadding(new Insets(1));
        // boxCarteCentraleEtJoue.setAlignment(Pos.TOP_CENTER);
 
@@ -204,7 +214,7 @@ private CardViewPlayer cardViewPlayer;
         boxCarteJoue.getStyleClass().add("vbox_style");
 
 
-        HBox boxCarteRandomLigne1 = new HBox();
+        boxCarteRandomLigne1 = new HBox();
         boxCarteRandomLigne1.setPadding(new Insets(1));
         boxCarteRandomLigne1.setAlignment(Pos.TOP_CENTER);
         boxCarteRandomLigne1.getStyleClass().add("vbox_style");
@@ -212,7 +222,7 @@ private CardViewPlayer cardViewPlayer;
 
 
 
-        HBox boxCarteRandomLigne2 = new HBox();
+        boxCarteRandomLigne2 = new HBox();
         boxCarteRandomLigne2.setPadding(new Insets(1));
         boxCarteRandomLigne2.setAlignment(Pos.TOP_CENTER);
         boxCarteRandomLigne2.setMinHeight(150);
@@ -222,16 +232,40 @@ private CardViewPlayer cardViewPlayer;
 
         boxCarteCentraleEtJoue.getChildren().addAll(boxCarteRandomLigne1, boxCarteRandomLigne2, boxCarteJoue );
 
-
         stackPane.getChildren().addAll(rec, boxCarteCentraleEtJoue);
 
 
 
         return stackPane;
     }
-    public void clearAndInitRoot(){
-        root.getChildren().clear();
-        root.getChildren().add(new Text("THIS IS THE GAME VIEW"));
+
+    public void updateCarteMainActif(ArrayList<Carte> carteArrayList, ControllerJeu controllerJeu){
+        for(Carte carte: carteArrayList){
+            ImageView img = initCard(carte.getUrlImgCarte());
+            img.setId("Clique sur une carte " + carte.getName() + " du deck :)" );
+            img.setOnMouseClicked(controllerJeu);
+            boxMainActif.getChildren().add(img) ;
+        }
+    }
+
+    public void updateCarteCenter(ArrayList<Pile> pileArrayList, ControllerJeu controllerJeu){
+        int i = 0;
+        for(Pile pile: pileArrayList){
+            ImageView img = initCard(pile.getCarte().getUrlImgCarte());
+            img.setId("Clique sur une pile du centre " + pile.getCarte().getName() + " Il y en a " + pile.getNombre());
+            img.setOnMouseClicked(controllerJeu);
+            if(i < 5 ){
+                boxCarteRandomLigne1.getChildren().add(img) ;
+            } else {
+                boxCarteRandomLigne2.getChildren().add(img) ;
+            }
+            i++;
+        }
+    }
+
+    //TODO: Faire des views Carré
+    public void updateCarteReserveLeft(ArrayList<Pile> pileArrayList, ControllerJeu controllerJeu){
+
     }
 
     public void setEvent(ControllerJeu controllerJeu){

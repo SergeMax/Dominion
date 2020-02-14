@@ -10,8 +10,8 @@ public class CardViewPlayer {
     public CardViewPlayer(String image){
         this.imageViewCarte = new ImageView(image);
         this.imageViewBack = new ImageView("assets/cartes/backCard.png");
-        imageViewCarte.setFitHeight(230);
-        imageViewCarte.setFitWidth(150);
+        imageViewCarte.setPreserveRatio(true);
+        imageViewCarte.setFitWidth(100);
         imageViewBack.setFitHeight(250);
         imageViewBack.setFitWidth(200);
     }

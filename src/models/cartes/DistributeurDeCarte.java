@@ -96,7 +96,6 @@ public class DistributeurDeCarte {
     }
 
     public static ArrayList<Pile> distribuePileTresorVictoireMalediction() {
-            //TODO: Generer une Liste de Pile définis TresorVictoiremalediction
         ArrayList<Pile> stack = new ArrayList<Pile>();
             stack.add(new Pile(distribueOne(IdCarte.CUIVRE),(byte)48));
             stack.add(new Pile(distribueOne(IdCarte.ARGENT),(byte)40));
@@ -110,7 +109,7 @@ public class DistributeurDeCarte {
 
     public static IdCarte randomIdCarte(){
         int i = 0;
-        int random = (int)(Math.random() * (dicoCards.size() - 1));
+        int random = (int)(Math.random() * (dicoCards.size()));
         for(IdCarte idCarte: IdCarte.values()){
             i++;
             if(i==random){

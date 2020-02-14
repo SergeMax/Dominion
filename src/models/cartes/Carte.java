@@ -38,6 +38,10 @@ public abstract class Carte {
         return Paths.urlImgCarte + this.getClass().getSimpleName().toLowerCase() + ".png";
     }
 
+    public String getName(){
+        return this.getClass().getSimpleName();
+    }
+
     public void effet(ArrayList<Joueur> joueurs){
 
     }

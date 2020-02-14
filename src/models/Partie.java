@@ -21,13 +21,6 @@ public class Partie {
         pilesReserveTresorVictoireMalediction = DistributeurDeCarte.distribuePileTresorVictoireMalediction();
     }
 
-    public static void main(String[] args) {
-        Partie partie = new Partie(2);
-        for(Pile carte : partie.getPilesReserveAction()){
-            System.out.println(carte.getCarte().getUrlImgCarte());
-        }
-    }
-
     public boolean isEstFinis() {
         return estFinis;
     }

@@ -58,16 +58,9 @@ public class ViewHandler extends Application {
     }
 
     public void afficherJeu() {
-
-
+        scene.setRoot(rootGame);
         viewJeu = new ViewJeu(rootGame);
         viewJeu.clearAndInitRoot();
-        rootGame.setTop(viewJeu.getMenu());
-        rootGame.setRight(viewJeu.getRightHBox());
-        rootGame.setBottom(viewJeu.getFooter());
-        rootGame.setLeft(viewJeu.getLeftHBox());
-        rootGame.setCenter(viewJeu.getCenterPane());
-        scene.setRoot(rootGame);
         controllerJeu = new ControllerJeu(this);
 
     }
