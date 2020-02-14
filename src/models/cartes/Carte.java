@@ -1,8 +1,6 @@
 package models.cartes;
 
 import models.Joueur;
-import models.cartes.types.action.Artisan;
-import models.cartes.types.action.Marchand;
 import tools.Paths;
 
 import java.util.ArrayList;

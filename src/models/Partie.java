@@ -1,6 +1,7 @@
 package models;
 
 import models.cartes.Carte;
+import models.cartes.DistributeurDeCarte;
 
 import java.util.ArrayList;
 
@@ -16,13 +17,46 @@ public class Partie {
         for(int i = 0; i < nombreDeJoueur; i++ ){
             joueurs.add(new Joueur());
         }
-        //pilesReserveAction.add()
+        pilesReserveAction = DistributeurDeCarte.radomPileAction();
+        pilesReserveTresorVictoireMalediction = DistributeurDeCarte.distribuePileTresorVictoireMalediction();
     }
 
     public static void main(String[] args) {
         Partie partie = new Partie(2);
-        for(Carte carte : partie.joueurs.get(0).getDeck().getCartes()){
-            System.out.println(carte.getUrlImgCarte());
+        for(Pile carte : partie.getPilesReserveAction()){
+            System.out.println(carte.getCarte().getUrlImgCarte());
         }
+    }
+
+    public boolean isEstFinis() {
+        return estFinis;
+    }
+
+    public ArrayList<Joueur> getJoueurs() {
+        return joueurs;
+    }
+
+    public ArrayList<Pile> getPilesReserveAction() {
+        return pilesReserveAction;
+    }
+
+    public ArrayList<Pile> getPilesReserveTresorVictoireMalediction() {
+        return pilesReserveTresorVictoireMalediction;
+    }
+
+    public void setEstFinis(boolean estFinis) {
+        this.estFinis = estFinis;
+    }
+
+    public void setJoueurs(ArrayList<Joueur> joueurs) {
+        this.joueurs = joueurs;
+    }
+
+    public void setPilesReserveAction(ArrayList<Pile> pilesReserveAction) {
+        this.pilesReserveAction = pilesReserveAction;
+    }
+
+    public void setPilesReserveTresorVictoireMalediction(ArrayList<Pile> pilesReserveTresorVictoireMalediction) {
+        this.pilesReserveTresorVictoireMalediction = pilesReserveTresorVictoireMalediction;
     }
 }

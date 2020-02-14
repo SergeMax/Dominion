@@ -83,26 +83,20 @@ public class DistributeurDeCarte {
         return carte;
     }
 
-    public static ArrayList<Pile> radomPileAction(int number, IdCarte idCarte) {
-        ArrayList stack = new ArrayList();
-        for (int i = 0; i < number; i++) {
-            try {
-                stack.add(dicoCards.get(idCarte).newInstance());
-            } catch (InstantiationException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
+    public static ArrayList<Pile> radomPileAction() {
+        ArrayList stack = new ArrayList<Pile>();
+        for (int i = 0; i < 10; i++) {
+            int random = (int)(Math.random() * (dicoCards.size() - 1));
+            //TODO: RandomPileAction
         }
         return stack;
     }
 
-    public static ArrayList<Pile> distribuePileTresorVictoireMalediction(int number, IdCarte idCarte) {
-        ArrayList stack = new ArrayList();
-        for (int i = 0; i < number; i++) {
-            try {
-                stack.add(dicoCards.get(idCarte).newInstance());
-            } catch (InstantiationException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
+    public static ArrayList<Pile> distribuePileTresorVictoireMalediction() {
+        ArrayList stack = new ArrayList<Pile>();
+        for (int i = 0; i < 7; i++) {
+            int random = (int)(Math.random() * (dicoCards.size() - 1));
+            //TODO: Generer une Liste de Pile définis TresorVictoiremalediction
         }
         return stack;
     }

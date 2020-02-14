@@ -14,11 +14,11 @@ public class Deck {
 
     public Deck(){
         cartes = new ArrayList<Carte>();
-        for(Carte carte: DistributeurDeCarte.distribue(7, IdCarte.CUIVRE)){
+        for(Carte carte: DistributeurDeCarte.distribueDeck(7, IdCarte.CUIVRE)){
             carte.setLocalisation(LocalisationDesCartes.deck);
             cartes.add(carte);
         };
-        for(Carte carte: DistributeurDeCarte.distribue(3, IdCarte.DOMAINE)){
+        for(Carte carte: DistributeurDeCarte.distribueDeck(3, IdCarte.DOMAINE)){
             carte.setLocalisation(LocalisationDesCartes.deck);
             cartes.add(carte);
         };
