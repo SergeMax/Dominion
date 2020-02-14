@@ -35,7 +35,7 @@ public class ViewMenuPrincipal {
         vBox2.setMinWidth(Screen.getPrimary().getBounds().getWidth());
         vBox2.setMinHeight(Screen.getPrimary().getBounds().getHeight());
         vBox.setAlignment(Pos.CENTER);
-        vBox2.setAlignment(Pos.BOTTOM_RIGHT);
+        vBox2.setAlignment(Pos.BOTTOM_CENTER);
         vBox.setBackground(new Background( new BackgroundImage(new
                 Image("assets/logo/background.jpg"),BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
@@ -44,12 +44,11 @@ public class ViewMenuPrincipal {
 
         btnPlay = initButton("PLAY",20);
         VBox.setMargin(btnPlay,new Insets(50,0,50,0));
-        btnPlay.getStyleClass().add("btn-play");
         btnQuit = initButton("QUITTER",20);
 
         titre = new ImageView("assets/logo/logo_dominion.png");
-        titre.setFitWidth(380);
-        titre.setFitHeight(200);
+        //titre.setFitWidth(380);
+        //titre.setFitHeight(200);
 
 
         titre.getStyleClass().add("banniere");
