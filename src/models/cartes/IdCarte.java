@@ -1,4 +1,7 @@
 package models.cartes;
+
+import java.util.Iterator;
+
 /**
  * enum d'identification des cartes
  */

@@ -1,11 +1,15 @@
 package models.cartes;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
 import models.Pile;
 import models.cartes.types.action.*;
 import models.cartes.types.tresor.*;
 import models.cartes.types.victoire.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.EnumSet;
 import java.util.HashMap;
 
 
@@ -61,7 +65,7 @@ public class DistributeurDeCarte {
      * @param idCarte : l'id de la carte à instancier (voir enum IdCarte)
      * @return une liste de cartes de même type
      */
-    public static ArrayList<Carte> distribueDeck(int number, IdCarte idCarte) {
+    public static ArrayList<Carte> distribueCarte(int number, IdCarte idCarte) {
         ArrayList stack = new ArrayList();
         for (int i = 0; i < number; i++) {
             try {
@@ -86,18 +90,33 @@ public class DistributeurDeCarte {
     public static ArrayList<Pile> radomPileAction() {
         ArrayList stack = new ArrayList<Pile>();
         for (int i = 0; i < 10; i++) {
-            int random = (int)(Math.random() * (dicoCards.size() - 1));
-            //TODO: RandomPileAction
+            stack.add(new Pile(distribueOne(randomIdCarte()),(byte)20));
         }
         return stack;
     }
 
     public static ArrayList<Pile> distribuePileTresorVictoireMalediction() {
-        ArrayList stack = new ArrayList<Pile>();
-        for (int i = 0; i < 7; i++) {
-            int random = (int)(Math.random() * (dicoCards.size() - 1));
             //TODO: Generer une Liste de Pile définis TresorVictoiremalediction
-        }
+        ArrayList<Pile> stack = new ArrayList<Pile>();
+            stack.add(new Pile(distribueOne(IdCarte.CUIVRE),(byte)48));
+            stack.add(new Pile(distribueOne(IdCarte.ARGENT),(byte)40));
+            stack.add(new Pile(distribueOne(IdCarte.OR),(byte)30));
+            stack.add(new Pile(distribueOne(IdCarte.PROVINCE),(byte)8));
+            stack.add(new Pile(distribueOne(IdCarte.DUCHE),(byte)8));
+            stack.add(new Pile(distribueOne(IdCarte.DOMAINE),(byte)8));
+            stack.add(new Pile(distribueOne(IdCarte.MALEDICTION),(byte)10));
         return stack;
+    }
+
+    public static IdCarte randomIdCarte(){
+        int i = 0;
+        int random = (int)(Math.random() * (dicoCards.size() - 1));
+        for(IdCarte idCarte: IdCarte.values()){
+            i++;
+            if(i==random){
+                return idCarte;
+            }
+        }
+        return null;
     }
 }
