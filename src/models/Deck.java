@@ -14,18 +14,26 @@ public class Deck {
 
     public Deck(){
         cartes = new ArrayList<Carte>();
-        for(Carte carte: DistributeurDeCarte.distribueCarte(7, IdCarte.CUIVRE)){
-            carte.setLocalisation(LocalisationDesCartes.deck);
+        for(Carte carte: DistributeurDeCarte.distribueFewCarte(7, IdCarte.CUIVRE)){
+            carte.setLocalisation(LocalisationDesCartes.mainJoueur);
             cartes.add(carte);
         };
-        for(Carte carte: DistributeurDeCarte.distribueCarte(3, IdCarte.DOMAINE)){
-            carte.setLocalisation(LocalisationDesCartes.deck);
+        for(Carte carte: DistributeurDeCarte.distribueFewCarte(3, IdCarte.DOMAINE)){
+            carte.setLocalisation(LocalisationDesCartes.mainJoueur);
             cartes.add(carte);
         };
+        melangeSesCartes();
     }
 
     public void melangeSesCartes(){
         Collections.shuffle(cartes);
+        for(int i = 0; i < cartes.size(); i++){
+            if(i < 5){
+                cartes.get(i).setLocalisation(LocalisationDesCartes.mainJoueur);
+            } else {
+                cartes.get(i).setLocalisation(LocalisationDesCartes.deck);
+            }
+        }
     }
 
 

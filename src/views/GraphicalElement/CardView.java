@@ -9,18 +9,16 @@ import javafx.scene.layout.VBox;
 import models.Pile;
 import tools.Paths;
 
+public class CardView {
 
-
-public class CardViewReserve {
-
-    private int width = 75;
+    private int width = 100;
     private Group grpContenairCard;
     private ImageView img;
     private Image front, back;
     private VBox vBoxNumber;
     private Label lblNumber;
 
-    public CardViewReserve(Pile pile){
+    public CardView(Pile pile){
         grpContenairCard = new Group();
         front = new Image(pile.getCarte().getUrlImgCarte());
         back = new Image(Paths.urlImgBack);

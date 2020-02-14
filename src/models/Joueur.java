@@ -1,6 +1,7 @@
 package models;
 
 import models.cartes.Carte;
+import models.cartes.LocalisationDesCartes;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,7 +27,7 @@ public class Joueur {
     }
 
     public void poserUneCarte(Carte carte){
-
+        carte.setLocalisation(LocalisationDesCartes.terrain);
     }
 
     public void defausseUneCarte(Carte carte) {
@@ -43,6 +44,10 @@ public class Joueur {
 
     public void placerUnCarteSurLeDessusDuDeck(){
 
+    }
+
+    public ArrayList<Pile> getAgregationDeCarteEnPile(){
+        return Pile.aggregationDeCarteEnPile(deck.getCartes());
     }
 
     public String getNom() {
