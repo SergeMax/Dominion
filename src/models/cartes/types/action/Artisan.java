@@ -1,7 +1,10 @@
 package models.cartes.types.action;
+import models.Joueur;
 import models.cartes.Carte;
 import models.cartes.LocalisationDesCartes;
 import models.cartes.TypeDeCarte;
+
+import java.util.ArrayList;
 
 public class Artisan extends Carte {
     /*
@@ -14,6 +17,15 @@ public class Artisan extends Carte {
         setCout(6);
         setType(TypeDeCarte.actions);
         setLocalisation(LocalisationDesCartes.reserve);
+    }
+
+    public void effet(ArrayList<Joueur> joueurs) {
+        for(Joueur joueur: joueurs){
+            if (joueur.isEntrainDeJouer()){
+                joueur.recevoirUneCarteDeValeur(5);
+                //joueur.poserUneCarte();
+            }
+        }
     }
     /*
         Pour l'effet, il faudrait un algo qui permet au joueur de choisir une carte sur le terrain ayant un coût égal ou inférieur à 5,
