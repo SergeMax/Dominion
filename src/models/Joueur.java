@@ -36,6 +36,10 @@ public class Joueur {
 
     }
 
+    public void recevoirUneCarteDeValeur(int valeur){
+
+    }
+
     public void melangeSesCartes(){
         Collections.shuffle(deck);
     }

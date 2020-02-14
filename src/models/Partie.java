@@ -11,7 +11,8 @@ public class Partie {
         estFinis= false;
         joueurs = new ArrayList<Joueur>();
         for(int i = 0; i < nombreDeJoueur; i++ ){
-            joueurs.add(new Joueur());
+            //newJoueur = new
+            //joueurs.add(new Joueur());
         }
     }
 }
