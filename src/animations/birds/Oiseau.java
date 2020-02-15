@@ -1,5 +1,6 @@
 package animations.birds;
 
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -41,7 +42,7 @@ public class Oiseau {
         flyTimeline = new Timeline();
         flyTimeline.getKeyFrames().addAll(
                 new KeyFrame(Duration.ZERO,new KeyValue(grpContainerImgBirds.layoutXProperty(),0)),
-                new KeyFrame(new Duration(500), new KeyValue(grpContainerImgBirds.layoutXProperty(),1000)));
+                new KeyFrame(new Duration(500), new KeyValue(grpContainerImgBirds.layoutXProperty(),1000)));// Indice: peut etre qu'on pourrait se servir la variable root pour connaitre la taille d'ecran :) ATTENTION A PRENDRE EN COMPTE LA TAILLE imgBird pour que l'oiseau rentre et sort bien de root
         flyTimeline.setCycleCount(99);
     }
     //5 TODO NIVEAU EXTREME : essaye de rajouter des KeyFrame pour que l'oiseau oscille de haut en bas (pour rajouter du realisme :P)
