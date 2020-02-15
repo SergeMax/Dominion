@@ -19,6 +19,10 @@ public class Joueur {
 
     public Joueur(String nom){
         this.nom = nom;
+        pV = 3;
+        monnaie = 0;
+        action = 1;
+        achat = 1;
         indiceDansLeDeck=0;
         deck = new Deck();
     }
