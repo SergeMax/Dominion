@@ -9,16 +9,14 @@ import javafx.scene.layout.VBox;
 import models.Pile;
 import tools.Paths;
 
-
-
 public class CardViewReserve {
 
     private int width = 75;
-    private Group grpContenairCard;
-    private ImageView img;
-    private Image front, back;
-    private VBox vBoxNumber;
-    private Label lblNumber;
+    protected Group grpContenairCard;
+    protected ImageView img;
+    protected Image front, back;
+    protected VBox vBoxNumber;
+    protected Label lblNumber;
 
     public CardViewReserve(Pile pile){
         grpContenairCard = new Group();

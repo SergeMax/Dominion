@@ -17,7 +17,8 @@ public class Joueur {
     private boolean entrainDeJouer;
     private boolean doitDefausser;
 
-    public Joueur(){
+    public Joueur(String nom){
+        this.nom = nom;
         indiceDansLeDeck=0;
         deck = new Deck();
     }

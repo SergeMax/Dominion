@@ -6,7 +6,6 @@ import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -15,46 +14,59 @@ import javafx.scene.text.Text;
 import models.Joueur;
 import models.Pile;
 import models.cartes.LocalisationDesCartes;
-import views.GraphicalElement.CardView;
+import views.GraphicalElement.CardViewPlayer;
 import views.GraphicalElement.CardViewReserve;
 
 import java.util.ArrayList;
 
-
+//TODO: 1 Modifier la Class CardViewReserve pour qu'elles soit carré.
+//TODO: 2 Afficher les Info du joueur (Nom, Or, Pv)
+//TODO: 3 Modifier les Class CardView pour qu'il y est une icone (+) sur une carte de la reserve signifiant que le joueur peut l'acheter
+// (Piste : Modifier les Class CardView en utilisant peut etre l'heritage et modifier les methode update au besoin)
+//TODO: 4 Agencer l'affichage du BorderPane (Nettoyer element inutile, modifier les conteneurs au besoin,...)
 public class ViewJeu {
     private BorderPane root;
-    private HBox boxMainActif;
-    private VBox vBoxMenu, boxDeckJActif,boxCarteCentraleEtJoue, boxPvLeft, boxPvRight;
-    private HBox boxCarteRandomLigne1, boxCarteRandomLigne2,boxCarteJoue, boxDefause, boxPioche;
+
+    /* DECLARATION DES CONTENEUR DES 5 PARTIES DU BORDERPANE */
     private HBox hBoxFooter,hBoxRigth, hBoxLeft;
+    private VBox boxMenu;
     private StackPane centerPane;
+
+    /* DECLARATION DES CONTENEURS QUI ACCEUILLENT LES CARTES ENVOYER PAR LE CONTROLER*/
+    private HBox boxMainActif;
+    private VBox boxDeckJActif,boxCarteCentraleEtJoue, boxPvLeft, boxPvRight;
+    private HBox boxCarteRandomLigne1, boxCarteRandomLigne2,boxCarteJoue, boxDefause, boxPioche;
 
     public ViewJeu(BorderPane root) {
         this.root = root;
         /* INIT DES ELEMENTS */
-        boxDeckJActif = new VBox();
-        boxMainActif = new HBox(); // Zone carte Main
-        boxCarteCentraleEtJoue = new VBox(); // Zone Carte Central
-
-
-        vBoxMenu = setMenu();
-        hBoxLeft = setLeftHBox();
-        hBoxRigth = setRightHBox();
-        centerPane = setCenterPane();
-        hBoxFooter = setFooter();
+        boxMenu = initMenu();
+        hBoxLeft = initLeftHBox();
+        hBoxRigth = initRightHBox();
+        centerPane = initCenterPane();
+        hBoxFooter = initFooter();
     }
 
+    /**
+     * Methode appeller depuis le ViewHandler pour vider le root et initialiser les views
+     */
     public void clearAndInitRoot(){
         root.getChildren().clear();
         root.setBackground(new Background( new BackgroundImage(new Image("assets/background/backgroundJeux.jpg"),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
-        root.setTop(vBoxMenu);
+        root.setTop(boxMenu);
         root.setRight(hBoxRigth);
         root.setBottom(hBoxFooter);
         root.setLeft(hBoxLeft);
         root.setCenter(centerPane);
     }
 
-    public VBox setMenu()
+    //TODO: 4 Agencer l'affichage du BorderPane (Nettoyer element inutile, modifier les conteneurs au besoin,...)
+    /**
+     * Initialise le conteneur Top (Menu):
+     * - NE CONTIENT RIEN POUR LE MOMENT
+     * @return le conteneur menu
+     */
+    public VBox initMenu()
     {
         VBox vbox = new VBox();
 
@@ -75,7 +87,12 @@ public class ViewJeu {
         return vbox;
     }
 
-    public HBox setRightHBox()
+    /**
+     * Initialise le conteneur des cartes reserve contenant:
+     * - NE CONTIENT RIEN POUR LE MOMENT
+     * @return le conteneur droit
+     */
+    public HBox initRightHBox()
     {
         HBox hbox = new HBox();
 
@@ -91,7 +108,13 @@ public class ViewJeu {
         return hbox;
     }
 
-    public HBox setLeftHBox()
+    /**
+     * Initialise le conteneur des cartes reserve contenant:
+     * - box des carte Victoire Gauche
+     * - box des carte Tresor Droit
+     * @return le conteneur gauche des cartes reserves
+     */
+    public HBox initLeftHBox()
     {
         HBox hbox = new HBox();
 
@@ -131,9 +154,18 @@ public class ViewJeu {
         return hbox;
     }
 
-    public HBox setFooter()
+    /**
+     * Initialise le conteneur footer contenant:
+     * - box du la pioche
+     * - box de la defause
+     * - box de la main
+     * @return le conteneur footer
+     */
+    public HBox initFooter()
     {
         HBox hbox = new HBox();
+        boxDeckJActif = new VBox();
+        boxMainActif = new HBox(); // Zone carte Main
        // hbox.setAlignment(Pos.CENTER_LEFT);
         boxDeckJActif = new VBox();
         boxDeckJActif.setPadding(new Insets(1));
@@ -167,25 +199,24 @@ public class ViewJeu {
         return hbox;
     }
 
-
-
-    public StackPane setCenterPane()
+    /**
+     * Initialise le conteneur central contenant la boxCarteRandomLigne1 et la boxCarteRandomLigne2
+     * @return le conteneur central
+     */
+    public StackPane initCenterPane()
     {
         StackPane stackPane = new StackPane();
+        boxCarteCentraleEtJoue = new VBox(); // Zone Carte Central
         stackPane.setAlignment(Pos.TOP_CENTER);
-
         Rectangle rec = new Rectangle();
         rec.setOpacity(0.1);
         rec.widthProperty().bind(stackPane.widthProperty().subtract(5));
         rec.heightProperty().bind(stackPane.heightProperty().subtract(5));
-
         boxCarteCentraleEtJoue = new VBox();
         boxCarteCentraleEtJoue.setPadding(new Insets(1));
        // boxCarteCentraleEtJoue.setAlignment(Pos.TOP_CENTER);
-
         boxCarteCentraleEtJoue.setSpacing(20);
         boxCarteCentraleEtJoue.getStyleClass().add("vbox_style");
-
         boxCarteJoue = new HBox();
         boxCarteJoue.setPadding(new Insets(1));
         boxCarteJoue.setAlignment(Pos.BOTTOM_CENTER);
@@ -216,15 +247,26 @@ public class ViewJeu {
         return stackPane;
     }
 
+    /* METHODE D'UPDATE DES CONTENEURS UTILISEES DANS LE CONTROLLER POUR METTRE A JOUR VISUELLEMENT LES CARTES */
+    /* CES METHODES SERONT A MODIFIER SI ON SOUHAITE FAIRE DES ANIMATIONS */
+    /**
+     * Met a jour l'interface graphique des cartes du joueur (refresh)
+     * @param piles pile du joueur
+     * @param controllerJeu Le controlleur de jeu (pour capturer le clique sur les cartes)
+     */
     public void updateCarteJoueur(ArrayList<Pile> piles, ControllerJeu controllerJeu){
+        /* ON COMMENCE PAR VIDER LES CONTENEURS DU JOUEUR */
         boxMainActif.getChildren().clear();
         boxCarteJoue.getChildren().clear();
         boxDefause.getChildren().clear();
         boxPioche.getChildren().clear();
-
+        /* ON PARCOURS LES PILES */
         for(Pile pile: piles){
-            CardView cardViewPlayer = new CardView(pile);
+            /* ON CREER LA CARTE VIEWS */
+            CardViewPlayer cardViewPlayer = new CardViewPlayer(pile);
+            /* ON ATTACHE L'EVENT AU CLIC DU CONTROLER DE LA CARTE */
             cardViewPlayer.getGrpContenairCard().setOnMouseClicked(controllerJeu);
+            /* ON ATTACHE LA CARTE VIEWS A LA BONNE BOX SUIVANT SA LOCALISATION */
             if(pile.getCarte().getLocalisation() == LocalisationDesCartes.mainJoueur){
                 boxMainActif.getChildren().add(cardViewPlayer.getGrpContenairCard());
             }else if(pile.getCarte().getLocalisation() == LocalisationDesCartes.terrain) {
@@ -238,12 +280,17 @@ public class ViewJeu {
         }
     }
 
+    /**
+     * Idem pour les cartes du centres
+     * @param pileArrayList Pile de carte action de la reserve
+     * @param controllerJeu Le controller de jeu
+     */
     public void updateCarteCenter(ArrayList<Pile> pileArrayList, ControllerJeu controllerJeu){
         boxCarteRandomLigne1.getChildren().clear();
         boxCarteRandomLigne2.getChildren().clear();
         int i = 0;
         for(Pile pile: pileArrayList){
-            CardView cardViewPlayer = new CardView(pile);
+            CardViewPlayer cardViewPlayer = new CardViewPlayer(pile);
             cardViewPlayer.getGrpContenairCard().setOnMouseClicked(controllerJeu);
             if(i < 5 ){
                 boxCarteRandomLigne1.getChildren().add(cardViewPlayer.getGrpContenairCard()) ;
@@ -254,12 +301,17 @@ public class ViewJeu {
         }
     }
 
-    //TODO: Faire des views Carré
+    /**
+     * Idem pour les cartes reserve gauche
+     * @param pileArrayList Pile de carte action de la reserve
+     * @param controllerJeu Le controller de jeu
+     */
     public void updateCarteReserveLeft(ArrayList<Pile> pileArrayList, ControllerJeu controllerJeu){
         boxPvLeft.getChildren().clear();
         boxPvRight.getChildren().clear();
         int i = 0;
         for(Pile pile: pileArrayList){
+            //TODO:1 Modifier la Class CardViewReserve pour qu'elle soit carré
             CardViewReserve cardViewReserve = new CardViewReserve(pile);
             cardViewReserve.getGrpContenairCard().setOnMouseClicked(controllerJeu);
             if(i < 3 ){
@@ -271,6 +323,19 @@ public class ViewJeu {
         }
     }
 
+    //TODO: 2 Afficher les Info du joueur (Nom, Or, Pv)
+    /**
+     * Idem pour un conteneur affichant les infos du joueur (Nom, Pv Or)
+     * @param joueur
+     */
+    public void updateJoueurInfo(Joueur joueur){
+
+    }
+
+    /**
+     * Attache des events au clique d'element statique (element qui ne changeront jamais comme le button pour quitter la partie)
+     * @param controllerJeu Le controlleur de jeu
+     */
     public void setEvent(ControllerJeu controllerJeu){
 
     }

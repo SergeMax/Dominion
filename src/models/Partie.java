@@ -1,6 +1,5 @@
 package models;
 
-import models.cartes.Carte;
 import models.cartes.DistributeurDeCarte;
 
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ public class Partie {
         estFinis= false;
         joueurs = new ArrayList<Joueur>();
         for(int i = 0; i < nombreDeJoueur; i++ ){
-            joueurs.add(new Joueur());
+            joueurs.add(new Joueur("Joueur " + (i+1)));
         }
         pilesReserveAction = DistributeurDeCarte.radomPileAction();
         pilesReserveTresorVictoireMalediction = DistributeurDeCarte.distribuePileTresorVictoireMalediction();
