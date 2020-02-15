@@ -4,6 +4,7 @@ import models.Pile;
 import models.cartes.types.action.*;
 import models.cartes.types.tresor.*;
 import models.cartes.types.victoire.*;
+import views.GraphicalElement.CardViewPlayer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -85,8 +86,14 @@ public class DistributeurDeCarte {
 
     public static ArrayList<Pile> radomPileAction() {
         ArrayList<Pile> stack = new ArrayList<Pile>();
+        Carte carte = null;
+        int random = 0;
         for (int i = 0; i < 10; i++) {
-            stack.add(new Pile(distribueOneCarte(randomIdCarte()),(byte)20));
+            do {
+                random = (int) (Math.random() * (dicoCards.size()));
+                carte = distribueOneCarte(IdCarte.values()[random]);
+            }while (carte.getType().equals(TypeDeCarte.tresor) || carte.getType().equals(TypeDeCarte.victoire));
+            stack.add(new Pile(carte,(byte)20));
         }
         return stack;
     }
@@ -101,17 +108,5 @@ public class DistributeurDeCarte {
         stack.add(new Pile(distribueOneCarte(IdCarte.DOMAINE),(byte)8));
         stack.add(new Pile(distribueOneCarte(IdCarte.MALEDICTION),(byte)10));
         return stack;
-    }
-
-    public static IdCarte randomIdCarte(){
-        int i = 0;
-        int random = (int)(Math.random() * (dicoCards.size()));
-        for(IdCarte idCarte: IdCarte.values()){
-            if(i==random){
-                return idCarte;
-            }
-            i++;
-        }
-        return null;
     }
 }

@@ -1,11 +1,16 @@
 package models;
 
 import models.cartes.Carte;
+import models.cartes.DistributeurDeCarte;
+import models.cartes.IdCarte;
 import models.cartes.LocalisationDesCartes;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 
@@ -25,32 +30,26 @@ public class Pile {
     public static ArrayList<Pile> aggregationDeCarteEnPile(ArrayList<Carte> cartes){
         ArrayList piles = new ArrayList();
         ArrayList<Carte> carteFilterMain = cartes.stream().filter(items -> items.getLocalisation().equals(LocalisationDesCartes.mainJoueur)).collect(Collectors.toCollection(ArrayList::new));;
-        Collections.sort(carteFilterMain,Comparator.comparing(Carte::getName));
-        Carte previousCarte= null;
-        byte turn = 1;
-        byte nombreDeTypeDeCarte = 1;
-        for(Carte carte: carteFilterMain){
-            if(previousCarte == null){
-                previousCarte = carte;
-            }
-            if(previousCarte.getClass().getSimpleName() != carte.getClass().getSimpleName()){
-                piles.add(new Pile(previousCarte,nombreDeTypeDeCarte));
-                previousCarte = carte;
-                nombreDeTypeDeCarte = 0;
-            } else if (carteFilterMain.size() == turn){
-                piles.add(new Pile(carte,nombreDeTypeDeCarte));
-                break;
-            }
-            nombreDeTypeDeCarte++;
-            turn++;
+        Map<String, Long>groupByClassName = carteFilterMain.stream().collect(Collectors.groupingBy(Carte::getName, Collectors.counting()));
+        for (Map.Entry<String, Long> carteMap : groupByClassName.entrySet()){
+            Carte carte = DistributeurDeCarte.distribueOneCarte(IdCarte.valueOf(carteMap.getKey().toUpperCase()));
+            carte.setLocalisation(LocalisationDesCartes.mainJoueur);
+            piles.add(new Pile(carte,carteMap.getValue().byteValue()));
+        }
+        ArrayList<Carte> carteFilterTerrain = cartes.stream().filter(items -> items.getLocalisation().equals(LocalisationDesCartes.terrain)).collect(Collectors.toCollection(ArrayList::new));;
+        groupByClassName = carteFilterTerrain.stream().collect(Collectors.groupingBy(Carte::getName, Collectors.counting()));
+        for (Map.Entry<String, Long> carteMap : groupByClassName.entrySet()){
+            Carte carte = DistributeurDeCarte.distribueOneCarte(IdCarte.valueOf(carteMap.getKey().toUpperCase()));
+            carte.setLocalisation(LocalisationDesCartes.terrain);
+            piles.add(new Pile(carte,carteMap.getValue().byteValue()));
         }
         ArrayList<Carte> carteFilterPioche = cartes.stream().filter(items -> items.getLocalisation().equals(LocalisationDesCartes.deck)).collect(Collectors.toCollection(ArrayList::new));;
         ArrayList<Carte> carteFilterDefause = cartes.stream().filter(items -> items.getLocalisation().equals(LocalisationDesCartes.defausse)).collect(Collectors.toCollection(ArrayList::new));;
         if(carteFilterDefause.size() != 0){
-            piles.add(new Pile(carteFilterDefause.get(1),(byte)carteFilterPioche.size()));
+            piles.add(new Pile(carteFilterDefause.get(0),(byte)carteFilterDefause.size()));
         }
         if(carteFilterPioche.size() != 0){
-            piles.add(new Pile(carteFilterPioche.get(1),(byte)carteFilterPioche.size()));
+            piles.add(new Pile(carteFilterPioche.get(0),(byte)carteFilterPioche.size()));
         }
         return piles;
     }

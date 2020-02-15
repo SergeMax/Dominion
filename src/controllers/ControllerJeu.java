@@ -23,8 +23,8 @@ public class ControllerJeu implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
         try{
-            //Carte selectedCarte = partie.getJoueurs().get(0).selectGUI(mouseEvent.getPickResult().getIntersectedNode().getId());
-            //partie.getJoueurs().get(0).poserUneCarte(selectedCarte);
+            Carte selectedCarte = partie.getJoueurs().get(0).clicqueSurUneCarte(mouseEvent.getPickResult().getIntersectedNode().getId());
+            partie.getJoueurs().get(0).poserUneCarte(selectedCarte);
             updateAllGUI();
 
         } catch (NullPointerException e){

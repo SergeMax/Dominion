@@ -23,6 +23,16 @@ public class Joueur {
         deck = new Deck();
     }
 
+    public Carte clicqueSurUneCarte(String className){
+        Carte selectedCarte = null;
+        for(Carte carte: deck.getCartes()){
+            if(carte.getClass().getSimpleName().contains(className) && carte.getLocalisation().equals(LocalisationDesCartes.mainJoueur)){
+                return  carte;
+            }
+        }
+        return selectedCarte;
+    }
+
     public void piocheDesCarte(int nbDeCarte){
 
     }
