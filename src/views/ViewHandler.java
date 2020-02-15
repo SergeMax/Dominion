@@ -14,6 +14,7 @@ import javafx.stage.StageStyle;
 import java.net.URL;
 
 public class ViewHandler extends Application {
+    public Stage primaryStage;
     private Scene scene;
     private Group root;
     private ViewMenuPrincipal viewMenuPrincipal;
@@ -25,6 +26,7 @@ public class ViewHandler extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        this.primaryStage = primaryStage;
         root = new Group();
         rootGame = new BorderPane();
 
@@ -63,6 +65,10 @@ public class ViewHandler extends Application {
         viewJeu.clearAndInitRoot();
         controllerJeu = new ControllerJeu(this);
 
+    }
+
+    public void quitterJeu(){
+        primaryStage.close();
     }
 
     public ViewMenuPrincipal getViewMenuPrincipal() {
