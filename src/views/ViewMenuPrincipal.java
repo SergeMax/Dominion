@@ -85,7 +85,6 @@ public class ViewMenuPrincipal {
         btnQuit.setOnMouseClicked(controllerMenuPrincipal);
     }
 
-
     //setter
     public void setBtnPlay(Button btnPlay) { this.btnPlay = btnPlay; }
     public void setBtnQuit(Button btnQuit) { this.btnQuit = btnQuit; }
@@ -94,4 +93,7 @@ public class ViewMenuPrincipal {
     //getter
     public Button getBtnPlay() { return btnPlay; }
     public Button getBtnQuit() { return btnQuit; }
+    public Group getRoot(){
+        return root;
+    }
 }
