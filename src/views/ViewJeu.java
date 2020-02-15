@@ -5,8 +5,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -75,9 +77,21 @@ public class ViewJeu {
         hbox.setPadding(new Insets(5));
         hbox.setAlignment(Pos.CENTER);
 
-        hbox.getChildren().addAll(new Text("")
-                , new Text(""), new Text(""));
-        vbox.getChildren().addAll(new Separator(), hbox);
+
+
+        HBox scoreJPassifHbox = new HBox();
+        Text scoreJactifText = new Text("Joueur 2 : 9pv");
+        scoreJactifText.setStyle("-fx-font: 24 arial;");
+        scoreJactifText.setFill(Color.WHITE);
+        scoreJPassifHbox.getChildren().add(scoreJactifText);
+        scoreJPassifHbox.setStyle("-fx-background-color:rgba(0,0,0,0.5);");
+        scoreJPassifHbox.setMaxWidth(100);
+        scoreJPassifHbox.setMinHeight(30);
+        scoreJPassifHbox.setPadding(new Insets(10, 10, 10, 10));
+
+
+
+        vbox.getChildren().addAll(new Separator(),scoreJPassifHbox, hbox);
 
         vbox.setMaxHeight(100);
         vbox.setMinHeight(90);
@@ -134,11 +148,13 @@ public class ViewJeu {
         boxPvLeft.setMaxWidth(100);
         boxPvLeft.setMinWidth(100);
         boxPvLeft.getStyleClass().add("vbox_style");
+        boxPvLeft.setSpacing(20);
 
         boxPvRight = new VBox();
         boxPvRight.setPadding(new Insets(1));
         boxPvRight.setAlignment(Pos.TOP_RIGHT);
         boxPvRight.getStyleClass().add("vbox_style");
+        boxPvRight.setSpacing(20);
 
         boxPvRight.setMaxWidth(100);
         boxPvRight.setMinWidth(100);
@@ -152,7 +168,7 @@ public class ViewJeu {
         hbox.setTranslateY(-100);
         hbox.getStyleClass().add("vbox_style");
 
-        return hbox;
+         return hbox;
     }
 
     /**
@@ -180,6 +196,7 @@ public class ViewJeu {
         boxMainActif.getStyleClass().add("vbox_style");
         boxMainActif.setAlignment(Pos.CENTER);
         boxMainActif.setPrefWidth(1500);
+        boxMainActif.setSpacing(-20);
 
         HBox hBoxDefausePioche = new HBox(20);
         hBoxDefausePioche.setPadding(new Insets(5));
@@ -187,8 +204,19 @@ public class ViewJeu {
         boxDefause = new HBox();
         boxPioche = new HBox();
 
+        HBox scoreJActifHbox = new HBox();
+        Text scoreJactifText = new Text("Joueur 1 : 9pv");
+        scoreJactifText.setStyle("-fx-font: 24 arial;");
+        scoreJactifText.setFill(Color.WHITE);
+        scoreJActifHbox.getChildren().add(scoreJactifText);
+        scoreJActifHbox.setStyle("-fx-background-color:rgba(0,0,0,0.5);");
+        scoreJActifHbox.setMaxWidth(100);
+        scoreJActifHbox.setMinHeight(30);
+        scoreJActifHbox.setPadding(new Insets(10, 10, 10, 10));
+
+
         hBoxDefausePioche.getChildren().addAll(boxDefause,boxPioche);
-        boxDeckJActif.getChildren().add(hBoxDefausePioche);
+        boxDeckJActif.getChildren().addAll(scoreJActifHbox, hBoxDefausePioche);
         hbox.getChildren().addAll(boxDeckJActif);
         hbox.getChildren().addAll(boxMainActif);
 
@@ -232,6 +260,7 @@ public class ViewJeu {
         boxCarteRandomLigne1.setAlignment(Pos.TOP_CENTER);
         boxCarteRandomLigne1.getStyleClass().add("vbox_style");
         boxCarteRandomLigne1.setMinHeight(150);
+        boxCarteRandomLigne1.setSpacing(-15);
 
         /* BOX CARTE ACTION LIGNE 2 */
         boxCarteRandomLigne2 = new HBox();
@@ -241,6 +270,7 @@ public class ViewJeu {
         boxCarteRandomLigne2.setMinHeight(150);
         boxCarteRandomLigne2.setTranslateY(-20);
         boxCarteRandomLigne2.getStyleClass().add("vbox_style");
+        boxCarteRandomLigne2.setSpacing(-15);
 
         boxCarteCentraleEtJoue.getChildren().addAll(boxCarteRandomLigne1, boxCarteRandomLigne2, boxCarteJoue );
         stackPane.getChildren().addAll(rec, boxCarteCentraleEtJoue);

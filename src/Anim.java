@@ -53,20 +53,20 @@ public class Anim {
         imgAnim.setX(XPositionOfTheContainerCardStart);
         imgAnim.setY(YPositionOfTheContainerCardStart);
 
-        if (/* ////taille du conteneur de base (ou de l'image)///// */) {
+      //  if (/* ////taille du conteneur de base (ou de l'image)///// */) {
             imgAnim.setFitWidth(widthShort);
             widthDebut = widthShort;
             widthIntermed = 100;
-        } else {
+     //   } else {
             imgAnim.setFitWidth(widthLarge);
             widthDebut = widthLarge;
             widthIntermed = 130;
-        }
+    //    }
 
 
-        if (/*Pile du groContainerStart est vite alors */) {
+       // if (/*Pile du groContainerStart est vite alors */) {
             grpContainerCardStart.setOpacity(0);
-        }
+       // }
         // car il faut mettre a zero l'opacité du groupe sur lequel va apparaitre la carte cloné
         //Il faut un delay avant d'enlever la pile vide du root car sinon les carte restante vont se
         //superposer sur celle qui est entrain de se déplacer dans l'animation**/

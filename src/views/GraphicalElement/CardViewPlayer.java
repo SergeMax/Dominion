@@ -11,7 +11,7 @@ import tools.Paths;
 //TODO: Va voir dans CardReserve ---> :)
 public class CardViewPlayer {
 
-    private int width = 100;
+    private int width = 140;
     private Group grpContenairCard;
     private ImageView img;
     private Image front, back;
@@ -32,6 +32,12 @@ public class CardViewPlayer {
         img = new ImageView(front);
         img.setPreserveRatio(true);
         img.setFitWidth(width);
+
+        img.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 30, 0, 10, 10);" +
+                " -fx-padding: 5;"+
+                "-fx-background-color: sand;"+
+                "-fx-background-radius: 3;"
+        );
 
         img.setId(pile.getCarte().getClass().getSimpleName());
 
