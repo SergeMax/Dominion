@@ -98,7 +98,7 @@ public class Anim {
         PauseTransition delayRemove = new PauseTransition(Duration.seconds(2));
         delayRemove.setOnFinished(event -> {
             root.getChildren().remove(imgAnim);
-
+            root.getChildren().remove(imgAnim);
 
         });
         delayRemove.play();
