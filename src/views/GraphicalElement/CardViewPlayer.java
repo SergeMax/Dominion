@@ -32,6 +32,7 @@ public class CardViewPlayer {
         img = new ImageView(front);
         img.setPreserveRatio(true);
         img.setFitWidth(width);
+
         img.setId(pile.getCarte().getClass().getSimpleName());
 
         grpContenairCard.getChildren().addAll(img,vBoxNumber);
