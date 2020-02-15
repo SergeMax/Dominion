@@ -6,10 +6,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import models.Joueur;
 import models.Pile;
 import tools.Paths;
 
-public class CardViewPlayer {
+public class CardViewCentre {
 
     private int width = 100;
     private Group grpContenairCard;
@@ -17,8 +18,8 @@ public class CardViewPlayer {
     private Image front, back;
     private VBox vBoxNumber;
     private Label lblNumber;
-
-    public CardViewPlayer(Pile pile){
+    //TODO: Pour le moment
+    public CardViewCentre(Joueur joueur, Pile pile){
         grpContenairCard = new Group();
         front = new Image(pile.getCarte().getUrlImgCarte());
         back = new Image(Paths.urlImgBack);

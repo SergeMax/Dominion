@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 import models.Joueur;
 import models.Pile;
 import models.cartes.LocalisationDesCartes;
+import views.GraphicalElement.CardViewCentre;
 import views.GraphicalElement.CardViewPlayer;
 import views.GraphicalElement.CardViewReserve;
 
@@ -285,12 +286,12 @@ public class ViewJeu {
      * @param pileArrayList Pile de carte action de la reserve
      * @param controllerJeu Le controller de jeu
      */
-    public void updateCarteCenter(ArrayList<Pile> pileArrayList, ControllerJeu controllerJeu){
+    public void updateCarteCenter(Joueur joueur, ArrayList<Pile> pileArrayList, ControllerJeu controllerJeu){
         boxCarteRandomLigne1.getChildren().clear();
         boxCarteRandomLigne2.getChildren().clear();
         int i = 0;
         for(Pile pile: pileArrayList){
-            CardViewPlayer cardViewPlayer = new CardViewPlayer(pile);
+            CardViewCentre cardViewPlayer = new CardViewCentre(joueur,pile);
             cardViewPlayer.getGrpContenairCard().setOnMouseClicked(controllerJeu);
             if(i < 5 ){
                 boxCarteRandomLigne1.getChildren().add(cardViewPlayer.getGrpContenairCard()) ;
@@ -306,13 +307,13 @@ public class ViewJeu {
      * @param pileArrayList Pile de carte action de la reserve
      * @param controllerJeu Le controller de jeu
      */
-    public void updateCarteReserveLeft(ArrayList<Pile> pileArrayList, ControllerJeu controllerJeu){
+    public void updateCarteReserveLeft(Joueur joueur, ArrayList<Pile> pileArrayList, ControllerJeu controllerJeu){
         boxPvLeft.getChildren().clear();
         boxPvRight.getChildren().clear();
         int i = 0;
         for(Pile pile: pileArrayList){
             //TODO:1 Modifier la Class CardViewReserve pour qu'elle soit carré
-            CardViewReserve cardViewReserve = new CardViewReserve(pile);
+            CardViewReserve cardViewReserve = new CardViewReserve(joueur, pile);
             cardViewReserve.getGrpContenairCard().setOnMouseClicked(controllerJeu);
             if(i < 3 ){
                 boxPvRight.getChildren().add(cardViewReserve.getGrpContenairCard()) ;

@@ -49,10 +49,10 @@ public class ControllerJeu implements EventHandler<MouseEvent> {
     }
 
     public void updateCarteCenterGUI(){
-        viewHandler.getViewJeu().updateCarteCenter(partie.getPilesReserveAction(),this);
+        viewHandler.getViewJeu().updateCarteCenter(partie.getJoueurs().get(0),partie.getPilesReserveAction(),this);
     }
 
     public void updateCarteReserveLeftGUI(){
-        viewHandler.getViewJeu().updateCarteReserveLeft(partie.getPilesReserveTresorVictoireMalediction(), this);
+        viewHandler.getViewJeu().updateCarteReserveLeft(partie.getJoueurs().get(0),partie.getPilesReserveTresorVictoireMalediction(), this);
     }
 }

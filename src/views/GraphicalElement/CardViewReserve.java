@@ -6,19 +6,20 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import models.Joueur;
 import models.Pile;
 import tools.Paths;
 
 public class CardViewReserve {
 
     private int width = 75;
-    protected Group grpContenairCard;
-    protected ImageView img;
-    protected Image front, back;
-    protected VBox vBoxNumber;
-    protected Label lblNumber;
-
-    public CardViewReserve(Pile pile){
+    private Group grpContenairCard;
+    private ImageView img;
+    private Image front, back;
+    private VBox vBoxNumber;
+    private Label lblNumber;
+    //TODO: Pour le moment
+    public CardViewReserve(Joueur joueur, Pile pile){
         grpContenairCard = new Group();
         front = new Image(pile.getCarte().getUrlImgCarte());
         back = new Image(Paths.urlImgBack);
