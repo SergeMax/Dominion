@@ -67,7 +67,7 @@ public class Anim {
         if (/** Pile du groContainerStart est vite alors **/){
             grpContainerCardStart.setOpacity(0);
          }
-         /** met l'opacité du groupe sur lequel va apparaitre la carte cloné
+         /** met a zero l'opacité du groupe sur lequel va apparaitre la carte cloné
           * Il faut un delay avant d'enlever la pile vide du root car sinon les carte restante vont se
           * superposer sur celle qui est entrain de se déplacer dans l'animation**/
 
