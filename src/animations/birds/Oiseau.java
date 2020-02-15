@@ -38,7 +38,7 @@ public class Oiseau {
     // Piste: il faudra toucher le KeyValue (passer des info dans le endValue pour connaitre son point de depart et d'arriver)
     // et Duration pour gerer au mieux l'animation
 
-    public void initflyAnimation(){
+    private void initflyAnimation(){
         flyTimeline = new Timeline();
         flyTimeline.getKeyFrames().addAll(
                 new KeyFrame(Duration.ZERO,new KeyValue(grpContainerImgBirds.layoutXProperty(),0)),
