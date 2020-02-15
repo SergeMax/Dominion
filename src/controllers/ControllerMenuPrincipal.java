@@ -25,6 +25,12 @@ public class ControllerMenuPrincipal implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent mouseEvent) {
+        if (mouseEvent.getSource().equals(viewHandler.getViewMenuPrincipal().getBtnPlay())){
+            viewHandler.afficherJeu();
+        }
+        if (mouseEvent.getSource().equals(viewHandler.getViewMenuPrincipal().getBtnQuit())){
+            viewHandler.quitterJeu();
+        }
 
     }
 }
