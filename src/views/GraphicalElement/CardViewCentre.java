@@ -9,20 +9,18 @@ import javafx.scene.layout.VBox;
 import models.Joueur;
 import models.Pile;
 import tools.Paths;
-
+//TODO: Va voir dans CardReserve ---> :)
 public class CardViewCentre {
 
     private int width = 100;
     private Group grpContenairCard;
     private ImageView img;
-    private Image front, back;
+    private Image front;
     private VBox vBoxNumber;
     private Label lblNumber;
-    //TODO: Pour le moment
     public CardViewCentre(Joueur joueur, Pile pile){
         grpContenairCard = new Group();
         front = new Image(pile.getCarte().getUrlImgCarte());
-        back = new Image(Paths.urlImgBack);
         vBoxNumber = new VBox();
         lblNumber = new Label(String.valueOf(pile.getNombre()));
         lblNumber.getStyleClass().add("lbl_box_number");
@@ -40,10 +38,6 @@ public class CardViewCentre {
 
     public void setImageViewFront() {
         img.setImage(front);
-    }
-
-    public void setImageViewBack() {
-        img.setImage(back);
     }
 
     public Group getGrpContenairCard(){

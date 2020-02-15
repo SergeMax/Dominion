@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import models.Pile;
 import tools.Paths;
-
+//TODO: Va voir dans CardReserve ---> :)
 public class CardViewPlayer {
 
     private int width = 100;
