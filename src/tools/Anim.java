@@ -113,18 +113,18 @@ public class Anim {
     public void animCarteCentraleUP(ImageView img, Group group) {
 
         final KeyFrame widthmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(img.scaleXProperty(), 1.5));
-        final KeyFrame widthmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(img.scaleXProperty(), 2.5, Interpolator.EASE_IN));
+        final KeyFrame widthmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(img.scaleXProperty(), 2.5, Interpolator.LINEAR));
 
 
         final KeyFrame XmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateXProperty(), 10));
-        final KeyFrame XmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(group.translateXProperty(), 50, Interpolator.EASE_IN));
+        final KeyFrame XmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(group.translateXProperty(), 50, Interpolator.LINEAR));
 
         final KeyFrame YmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateYProperty(), -30));
-        final KeyFrame YmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(group.translateYProperty(), -100, Interpolator.EASE_IN));
+        final KeyFrame YmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(group.translateYProperty(), -100, Interpolator.LINEAR));
 
 
         final KeyFrame heightmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(img.scaleYProperty(), 1.5));
-        final KeyFrame heightmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(img.scaleYProperty(), 2.5, Interpolator.EASE_IN));
+        final KeyFrame heightmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(img.scaleYProperty(), 2.5, Interpolator.LINEAR));
 
 
         timelineGlissement = new Timeline(widthmovementStart, heightmovementStart, XmovementStart, YmovementStart, XmovementEnd, YmovementEnd, heightmovementEnd, widthmovementEnd);
