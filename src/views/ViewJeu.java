@@ -4,8 +4,8 @@ import controllers.ControllerJeu;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -31,20 +31,20 @@ public class ViewJeu {
     private BorderPane root;
 
     /* DECLARATION DES CONTENEUR DES 5 PARTIES DU BORDERPANE */
-    private HBox hBoxFooter,hBoxRigth, hBoxLeft;
-    private VBox boxMenu;
+    private HBox hBoxFooter,hBoxRigth;
+    private VBox boxMenu, vBoxLeft;
     private StackPane centerPane;
 
     /* DECLARATION DES CONTENEURS QUI ACCEUILLENT LES CARTES ENVOYER PAR LE CONTROLER*/
     private HBox boxMainActif;
-    private VBox boxDeckJActif,boxCarteCentraleEtJoue, boxPvLeft, boxPvRight;
+    private VBox boxDeckJActif,boxCarteCentraleEtJoue, boxPvLeft, boxPvRight, boxScoreJoueur;
     private HBox boxCarteRandomLigne1, boxCarteRandomLigne2,boxCarteJoue, boxDefause, boxPioche;
 
     public ViewJeu(BorderPane root) {
         this.root = root;
         /* INIT DES ELEMENTS */
         boxMenu = initMenu();
-        hBoxLeft = initLeftHBox();
+        vBoxLeft = initLeftHBox();
         hBoxRigth = initRightHBox();
         centerPane = initCenterPane();
         hBoxFooter = initFooter();
@@ -59,7 +59,7 @@ public class ViewJeu {
         root.setTop(boxMenu);
         root.setRight(hBoxRigth);
         root.setBottom(hBoxFooter);
-        root.setLeft(hBoxLeft);
+        root.setLeft(vBoxLeft);
         root.setCenter(centerPane);
     }
 
@@ -127,12 +127,13 @@ public class ViewJeu {
      * Initialise le conteneur des cartes reserve contenant:
      * - box des carte Victoire Gauche
      * - box des carte Tresor Droit
+     * - box des infos joueur
      * @return le conteneur gauche des cartes reserves
      */
-    public HBox initLeftHBox()
+    public VBox initLeftHBox()
     {
         HBox hbox = new HBox();
-
+        VBox vBoxContainer = new VBox();
         VBox vbox = new VBox(10);
         vbox.setPadding(new Insets(1));
 
@@ -157,16 +158,23 @@ public class ViewJeu {
         boxPvRight.setMaxWidth(100);
         boxPvRight.setMinWidth(100);
 
-        hbox.getChildren().addAll(vbox);
+        boxScoreJoueur = new VBox(); // Conteneur accuillant les info joueur
+
         hbox.getChildren().addAll(boxPvLeft, boxPvRight);
+        vBoxContainer.getChildren().addAll(hbox,boxScoreJoueur);
+        vBoxContainer.getStyleClass().add("vbox_style");
+        vBoxContainer.setTranslateY(-100);
+
 
         hbox.setMinWidth(200);
 
         hbox.setMaxHeight(800);
+
         hbox.setTranslateY(-70);
+
         hbox.getStyleClass().add("vbox_style");
 
-         return hbox;
+        return vBoxContainer;
     }
 
     /**
@@ -356,12 +364,27 @@ public class ViewJeu {
     }
 
     //TODO: 2 Afficher les Info du joueur (Nom, Or, Pv)
+    // Maaaaax ! Pour les infos du joueur j'attendais ca ! J'avais coder la fct du controller pour ca
+    // A voir pour creer un Graphical Element ViewInfoJoueur Et Aussi rajouter du style car j'ai fait ca a l'arrache
     /**
      * Idem pour un conteneur affichant les infos du joueur (Nom, Pv Or)
      * @param joueur
      */
     public void updateJoueurInfo(Joueur joueur){
+        HBox hBoxNomPv = new HBox();
+        HBox hBoxActionAchatMonnais = new HBox();
 
+        Label lblNomJoueur = new Label(joueur.getNom());
+        Label lblPv = new Label("PV : " + joueur.getpV());
+        hBoxNomPv.getChildren().addAll(lblNomJoueur,lblPv);
+
+        Label lblAction = new Label("Action : " + joueur.getAction());
+        Label lblAchat = new Label("Achat : " + joueur.getAchat());
+        Label lblMonnais = new Label("Monnais :" + joueur.getMonnaie());
+
+        hBoxActionAchatMonnais.getChildren().addAll(lblAction,lblAchat,lblMonnais);
+        boxScoreJoueur.setStyle("-fx-background-color: white");
+        boxScoreJoueur.getChildren().addAll(hBoxNomPv,hBoxActionAchatMonnais);
     }
 
     /**
