@@ -41,6 +41,9 @@ public class CardViewCentre {
         vBoxNumber.getStyleClass().add("box_number");
         vBoxNumber.setPadding(new Insets(5));
 
+        //TODO Ajouter le cout en bas a gauche des images carré centrale.
+        // pile.getCarte().getCout();
+
         img = new ImageView(front);
         img.setPreserveRatio(true);
         img.setFitWidth(width);
@@ -71,6 +74,7 @@ public class CardViewCentre {
                     Anim anim = new Anim();
                     anim.animCarteCentraleUP(img, grpContenairCard);
                     imgClique = true;
+
 
                 } else {
 
