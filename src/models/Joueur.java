@@ -2,7 +2,8 @@ package models;
 
 import models.cartes.Carte;
 import models.cartes.LocalisationDesCartes;
-
+import models.cartes.DistributeurDeCarte;
+import models.cartes.TypeDeCarte;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -16,16 +17,88 @@ public class Joueur {
     private byte achat;
     private boolean entrainDeJouer;
     private boolean doitDefausser;
+    private boolean estFinis;
+    private int auTourDuJoueur = 0;
+    private int numeroDeLaPhase = 1;
+    private ArrayList<Joueur> joueurs;
+    private ArrayList<Pile> pilesReserveAction;
+    private ArrayList<Pile> pilesReserveTresorVictoireMalediction;
 
-    public Joueur(String nom){
+    public Joueur(int nombreDeJoueur){
+        estFinis= false;
+        joueurs = new ArrayList<Joueur>();
+        joueurs.add(new Joueur(nombreDeJoueur+1));
+        pilesReserveAction = DistributeurDeCarte.radomPileAction();
+        pilesReserveTresorVictoireMalediction = DistributeurDeCarte.distribuePileTresorVictoireMalediction();
+    }
+
+    public void initJoueur(String nom){
         this.nom = nom;
         pV = 3;
-        monnaie = 0;
-        action = 1;
-        achat = 1;
         indiceDansLeDeck=0;
         deck = new Deck();
     }
+
+    public static void main(String[] args) {
+        Joueur joueur = new Joueur(2);
+    }
+
+    /* On initialise le début du tour */
+    public void startTurn(){
+        this.monnaie = 0;
+        this.achat = 1;
+        this.action = 1;
+    }
+
+    /* On termine le tour */
+    public void endTurn(){
+        if(numeroDeLaPhase==3){
+            /* défausser la main au deck, on vérifie si la valeur du deck est égal ou supérieur à 5, si non, on mélange la défausse
+        avec le deck avant de piocher */
+            //if deck < 5
+            //deck.melangeSesCartes();
+            // J'aurais besoin de comprendre comment la classe Pile fonctionne, on dirait qu'on pourrait l'utiliser pour la défausse,
+            // mélange et pioche
+            auTourDuJoueur++;
+            if(auTourDuJoueur<joueurs.size()){
+                auTourDuJoueur=0;
+            }
+        }
+    }
+
+    public void joueurTour(Carte carte){
+        /* Initialisation des phases du joueurs */
+        startTurn();
+        /* Phase Action */
+        /* On commence par la première phase, qui est la phase Action */
+        if(numeroDeLaPhase == 1){
+            /* On vérifie si le joueur peut faire des actions */
+            if(action > 0){
+                /* On recherche la carte du joueur dans sa main */
+                carte.getLocalisation().equals(LocalisationDesCartes.mainJoueur);
+                joueurs.get(auTourDuJoueur).poserUneCarte(carte);
+                /* Activation de l'effet de la carte */
+                carte.effet(joueurs);
+            }else{
+                /* On fait avancer la phase du joueur à la phase Achat */
+                numeroDeLaPhase++;
+            }
+        }
+        /* Phase Achat */
+        /* Si le joueur clique sur une carte Achat alors qu'il est en phase 1, sa phase passera à la deuxième phase */
+        if (carte.getType().equals(TypeDeCarte.tresor) && numeroDeLaPhase == 1){
+            numeroDeLaPhase++;
+        }
+        if (numeroDeLaPhase == 2 ){
+            if(carte.getType().equals(TypeDeCarte.tresor)){
+                /* joueur reçoit une carte de la pile si monnaie >= coût et reste dans le tour si il peut encore acheter */
+            }
+        }
+
+        endTurn();
+    }
+
+
 
     public Carte clicqueSurUneCarte(String className){
         Carte selectedCarte = null;
@@ -35,6 +108,22 @@ public class Joueur {
             }
         }
         return selectedCarte;
+    }
+
+    public void decrementeAction(int nb){
+        action -= nb;
+    }
+
+    public void incrementeAction(int nb){
+        action += nb;
+    }
+
+    public void decrementeAchat(int nb){
+        achat -= nb;
+    }
+
+    public void incrementeAchat(int nb){
+        achat += nb;
     }
 
     public void piocheDesCarte(int nbDeCarte){
@@ -115,5 +204,37 @@ public class Joueur {
 
     public boolean isDoitDefausser() {
         return doitDefausser;
+    }
+
+    public boolean isEstFinis() {
+        return estFinis;
+    }
+
+    public ArrayList<Joueur> getJoueurs() {
+        return joueurs;
+    }
+
+    public ArrayList<Pile> getPilesReserveAction() {
+        return pilesReserveAction;
+    }
+
+    public ArrayList<Pile> getPilesReserveTresorVictoireMalediction() {
+        return pilesReserveTresorVictoireMalediction;
+    }
+
+    public void setEstFinis(boolean estFinis) {
+        this.estFinis = estFinis;
+    }
+
+    public void setJoueurs(ArrayList<Joueur> joueurs) {
+        this.joueurs = joueurs;
+    }
+
+    public void setPilesReserveAction(ArrayList<Pile> pilesReserveAction) {
+        this.pilesReserveAction = pilesReserveAction;
+    }
+
+    public void setPilesReserveTresorVictoireMalediction(ArrayList<Pile> pilesReserveTresorVictoireMalediction) {
+        this.pilesReserveTresorVictoireMalediction = pilesReserveTresorVictoireMalediction;
     }
 }

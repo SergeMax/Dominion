@@ -21,9 +21,16 @@ public class Artisan extends Carte {
 
     public void effet(ArrayList<Joueur> joueurs) {
         for(Joueur joueur: joueurs){
+            /* On vérifie si le joueur est entrain de jouer et donc peut utiliser la carte*/
             if (joueur.isEntrainDeJouer()){
-                joueur.recevoirUneCarteDeValeur(5);
-                //joueur.poserUneCarte();
+                /* On vérifie si le joueur peut-utiliser une carte action */
+                if(joueur.getAction() == 0){
+                    break;
+                }else{
+                    joueur.recevoirUneCarteDeValeur(5);
+                    joueur.decrementeAction(1);
+                    //joueur.poserUneCarte();
+                }
             }
         }
     }

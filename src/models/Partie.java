@@ -16,13 +16,13 @@ public class Partie {
     private ArrayList<Pile> pilesReserveTresorVictoireMalediction;
 
     public Partie(int nombreDeJoueur){
-        estFinis= false;
-        joueurs = new ArrayList<Joueur>();
-        for(int i = 0; i < nombreDeJoueur; i++ ){
-            joueurs.add(new Joueur("Joueur " + (i+1)));
-        }
-        pilesReserveAction = DistributeurDeCarte.radomPileAction();
-        pilesReserveTresorVictoireMalediction = DistributeurDeCarte.distribuePileTresorVictoireMalediction();
+    //    estFinis= false;
+    //    joueurs = new ArrayList<Joueur>();
+    //    for(int i = 0; i < nombreDeJoueur; i++ ){
+    //        joueurs.add(new Joueur("Joueur " + (i+1)));
+    //    }
+    //    pilesReserveAction = DistributeurDeCarte.radomPileAction();
+    //    pilesReserveTresorVictoireMalediction = DistributeurDeCarte.distribuePileTresorVictoireMalediction();
     }
 
     public static void main(String[] args) {
