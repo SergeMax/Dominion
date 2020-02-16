@@ -376,24 +376,8 @@ public class ViewJeu {
      * @param joueur
      */
     public void updateJoueurInfo(Joueur joueur){
-        HBox hBoxNomPv = new HBox();
-        HBox hBoxActionAchatMonnais = new HBox();
-
-        Label lblNomJoueur = new Label(joueur.getNom());
-        Label lblPv = new Label("PV : " + joueur.getpV());
-
-      //  hBoxNomPv.getChildren().addAll(lblNomJoueur,lblPv);
-
         scoreJactifText.setText(joueur.getNom()+" : " + joueur.getpV() + " PV");
         scoreJPassifText.setText(joueur.getNom()+" : " + joueur.getpV()+ " PV");
-
-        Label lblAction = new Label("Action : " + joueur.getAction());
-        Label lblAchat = new Label("Achat : " + joueur.getAchat());
-        Label lblMonnais = new Label("Monnais :" + joueur.getMonnaie());
-
-       // hBoxActionAchatMonnais.getChildren().addAll(lblAction,lblAchat,lblMonnais);
-        boxScoreJoueur.setStyle("-fx-background-color: white");
-      //  boxScoreJoueur.getChildren().addAll(hBoxNomPv,hBoxActionAchatMonnais);
     }
 
     /**
