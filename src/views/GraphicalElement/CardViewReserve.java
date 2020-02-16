@@ -54,7 +54,7 @@ public class CardViewReserve {
 
 
 // define crop in image coordinates:
-        Rectangle2D croppedPortion = new Rectangle2D(0, 0, 700, 700);
+        Rectangle2D croppedPortion = new Rectangle2D(0, 0, 700, 600);
 
 
 // target width and height:
@@ -78,6 +78,7 @@ public class CardViewReserve {
                 "-fx-background-color: sand;" +
                 "-fx-background-radius: 3;"
         );
+
 
         grpContenairCard.getChildren().addAll(img, vBoxNumber);
 

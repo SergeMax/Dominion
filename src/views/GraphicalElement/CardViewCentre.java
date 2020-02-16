@@ -1,25 +1,33 @@
 package views.GraphicalElement;
 
+import javafx.animation.Animation;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import models.Joueur;
 import models.Pile;
+import tools.Anim;
 import tools.Paths;
+import views.ViewJeu;
+
 //TODO: Va voir dans CardReserve ---> :)
 public class CardViewCentre {
 
+    private  boolean imgClique;
     private int width = 100;
     private Group grpContenairCard;
     private ImageView img;
     private Image front;
     private VBox vBoxNumber;
     private Label lblNumber;
+    private ViewJeu viewJeu;
     public CardViewCentre(Joueur joueur, Pile pile){
         grpContenairCard = new Group();
         front = new Image(pile.getCarte().getUrlImgCarte());
@@ -36,10 +44,10 @@ public class CardViewCentre {
         img.setId(pile.getCarte().getClass().getSimpleName());
 
         // define crop in image coordinates:
-        Rectangle2D croppedPortion = new Rectangle2D(0, 0, 800, 700);
+        Rectangle2D croppedPortion = new Rectangle2D(0, 0, 800, 600);
 
 
-// target width and height:
+        // target width and height:
         double scaledWidth = 170;
         double scaledHeight = 140;
 
@@ -47,6 +55,39 @@ public class CardViewCentre {
         img.setFitWidth(scaledWidth);
         img.setFitHeight(scaledHeight);
         img.setSmooth(true);
+
+
+        img.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+
+                if (imgClique == false) {
+
+                    grpContenairCard.getChildren().remove(vBoxNumber);
+                    img.setViewport(null);
+                    Anim anim = new Anim();
+                    anim.animCarteCentraleUP(img, grpContenairCard);
+                    imgClique = true;
+
+
+                }else{
+
+                    Anim anim = new Anim();
+                    anim.animCarteCentraleDown(img, grpContenairCard);
+
+
+                    img.setScaleX(2);
+                    img.setScaleY(2);
+                     img.setViewport(croppedPortion);
+                     imgClique = false;
+                    grpContenairCard.getChildren().remove(vBoxNumber);
+
+                }
+            }
+        });
+
+
 
         Rectangle clip = new Rectangle(
                 img.getFitWidth(), img.getFitHeight()
@@ -62,6 +103,7 @@ public class CardViewCentre {
         );
 
         grpContenairCard.getChildren().addAll(img,vBoxNumber);
+        grpContenairCard.getStyleClass().add("hoverCarteCentral");
     }
 
     public void setImageViewFront() {

@@ -1,3 +1,5 @@
+package tools;
+
 import javafx.animation.*;
 import javafx.geometry.Bounds;
 import javafx.scene.Group;
@@ -103,6 +105,52 @@ public class Anim {
         });
         delayRemove.play();
 
+
+    }
+
+    public void animCarteCentraleUP(ImageView img, Group group){
+
+        final KeyFrame widthmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(img.scaleXProperty(), 1.5));
+        final KeyFrame widthmovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(img.scaleXProperty(), 2.5, Interpolator.EASE_IN));
+
+
+        final KeyFrame XmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateXProperty(), 0));
+        final KeyFrame XmovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(group.translateXProperty(), 50, Interpolator.EASE_IN));
+
+        final KeyFrame YmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateYProperty(), 0));
+        final KeyFrame YmovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(group.translateYProperty(), -100, Interpolator.EASE_IN));
+
+
+        final KeyFrame heightmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(img.scaleYProperty(), 1.5));
+        final KeyFrame heightmovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(img.scaleYProperty(), 2.5, Interpolator.EASE_IN));
+
+
+
+        timelineGlissement = new Timeline(widthmovementStart,heightmovementStart, XmovementStart, YmovementStart, XmovementEnd, YmovementEnd, heightmovementEnd, widthmovementEnd);
+        timelineGlissement.setCycleCount(1);
+        timelineGlissement.play();
+
+    }
+
+    public void animCarteCentraleDown(ImageView img, Group group){
+
+        final KeyFrame widthmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(img.scaleXProperty(), 2));
+        final KeyFrame widthmovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(img.scaleXProperty(), 1, Interpolator.EASE_IN));
+
+        final KeyFrame XmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateXProperty(), 50));
+        final KeyFrame XmovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(group.translateXProperty(), 0, Interpolator.EASE_IN));
+
+        final KeyFrame YmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateYProperty(), -100));
+        final KeyFrame YmovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(group.translateYProperty(), 0, Interpolator.EASE_IN));
+
+
+        final KeyFrame heigthMovementStart = new KeyFrame(Duration.ZERO, new KeyValue(img.scaleYProperty(), 2));
+        final KeyFrame heigthMovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(img.scaleYProperty(), 1, Interpolator.EASE_IN));
+
+
+        timelineGlissement = new Timeline(widthmovementStart, heigthMovementStart, XmovementStart, YmovementStart, YmovementEnd, XmovementEnd, heigthMovementEnd, widthmovementEnd);
+        timelineGlissement.setCycleCount(1);
+        timelineGlissement.play();
 
     }
 

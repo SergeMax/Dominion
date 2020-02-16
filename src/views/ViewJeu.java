@@ -144,18 +144,16 @@ public class ViewJeu {
         boxPvLeft = new VBox();
         boxPvLeft.setPadding(new Insets(1));
         boxPvLeft.setAlignment(Pos.TOP_RIGHT);
-
         boxPvLeft.setMaxWidth(100);
         boxPvLeft.setMinWidth(100);
         boxPvLeft.getStyleClass().add("vbox_style");
-        boxPvLeft.setSpacing(20);
+        boxPvLeft.setSpacing(5);
 
         boxPvRight = new VBox();
         boxPvRight.setPadding(new Insets(1));
         boxPvRight.setAlignment(Pos.TOP_RIGHT);
         boxPvRight.getStyleClass().add("vbox_style");
-        boxPvRight.setSpacing(20);
-
+        boxPvRight.setSpacing(5);
         boxPvRight.setMaxWidth(100);
         boxPvRight.setMinWidth(100);
 
@@ -165,7 +163,7 @@ public class ViewJeu {
         hbox.setMinWidth(200);
 
         hbox.setMaxHeight(800);
-        hbox.setTranslateY(-100);
+        hbox.setTranslateY(-70);
         hbox.getStyleClass().add("vbox_style");
 
          return hbox;
@@ -222,6 +220,8 @@ public class ViewJeu {
 
         hbox.setMinHeight(200);
         hbox.setMaxHeight(400);
+        hbox.setTranslateY(50);
+
         hbox.setPadding(new Insets(-15, 50, 0, 10));
         hbox.getStyleClass().add("vbox_style");
 
@@ -273,6 +273,7 @@ public class ViewJeu {
         boxCarteRandomLigne2.setSpacing(-15);
 
         boxCarteCentraleEtJoue.getChildren().addAll(boxCarteRandomLigne1, boxCarteRandomLigne2, boxCarteJoue );
+        boxCarteCentraleEtJoue.setTranslateY(40);
         stackPane.getChildren().addAll(rec, boxCarteCentraleEtJoue);
 
         return stackPane;
