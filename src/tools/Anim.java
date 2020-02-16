@@ -108,6 +108,8 @@ public class Anim {
 
     }
 
+    //Animation du zoomm sur la carte. Prend en paramètre l'image et Le groupe conteneur de l'image. Utilisé dans CardviewCentre
+
     public void animCarteCentraleUP(ImageView img, Group group) {
 
         final KeyFrame widthmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(img.scaleXProperty(), 1.5));
