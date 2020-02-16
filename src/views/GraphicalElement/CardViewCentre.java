@@ -1,6 +1,7 @@
 package views.GraphicalElement;
 
 import javafx.animation.Animation;
+import javafx.animation.PauseTransition;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
@@ -11,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import models.Joueur;
 import models.Pile;
 import tools.Anim;
@@ -79,7 +81,13 @@ public class CardViewCentre {
                     img.setScaleY(2);
                     img.setViewport(croppedPortion);
                     imgClique = false;
-                    grpContenairCard.getChildren().remove(vBoxNumber);
+
+                    PauseTransition delayRemove = new PauseTransition(Duration.seconds(0.4));
+                    delayRemove.setOnFinished(eventt -> {
+                        grpContenairCard.getChildren().add(vBoxNumber);
+                    });
+                    delayRemove.play();
+
                 }
             }
         });

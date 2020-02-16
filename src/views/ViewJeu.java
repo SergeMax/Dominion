@@ -39,6 +39,8 @@ public class ViewJeu {
     private HBox boxMainActif;
     private VBox boxDeckJActif,boxCarteCentraleEtJoue, boxPvLeft, boxPvRight, boxScoreJoueur;
     private HBox boxCarteRandomLigne1, boxCarteRandomLigne2,boxCarteJoue, boxDefause, boxPioche;
+    private Text scoreJactifText;
+    private Text scoreJPassifText;
 
     public ViewJeu(BorderPane root) {
         this.root = root;
@@ -80,10 +82,10 @@ public class ViewJeu {
 
 
         HBox scoreJPassifHbox = new HBox();
-        Text scoreJactifText = new Text("Joueur 2 : 9pv");
-        scoreJactifText.setStyle("-fx-font: 24 arial;");
-        scoreJactifText.setFill(Color.WHITE);
-        scoreJPassifHbox.getChildren().add(scoreJactifText);
+        scoreJPassifText = new Text("Joueur 2 : 9pv");
+        scoreJPassifText.setStyle("-fx-font: 24 arial;");
+        scoreJPassifText.setFill(Color.WHITE);
+        scoreJPassifHbox.getChildren().add(scoreJPassifText);
         scoreJPassifHbox.setStyle("-fx-background-color:rgba(0,0,0,0.5);");
         scoreJPassifHbox.setMaxWidth(100);
         scoreJPassifHbox.setMinHeight(30);
@@ -211,7 +213,7 @@ public class ViewJeu {
         boxPioche = new HBox();
 
         HBox scoreJActifHbox = new HBox();
-        Text scoreJactifText = new Text("Joueur 1 : 9pv");
+        scoreJactifText = new Text("Joueur 1 : 9pv");
         scoreJactifText.setStyle("-fx-font: 24 arial;");
         scoreJactifText.setFill(Color.WHITE);
         scoreJActifHbox.getChildren().add(scoreJactifText);
@@ -365,6 +367,7 @@ public class ViewJeu {
 
     //TODO: 2 Afficher les Info du joueur (Nom, Or, Pv)
     // Maaaaax ! Pour les infos du joueur j'attendais ca ! J'avais coder la fct du controller pour ca
+    //Theooo Bah c'etais fait ^^'
     // A voir pour creer un Graphical Element ViewInfoJoueur Et Aussi rajouter du style car j'ai fait ca a l'arrache
     /**
      * Idem pour un conteneur affichant les infos du joueur (Nom, Pv Or)
@@ -376,7 +379,11 @@ public class ViewJeu {
 
         Label lblNomJoueur = new Label(joueur.getNom());
         Label lblPv = new Label("PV : " + joueur.getpV());
+
         hBoxNomPv.getChildren().addAll(lblNomJoueur,lblPv);
+
+        scoreJactifText.setText(joueur.getNom()+" : " + joueur.getpV() + " PV");
+        scoreJPassifText.setText(joueur.getNom()+" : " + joueur.getpV()+ " PV");
 
         Label lblAction = new Label("Action : " + joueur.getAction());
         Label lblAchat = new Label("Achat : " + joueur.getAchat());
