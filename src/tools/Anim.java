@@ -55,20 +55,20 @@ public class Anim {
         imgAnim.setX(XPositionOfTheContainerCardStart);
         imgAnim.setY(YPositionOfTheContainerCardStart);
 
-      //  if (/* ////taille du conteneur de base (ou de l'image)///// */) {
-            imgAnim.setFitWidth(widthShort);
-            widthDebut = widthShort;
-            widthIntermed = 100;
-     //   } else {
-            imgAnim.setFitWidth(widthLarge);
-            widthDebut = widthLarge;
-            widthIntermed = 130;
-    //    }
+        //  if (/* ////taille du conteneur de base (ou de l'image)///// */) {
+        imgAnim.setFitWidth(widthShort);
+        widthDebut = widthShort;
+        widthIntermed = 100;
+        //   } else {
+        imgAnim.setFitWidth(widthLarge);
+        widthDebut = widthLarge;
+        widthIntermed = 130;
+        //    }
 
 
-       // if (/*Pile du groContainerStart est vite alors */) {
-            grpContainerCardStart.setOpacity(0);
-       // }
+        // if (/*Pile du groContainerStart est vite alors */) {
+        grpContainerCardStart.setOpacity(0);
+        // }
         // car il faut mettre a zero l'opacité du groupe sur lequel va apparaitre la carte cloné
         //Il faut un delay avant d'enlever la pile vide du root car sinon les carte restante vont se
         //superposer sur celle qui est entrain de se déplacer dans l'animation**/
@@ -108,44 +108,43 @@ public class Anim {
 
     }
 
-    public void animCarteCentraleUP(ImageView img, Group group){
+    public void animCarteCentraleUP(ImageView img, Group group) {
 
         final KeyFrame widthmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(img.scaleXProperty(), 1.5));
-        final KeyFrame widthmovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(img.scaleXProperty(), 2.5, Interpolator.EASE_IN));
+        final KeyFrame widthmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(img.scaleXProperty(), 2.5, Interpolator.EASE_IN));
 
 
-        final KeyFrame XmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateXProperty(), 0));
-        final KeyFrame XmovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(group.translateXProperty(), 50, Interpolator.EASE_IN));
+        final KeyFrame XmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateXProperty(), 10));
+        final KeyFrame XmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(group.translateXProperty(), 50, Interpolator.EASE_IN));
 
-        final KeyFrame YmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateYProperty(), 0));
-        final KeyFrame YmovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(group.translateYProperty(), -100, Interpolator.EASE_IN));
+        final KeyFrame YmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateYProperty(), -30));
+        final KeyFrame YmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(group.translateYProperty(), -100, Interpolator.EASE_IN));
 
 
         final KeyFrame heightmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(img.scaleYProperty(), 1.5));
-        final KeyFrame heightmovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(img.scaleYProperty(), 2.5, Interpolator.EASE_IN));
+        final KeyFrame heightmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(img.scaleYProperty(), 2.5, Interpolator.EASE_IN));
 
 
-
-        timelineGlissement = new Timeline(widthmovementStart,heightmovementStart, XmovementStart, YmovementStart, XmovementEnd, YmovementEnd, heightmovementEnd, widthmovementEnd);
+        timelineGlissement = new Timeline(widthmovementStart, heightmovementStart, XmovementStart, YmovementStart, XmovementEnd, YmovementEnd, heightmovementEnd, widthmovementEnd);
         timelineGlissement.setCycleCount(1);
         timelineGlissement.play();
 
     }
 
-    public void animCarteCentraleDown(ImageView img, Group group){
+    public void animCarteCentraleDown(ImageView img, Group group) {
 
         final KeyFrame widthmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(img.scaleXProperty(), 2));
-        final KeyFrame widthmovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(img.scaleXProperty(), 1, Interpolator.EASE_IN));
+        final KeyFrame widthmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(img.scaleXProperty(), 1, Interpolator.EASE_IN));
 
         final KeyFrame XmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateXProperty(), 50));
-        final KeyFrame XmovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(group.translateXProperty(), 0, Interpolator.EASE_IN));
+        final KeyFrame XmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(group.translateXProperty(), 0, Interpolator.EASE_IN));
 
-        final KeyFrame YmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateYProperty(), -100));
-        final KeyFrame YmovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(group.translateYProperty(), 0, Interpolator.EASE_IN));
+        final KeyFrame YmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateYProperty(), -70));
+        final KeyFrame YmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(group.translateYProperty(), 0, Interpolator.EASE_IN));
 
 
         final KeyFrame heigthMovementStart = new KeyFrame(Duration.ZERO, new KeyValue(img.scaleYProperty(), 2));
-        final KeyFrame heigthMovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(img.scaleYProperty(), 1, Interpolator.EASE_IN));
+        final KeyFrame heigthMovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(img.scaleYProperty(), 1, Interpolator.EASE_IN));
 
 
         timelineGlissement = new Timeline(widthmovementStart, heigthMovementStart, XmovementStart, YmovementStart, YmovementEnd, XmovementEnd, heigthMovementEnd, widthmovementEnd);

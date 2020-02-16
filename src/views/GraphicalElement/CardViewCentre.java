@@ -20,7 +20,7 @@ import views.ViewJeu;
 //TODO: Va voir dans CardReserve ---> :)
 public class CardViewCentre {
 
-    private  boolean imgClique;
+    private boolean imgClique;
     private int width = 100;
     private Group grpContenairCard;
     private ImageView img;
@@ -28,7 +28,8 @@ public class CardViewCentre {
     private VBox vBoxNumber;
     private Label lblNumber;
     private ViewJeu viewJeu;
-    public CardViewCentre(Joueur joueur, Pile pile){
+
+    public CardViewCentre(Joueur joueur, Pile pile) {
         grpContenairCard = new Group();
         front = new Image(pile.getCarte().getUrlImgCarte());
         vBoxNumber = new VBox();
@@ -44,8 +45,7 @@ public class CardViewCentre {
         img.setId(pile.getCarte().getClass().getSimpleName());
 
         // define crop in image coordinates:
-        Rectangle2D croppedPortion = new Rectangle2D(0, 0, 800, 600);
-
+        Rectangle2D croppedPortion = new Rectangle2D(0, 0, 800, 570);
 
         // target width and height:
         double scaledWidth = 170;
@@ -70,23 +70,19 @@ public class CardViewCentre {
                     anim.animCarteCentraleUP(img, grpContenairCard);
                     imgClique = true;
 
-
-                }else{
+                } else {
 
                     Anim anim = new Anim();
                     anim.animCarteCentraleDown(img, grpContenairCard);
 
-
                     img.setScaleX(2);
                     img.setScaleY(2);
-                     img.setViewport(croppedPortion);
-                     imgClique = false;
+                    img.setViewport(croppedPortion);
+                    imgClique = false;
                     grpContenairCard.getChildren().remove(vBoxNumber);
-
                 }
             }
         });
-
 
 
         Rectangle clip = new Rectangle(
@@ -97,12 +93,12 @@ public class CardViewCentre {
         img.setClip(clip);
 
         img.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 30, 0, 10, 10);" +
-                " -fx-padding: 5;"+
-                "-fx-background-color: sand;"+
+                " -fx-padding: 5;" +
+                "-fx-background-color: sand;" +
                 "-fx-background-radius: 3;"
         );
 
-        grpContenairCard.getChildren().addAll(img,vBoxNumber);
+        grpContenairCard.getChildren().addAll(img, vBoxNumber);
         grpContenairCard.getStyleClass().add("hoverCarteCentral");
     }
 
@@ -110,7 +106,7 @@ public class CardViewCentre {
         img.setImage(front);
     }
 
-    public Group getGrpContenairCard(){
+    public Group getGrpContenairCard() {
         return grpContenairCard;
     }
 }
