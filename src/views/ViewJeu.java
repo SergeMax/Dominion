@@ -172,7 +172,7 @@ public class ViewJeu {
 
         hbox.setMaxHeight(800);
 
-        hbox.setTranslateY(-70);
+        hbox.setTranslateY(50);
 
         hbox.getStyleClass().add("vbox_style");
 
@@ -380,7 +380,7 @@ public class ViewJeu {
         Label lblNomJoueur = new Label(joueur.getNom());
         Label lblPv = new Label("PV : " + joueur.getpV());
 
-        hBoxNomPv.getChildren().addAll(lblNomJoueur,lblPv);
+      //  hBoxNomPv.getChildren().addAll(lblNomJoueur,lblPv);
 
         scoreJactifText.setText(joueur.getNom()+" : " + joueur.getpV() + " PV");
         scoreJPassifText.setText(joueur.getNom()+" : " + joueur.getpV()+ " PV");
@@ -389,9 +389,9 @@ public class ViewJeu {
         Label lblAchat = new Label("Achat : " + joueur.getAchat());
         Label lblMonnais = new Label("Monnais :" + joueur.getMonnaie());
 
-        hBoxActionAchatMonnais.getChildren().addAll(lblAction,lblAchat,lblMonnais);
+       // hBoxActionAchatMonnais.getChildren().addAll(lblAction,lblAchat,lblMonnais);
         boxScoreJoueur.setStyle("-fx-background-color: white");
-        boxScoreJoueur.getChildren().addAll(hBoxNomPv,hBoxActionAchatMonnais);
+      //  boxScoreJoueur.getChildren().addAll(hBoxNomPv,hBoxActionAchatMonnais);
     }
 
     /**
