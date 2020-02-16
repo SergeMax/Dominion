@@ -42,6 +42,8 @@ public class ViewJeu {
     private Text scoreJactifText;
     private Text scoreJPassifText;
 
+
+
     public ViewJeu(BorderPane root) {
         this.root = root;
         /* INIT DES ELEMENTS */
@@ -402,4 +404,7 @@ public class ViewJeu {
 
     }
 
+    public BorderPane getRoot() {
+        return root;
+    }
 }
