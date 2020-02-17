@@ -10,7 +10,6 @@ import java.util.Collections;
 
 public class Deck {
     private ArrayList<Carte> cartes;
-    private int indiceDansLeDeck;
 
     public Deck(){
         cartes = new ArrayList<Carte>();
@@ -37,7 +36,4 @@ public class Deck {
         return cartes;
     }
 
-    public int getIndiceDansLeDeck() {
-        return indiceDansLeDeck;
-    }
 }

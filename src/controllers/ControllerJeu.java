@@ -4,10 +4,8 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import models.Partie;
 import models.cartes.Carte;
-import models.cartes.LocalisationDesCartes;
 import views.ViewHandler;
 
-import java.util.Collections;
 
 public class ControllerJeu implements EventHandler<MouseEvent> {
     private ViewHandler viewHandler;
@@ -23,7 +21,7 @@ public class ControllerJeu implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
         if(mouseEvent.getSource().equals(viewHandler.getViewJeu().getBtnSkipTurn())){
-            partie.skipTurn();
+            partie.endTurn();
         } else {
             try{
                 Carte selectedCarte = partie.cliqueSurUneCarte(mouseEvent.getPickResult().getIntersectedNode().getId());

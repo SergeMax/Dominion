@@ -381,7 +381,7 @@ public class ViewJeu {
      * @param joueur
      */
     public void updateJoueurInfo(Joueur joueur){
-        scoreJactifText.setText(joueur.getNom()+" : " + joueur.getpV() + " PV");
+        scoreJactifText.setText(joueur.getNom()+" : " + joueur.getpV() + " PV" + "PO :" + joueur.getMonnaie() + " PACH :" + joueur.getAchat() + " PACT : " + joueur.getAction());
         scoreJPassifText.setText(joueur.getNom()+" : " + joueur.getpV()+ " PV");
     }
 

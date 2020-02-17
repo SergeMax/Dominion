@@ -22,7 +22,7 @@ public class Joueur {
     public Joueur(String nom){
         this.nom = nom;
         pV = 3;
-        indiceDansLeDeck=0;
+        indiceDansLeDeck=-1;
         deck = new Deck();
     }
 
@@ -33,11 +33,12 @@ public class Joueur {
         this.action = 1;
         setEntrainDeJouer(true);
         for (int i = 0; i < 5 ; i++) {
-            if(indiceDansLeDeck >= deck.getCartes().size()){
+            indiceDansLeDeck++;
+            if(indiceDansLeDeck >= deck.getCartes().size() -1){
+                indiceDansLeDeck = -1;
                 break;
             }
             deck.getCartes().get(indiceDansLeDeck).setLocalisation(LocalisationDesCartes.mainJoueur);
-            indiceDansLeDeck++;
         }
         piles = Pile.aggregationDeCarteEnPile(deck.getCartes());
     }

@@ -15,7 +15,7 @@ public class Partie {
 
     public Partie(int nombreDeJoueur){
         estFinis= false;
-       joueurs = new ArrayList<Joueur>();
+        joueurs = new ArrayList<Joueur>();
         for(int i = 0; i < nombreDeJoueur; i++ ){
             joueurs.add(new Joueur("Joueur " + (i+1)));
         }
@@ -30,11 +30,6 @@ public class Partie {
         System.out.println(carte.hashCode());
     }
 
-    public void skipTurn(){
-        endTurn();
-        joueurs.get(auTourDuJoueur).startTurn();
-    }
-
     public Carte cliqueSurUneCarte(String hashcode){
         for(Pile pile: joueurs.get(auTourDuJoueur).piles){
             if(String.valueOf(pile.hashCode()).equals(hashcode)){
@@ -46,7 +41,7 @@ public class Partie {
                 return pile.getCarte();
             }
         }
-        for(Pile pile: pilesReserveAction){
+        for(Pile pile: pilesReserveTresorVictoireMalediction){
             if(String.valueOf(pile.hashCode()).equals(hashcode)){
                 return pile.getCarte();
             }
@@ -75,8 +70,9 @@ public class Partie {
             /* SI LE JOUEUR CLIQUE UNE CARTE DE SA MAIN ET QUE C'EST UNE CARTE TRESOR */
             if(carte.getLocalisation().equals(LocalisationDesCartes.mainJoueur) && (carte.getName().equals("Cuivre") || carte.getName().equals("Or") || carte.getName().equals("Argent"))){
                     joueurs.get(auTourDuJoueur).poserUneCarte(carte);
+                    carte.effet(joueurs);
                 /* SI LE JOUEUR CLIQUE SUR UNE CARTE DE LA RESERVE ET A ASSEZ DE THUNE ET D'ACHAT*/
-            } else if(carte.getLocalisation().equals(LocalisationDesCartes.reserve) && joueurs.get(auTourDuJoueur).getAchat() != 0 && joueurs.get(auTourDuJoueur).getMonnaie() >= carte.getCout()){
+            } else if(carte.getLocalisation().equals(LocalisationDesCartes.reserve) && joueurs.get(auTourDuJoueur).getMonnaie() >= carte.getCout()){
                     joueurs.get(auTourDuJoueur).acheteCarte(carte);
                     joueurs.get(auTourDuJoueur).achat--;
             }
@@ -86,6 +82,7 @@ public class Partie {
         }
         /* FIN DE TOUR */
         if(numeroDeLaPhase==3){
+            numeroDeLaPhase=1;
             endTurn();
         }
         joueurs.get(auTourDuJoueur).piles = Pile.aggregationDeCarteEnPile(joueurs.get(auTourDuJoueur).getDeck().getCartes());
@@ -94,17 +91,17 @@ public class Partie {
 
     public void endTurn(){
         joueurs.get(auTourDuJoueur).setEntrainDeJouer(false);
-        auTourDuJoueur++;
-        if(auTourDuJoueur<=joueurs.size()){
-            auTourDuJoueur=0;
-        }
-        for(Carte carteADefausse : joueurs.get(auTourDuJoueur).getDeck().getCartes().stream().filter(item -> item.getLocalisation().equals(LocalisationDesCartes.mainJoueur) && item.getLocalisation().equals(LocalisationDesCartes.terrain)).collect(Collectors.toCollection(ArrayList::new))){
+        for(Carte carteADefausse : joueurs.get(auTourDuJoueur).getDeck().getCartes().stream().filter(item -> item.getLocalisation().equals(LocalisationDesCartes.mainJoueur) || item.getLocalisation().equals(LocalisationDesCartes.terrain)).collect(Collectors.toCollection(ArrayList::new))){
             carteADefausse.setLocalisation(LocalisationDesCartes.defausse);
         }
         if(joueurs.get(auTourDuJoueur).getDeck().getCartes().stream().filter(item -> item.getLocalisation().equals(LocalisationDesCartes.deck)).collect(Collectors.toCollection(ArrayList::new)).size() < 5){
             joueurs.get(auTourDuJoueur).getDeck().melangeSesCartes();
         }
-        joueurs.get(auTourDuJoueur).piles = Pile.aggregationDeCarteEnPile(joueurs.get(auTourDuJoueur).getDeck().getCartes());
+        auTourDuJoueur++;
+        if(auTourDuJoueur>=joueurs.size()){
+            auTourDuJoueur=0;
+        }
+        joueurs.get(auTourDuJoueur).startTurn();
     }
 
     public boolean isEstFinis() {
