@@ -356,7 +356,7 @@ grpContainerCardStart.getChildren().addAll(imgAnim);
         //   final KeyFrame widthIntermediaire = new KeyFrame(Duration.seconds(1), new KeyValue(imgAnim.fitWidthProperty(), widthIntermed));
         // final KeyFrame widthEnd = new KeyFrame(Duration.seconds(2), new KeyValue(imgAnim.fitWidthProperty(), widthDebut, Interpolator.LINEAR));
 
-        final KeyFrame YmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(grpContainerCardStart.translateYProperty(), YPositionOfTheContainerCardStart));
+        final KeyFrame YmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(grpContainerCardStart.translateYProperty(), YPositionOfTheContainerCardStart+90));
         final KeyFrame YmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(grpContainerCardStart.translateYProperty(), 650, Interpolator.LINEAR));
         //      final KeyFrame YmovementEndReset = new KeyFrame(Duration.seconds(0.31), new KeyValue(grpContainerCardStart.translateYProperty(), YPositionOfTheContainerCardStart, Interpolator.LINEAR));
 
