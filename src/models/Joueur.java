@@ -24,15 +24,7 @@ public class Joueur {
     private ArrayList<Pile> pilesReserveAction;
     private ArrayList<Pile> pilesReserveTresorVictoireMalediction;
 
-    public Joueur(int nombreDeJoueur){
-        estFinis= false;
-        joueurs = new ArrayList<Joueur>();
-        joueurs.add(new Joueur(nombreDeJoueur+1));
-        pilesReserveAction = DistributeurDeCarte.radomPileAction();
-        pilesReserveTresorVictoireMalediction = DistributeurDeCarte.distribuePileTresorVictoireMalediction();
-    }
-
-    public void initJoueur(String nom){
+    public Joueur(String nomJoueur){
         this.nom = nom;
         pV = 3;
         indiceDansLeDeck=0;
@@ -40,7 +32,6 @@ public class Joueur {
     }
 
     public static void main(String[] args) {
-        Joueur joueur = new Joueur(2);
     }
 
     /* On initialise le début du tour */
@@ -52,6 +43,7 @@ public class Joueur {
 
     /* On termine le tour */
     public void endTurn(){
+        setEntrainDeJouer(false);
         if(numeroDeLaPhase==3){
             /* défausser la main au deck, on vérifie si la valeur du deck est égal ou supérieur à 5, si non, on mélange la défausse
         avec le deck avant de piocher */
@@ -236,5 +228,33 @@ public class Joueur {
 
     public void setPilesReserveTresorVictoireMalediction(ArrayList<Pile> pilesReserveTresorVictoireMalediction) {
         this.pilesReserveTresorVictoireMalediction = pilesReserveTresorVictoireMalediction;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setDeck(Deck deck) {
+        this.deck = deck;
+    }
+
+    public void setIndiceDansLeDeck(int indiceDansLeDeck) {
+        this.indiceDansLeDeck = indiceDansLeDeck;
+    }
+
+    public void setEntrainDeJouer(boolean entrainDeJouer) {
+        this.entrainDeJouer = entrainDeJouer;
+    }
+
+    public void setDoitDefausser(boolean doitDefausser) {
+        this.doitDefausser = doitDefausser;
+    }
+
+    public void setAuTourDuJoueur(int auTourDuJoueur) {
+        this.auTourDuJoueur = auTourDuJoueur;
+    }
+
+    public void setNumeroDeLaPhase(int numeroDeLaPhase) {
+        this.numeroDeLaPhase = numeroDeLaPhase;
     }
 }

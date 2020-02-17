@@ -16,13 +16,13 @@ public class Partie {
     private ArrayList<Pile> pilesReserveTresorVictoireMalediction;
 
     public Partie(int nombreDeJoueur){
-    //    estFinis= false;
-    //    joueurs = new ArrayList<Joueur>();
-    //    for(int i = 0; i < nombreDeJoueur; i++ ){
-    //        joueurs.add(new Joueur("Joueur " + (i+1)));
-    //    }
-    //    pilesReserveAction = DistributeurDeCarte.radomPileAction();
-    //    pilesReserveTresorVictoireMalediction = DistributeurDeCarte.distribuePileTresorVictoireMalediction();
+        estFinis= false;
+       joueurs = new ArrayList<Joueur>();
+        for(int i = 0; i < nombreDeJoueur; i++ ){
+            joueurs.add(new Joueur("Joueur " + (i+1)));
+        }
+        pilesReserveAction = DistributeurDeCarte.radomPileAction();
+        pilesReserveTresorVictoireMalediction = DistributeurDeCarte.distribuePileTresorVictoireMalediction();
     }
 
     public static void main(String[] args) {
@@ -30,6 +30,10 @@ public class Partie {
     }
 
     public void tour(Carte carte){
+        if(joueurs.get(auTourDuJoueur).isEntrainDeJouer()){
+            joueurs.get(auTourDuJoueur).setEntrainDeJouer(true);
+            joueurs.get(auTourDuJoueur).startTurn();
+        }
         /* PHASE ACTION */
         if(numeroDeLaPhase==1 && carte.getLocalisation().equals(LocalisationDesCartes.mainJoueur) && joueurs.get(auTourDuJoueur).getAction() != 0 ){
             System.out.println("Le joueur peut jouer cette carte");

@@ -15,8 +15,8 @@ public class ControllerJeu implements EventHandler<MouseEvent> {
 
     public ControllerJeu(ViewHandler viewHandler) {
         this.viewHandler = viewHandler;
-        //partie = new Partie(2);
-        //updateAllGUI();
+        partie = new Partie(2);
+        updateAllGUI();
         this.viewHandler.getViewJeu().setEvent(this);
     }
 
@@ -26,7 +26,6 @@ public class ControllerJeu implements EventHandler<MouseEvent> {
             //Carte selectedCarte = partie.getJoueurs().get(0).clicqueSurUneCarte(mouseEvent.getPickResult().getIntersectedNode().getId());
             //partie.getJoueurs().get(0).poserUneCarte(selectedCarte);
             //updateAllGUI();
-
         } catch (NullPointerException e){
             e.printStackTrace();
         }
