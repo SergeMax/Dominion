@@ -9,6 +9,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
@@ -22,6 +23,7 @@ import views.ViewJeu;
 //TODO: Va voir dans CardReserve ---> :)
 public class CardViewCentre {
 
+    private final ImageView imgReset;
     private boolean imgClique;
     private int width = 100;
     private Group grpContenairCard;
@@ -61,38 +63,59 @@ public class CardViewCentre {
         img.setFitHeight(scaledHeight);
         img.setSmooth(true);
 
+        imgReset = img;
 
         img.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
 
-                if (imgClique == false) {
-
-                    grpContenairCard.getChildren().remove(vBoxNumber);
-                    img.setViewport(null);
-                    Anim anim = new Anim();
-                    anim.animCarteCentraleUP(img, grpContenairCard);
-                    imgClique = true;
-
-
-                } else {
+                if (event.getButton() == MouseButton.PRIMARY)
+                {
 
                     Anim anim = new Anim();
-                    anim.animCarteCentraleDown(img, grpContenairCard);
+                    anim.animCarteCentraleToPioche(grpContenairCard, grpContenairCard, img);
 
-                    img.setScaleX(2);
-                    img.setScaleY(2);
-                    img.setViewport(croppedPortion);
-                    imgClique = false;
-
-                    PauseTransition delayRemove = new PauseTransition(Duration.seconds(0.4));
+                    PauseTransition delayRemove = new PauseTransition(Duration.seconds(0.33));
                     delayRemove.setOnFinished(eventt -> {
-                        grpContenairCard.getChildren().add(vBoxNumber);
+                        grpContenairCard.getChildren().addAll(imgReset, vBoxNumber);
+                        grpContenairCard.setTranslateX(0);
+                        grpContenairCard.setTranslateY(0);
+
                     });
                     delayRemove.play();
 
+                } else if (event.getButton() == MouseButton.SECONDARY)
+                {
+                    if (imgClique == false) {
+
+                        grpContenairCard.getChildren().remove(vBoxNumber);
+                        img.setViewport(null);
+                        Anim anim = new Anim();
+                        anim.animCarteCentraleUP(img, grpContenairCard);
+                        imgClique = true;
+
+
+                    } else {
+
+                        Anim anim = new Anim();
+                        anim.animCarteCentraleDown(img, grpContenairCard);
+
+                        img.setScaleX(2);
+                        img.setScaleY(2);
+                        img.setViewport(croppedPortion);
+                        imgClique = false;
+
+                        PauseTransition delayRemove = new PauseTransition(Duration.seconds(0.4));
+                        delayRemove.setOnFinished(eventt -> {
+                            grpContenairCard.getChildren().add(vBoxNumber);
+                        });
+                        delayRemove.play();
+
+                    }
                 }
+
+
             }
         });
 
