@@ -32,11 +32,11 @@ public class CardViewReserve {
     private final ImageView imgReset;
     private int width = 90;
     private Group grpContenairCard;
-    private ImageView img;
+    private ImageView img,imgPiece;
     private Image front;
     /* BOX QUI CONTIENT LE NOMBRE DE CARTE DE LA PILE */
-    private VBox vBoxNumber;
-    private Label lblNumber;
+    private VBox vBoxNumber,vboxPiece,vboxPrix;
+    private Label lblNumber,lblPrix;
     /* BOX QUI DEVRA CONTENIR SI L'UTILISATEUR PEUT OU PAS ACHETER LA CARTE */
     private VBox vBoxAcheterLaCarte;
     private Label lblAcheterLaCarte = new Label("+");
@@ -51,6 +51,22 @@ public class CardViewReserve {
         vBoxNumber.getChildren().add(lblNumber);
         vBoxNumber.getStyleClass().add("box_number");
         vBoxNumber.setPadding(new Insets(5));
+
+        vboxPiece = new VBox();
+        imgPiece = new ImageView(Paths.urlImgPiece);
+        imgPiece.setFitWidth(30);
+        imgPiece.setFitHeight(30);
+        vboxPiece.setPadding(new Insets(60,0,0,0));
+
+
+        vboxPrix = new VBox();
+        lblPrix = new Label(String.valueOf(pile.getCarte().getCout()));
+        lblPrix.getStyleClass().add("lbl_box_prix");
+        vboxPrix.getChildren().add(lblPrix);
+        vboxPrix.setPadding(new Insets(-30,0,0,9));
+
+
+        vboxPiece.getChildren().addAll(imgPiece,vboxPrix);
         //TODO: INITIALISER LA VBOX ET L'AJOUTER AU GrpRootContenaire DE LA VIEW CARD SEULEMENT SI LE JOUEUR A ASSEZ DE PIECE D'OR*/
 
 
@@ -100,7 +116,7 @@ public class CardViewReserve {
 
                 PauseTransition delayRemove = new PauseTransition(Duration.seconds(0.33));
                 delayRemove.setOnFinished(eventt -> {
-                    grpContenairCard.getChildren().addAll(imgReset, vBoxNumber);
+                    grpContenairCard.getChildren().addAll(imgReset, vBoxNumber ,vboxPiece);
                     grpContenairCard.setTranslateX(15);
                     grpContenairCard.setTranslateY(0);
 
@@ -110,7 +126,7 @@ public class CardViewReserve {
             }
         });
 
-        grpContenairCard.getChildren().addAll(img, vBoxNumber);
+        grpContenairCard.getChildren().addAll(img, vBoxNumber,vboxPiece);
 
         grpContenairCard.setTranslateX(15);
     }
