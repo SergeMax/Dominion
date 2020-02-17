@@ -37,8 +37,6 @@ public class Oiseau {
             sensOiseau = false;
             imgBirds.setRotationAxis(new Point3D(0,1,0));
             imgBirds.setRotate(-180);
-
-
         }
         vitesseRandom = (Math.random() * 10000 ) + 5000;
         double startRandom = -1 * Math.random() * 250;

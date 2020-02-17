@@ -1,5 +1,6 @@
 package controllers;
 
+import animation.clouds.Cloud;
 import animations.birds.Oiseau;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -17,7 +18,10 @@ public class ControllerMenuPrincipal implements EventHandler<MouseEvent> {
             Oiseau toto = new Oiseau(viewHandler.getViewMenuPrincipal().getRoot());
             toto.startFlying();
         }
-
+        for (int i = 0; i < 10; i++) {
+            Cloud nuage = new Cloud(viewHandler.getViewMenuPrincipal().getRoot());
+            nuage.startPassage();
+        }
 
         //4 TODO: Direction La Class Birds ---->
 
