@@ -28,11 +28,7 @@ public class Deck {
     public void melangeSesCartes(){
         Collections.shuffle(cartes);
         for(int i = 0; i < cartes.size(); i++){
-            if(i < 5){
-                cartes.get(i).setLocalisation(LocalisationDesCartes.mainJoueur);
-            } else {
                 cartes.get(i).setLocalisation(LocalisationDesCartes.deck);
-            }
         }
     }
 

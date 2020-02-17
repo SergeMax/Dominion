@@ -65,7 +65,7 @@ public class CardViewCentre {
         img = new ImageView(front);
         img.setPreserveRatio(true);
         img.setFitWidth(width);
-        img.setId(pile.getCarte().getClass().getSimpleName());
+        img.setId(String.valueOf(pile.hashCode()));
 
         // define crop in image coordinates:
         Rectangle2D croppedPortion = new Rectangle2D(0, 0, 800, 570);

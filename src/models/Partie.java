@@ -1,11 +1,9 @@
 package models;
 
-import models.cartes.Carte;
-import models.cartes.DistributeurDeCarte;
-import models.cartes.LocalisationDesCartes;
-import models.cartes.TypeDeCarte;
+import models.cartes.*;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Partie {
     private boolean estFinis;
@@ -23,44 +21,90 @@ public class Partie {
         }
         pilesReserveAction = DistributeurDeCarte.radomPileAction();
         pilesReserveTresorVictoireMalediction = DistributeurDeCarte.distribuePileTresorVictoireMalediction();
+        joueurs.get(0).startTurn();
     }
 
     public static void main(String[] args) {
         Partie partie = new Partie(2);
+        Carte carte = DistributeurDeCarte.distribueOneCarte(IdCarte.PROVINCE);
+        System.out.println(carte.hashCode());
+    }
+
+    public void skipTurn(){
+        endTurn();
+        joueurs.get(auTourDuJoueur).startTurn();
+    }
+
+    public Carte cliqueSurUneCarte(String hashcode){
+        for(Pile pile: joueurs.get(auTourDuJoueur).piles){
+            if(String.valueOf(pile.hashCode()).equals(hashcode)){
+                return pile.getCarte();
+            }
+        }
+        for(Pile pile: pilesReserveAction){
+            if(String.valueOf(pile.hashCode()).equals(hashcode)){
+                return pile.getCarte();
+            }
+        }
+        for(Pile pile: pilesReserveAction){
+            if(String.valueOf(pile.hashCode()).equals(hashcode)){
+                return pile.getCarte();
+            }
+        }
+        return null;
     }
 
     public void tour(Carte carte){
-        if(joueurs.get(auTourDuJoueur).isEntrainDeJouer()){
-            joueurs.get(auTourDuJoueur).setEntrainDeJouer(true);
-            joueurs.get(auTourDuJoueur).startTurn();
-        }
-        /* PHASE ACTION */
-        if(numeroDeLaPhase==1 && carte.getLocalisation().equals(LocalisationDesCartes.mainJoueur) && joueurs.get(auTourDuJoueur).getAction() != 0 ){
-            System.out.println("Le joueur peut jouer cette carte");
-            joueurs.get(auTourDuJoueur).poserUneCarte(carte);
-            carte.effet(joueurs);
-            if(joueurs.get(auTourDuJoueur).getAction() != 0){
 
-            }else{
+        /* PHASE ACTION */
+        if(numeroDeLaPhase==1){
+            /* SI LE JOUEUR CLIQUE UNE CARTE ACTION DANS LA MAIN */
+            if(joueurs.get(auTourDuJoueur).getDeck().getCartes().stream().filter(item -> (item.getType().equals(TypeDeCarte.actions) || item.getType().equals(TypeDeCarte.attaque_action)) && item.getLocalisation().equals(LocalisationDesCartes.mainJoueur)).collect(Collectors.toCollection(ArrayList::new)).size() != 0){
+                joueurs.get(auTourDuJoueur).poserUneCarte(carte);
+                joueurs.get(auTourDuJoueur).action--;
+                if(joueurs.get(auTourDuJoueur).getAction() == 0){
+                    numeroDeLaPhase++;
+                }
+            } else {
                 numeroDeLaPhase++;
             }
-        } else {
-            System.out.println("Le joueur peut pas jouer cette carte");
         }
-        /* PHASE ACHAT */
-        if(numeroDeLaPhase==2 && carte.getLocalisation().equals(LocalisationDesCartes.reserve) ){
-            if(carte.getType().equals(TypeDeCarte.tresor)){
 
+        /* PHASE ACHAT*/
+        if (numeroDeLaPhase==2){
+            /* SI LE JOUEUR CLIQUE UNE CARTE DE SA MAIN ET QUE C'EST UNE CARTE TRESOR */
+            if(carte.getLocalisation().equals(LocalisationDesCartes.mainJoueur) && (carte.getName().equals("Cuivre") || carte.getName().equals("Or") || carte.getName().equals("Argent"))){
+                    joueurs.get(auTourDuJoueur).poserUneCarte(carte);
+                /* SI LE JOUEUR CLIQUE SUR UNE CARTE DE LA RESERVE ET A ASSEZ DE THUNE ET D'ACHAT*/
+            } else if(carte.getLocalisation().equals(LocalisationDesCartes.reserve) && joueurs.get(auTourDuJoueur).getAchat() != 0 && joueurs.get(auTourDuJoueur).getMonnaie() >= carte.getCout()){
+                    joueurs.get(auTourDuJoueur).acheteCarte(carte);
+                    joueurs.get(auTourDuJoueur).achat--;
             }
-
+            if(joueurs.get(auTourDuJoueur).getAchat() == 0) {
+                numeroDeLaPhase++;
+            }
         }
         /* FIN DE TOUR */
         if(numeroDeLaPhase==3){
-            auTourDuJoueur++;
-            if(auTourDuJoueur<joueurs.size()){
-                auTourDuJoueur=0;
-            }
+            endTurn();
         }
+        joueurs.get(auTourDuJoueur).piles = Pile.aggregationDeCarteEnPile(joueurs.get(auTourDuJoueur).getDeck().getCartes());
+        System.out.println(numeroDeLaPhase);
+    }
+
+    public void endTurn(){
+        joueurs.get(auTourDuJoueur).setEntrainDeJouer(false);
+        auTourDuJoueur++;
+        if(auTourDuJoueur<=joueurs.size()){
+            auTourDuJoueur=0;
+        }
+        for(Carte carteADefausse : joueurs.get(auTourDuJoueur).getDeck().getCartes().stream().filter(item -> item.getLocalisation().equals(LocalisationDesCartes.mainJoueur) && item.getLocalisation().equals(LocalisationDesCartes.terrain)).collect(Collectors.toCollection(ArrayList::new))){
+            carteADefausse.setLocalisation(LocalisationDesCartes.defausse);
+        }
+        if(joueurs.get(auTourDuJoueur).getDeck().getCartes().stream().filter(item -> item.getLocalisation().equals(LocalisationDesCartes.deck)).collect(Collectors.toCollection(ArrayList::new)).size() < 5){
+            joueurs.get(auTourDuJoueur).getDeck().melangeSesCartes();
+        }
+        joueurs.get(auTourDuJoueur).piles = Pile.aggregationDeCarteEnPile(joueurs.get(auTourDuJoueur).getDeck().getCartes());
     }
 
     public boolean isEstFinis() {
@@ -93,5 +137,13 @@ public class Partie {
 
     public void setPilesReserveTresorVictoireMalediction(ArrayList<Pile> pilesReserveTresorVictoireMalediction) {
         this.pilesReserveTresorVictoireMalediction = pilesReserveTresorVictoireMalediction;
+    }
+
+    public int getAuTourDuJoueur() {
+        return auTourDuJoueur;
+    }
+
+    public int getNumeroDeLaPhase() {
+        return numeroDeLaPhase;
     }
 }

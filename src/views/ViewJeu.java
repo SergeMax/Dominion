@@ -4,6 +4,7 @@ import controllers.ControllerJeu;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
@@ -41,17 +42,20 @@ public class ViewJeu {
     private HBox boxCarteRandomLigne1, boxCarteRandomLigne2,boxCarteJoue, boxDefause, boxPioche;
     private Text scoreJactifText;
     private Text scoreJPassifText;
+    private Button btnSkipTurn;
 
 
 
     public ViewJeu(BorderPane root) {
         this.root = root;
         /* INIT DES ELEMENTS */
+        btnSkipTurn = new Button("PASSE LE TOUR");
         boxMenu = initMenu();
         vBoxLeft = initLeftHBox();
         hBoxRigth = initRightHBox();
         centerPane = initCenterPane();
         hBoxFooter = initFooter();
+
     }
 
     /**
@@ -94,15 +98,16 @@ public class ViewJeu {
         scoreJPassifHbox.setPadding(new Insets(10, 10, 10, 10));
 
 
+        hbox.getChildren().add(btnSkipTurn);
 
         vbox.getChildren().addAll(new Separator(),scoreJPassifHbox, hbox);
+
 
         vbox.setMaxHeight(100);
         vbox.setMinHeight(90);
 
         vbox.setTranslateX(200);
         vbox.getStyleClass().add("vbox_style");
-
         return vbox;
     }
 
@@ -385,10 +390,14 @@ public class ViewJeu {
      * @param controllerJeu Le controlleur de jeu
      */
     public void setEvent(ControllerJeu controllerJeu){
-
+        btnSkipTurn.setOnMouseClicked(controllerJeu);
     }
 
     public BorderPane getRoot() {
         return root;
+    }
+
+    public Button getBtnSkipTurn(){
+        return  btnSkipTurn;
     }
 }

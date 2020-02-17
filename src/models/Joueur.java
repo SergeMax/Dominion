@@ -1,37 +1,29 @@
 package models;
 
-import models.cartes.Carte;
-import models.cartes.LocalisationDesCartes;
-import models.cartes.DistributeurDeCarte;
-import models.cartes.TypeDeCarte;
+import models.cartes.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.logging.Filter;
+import java.util.stream.Collectors;
 
 public class Joueur {
     private String nom;
     private int pV;
     private Deck deck;
+    public ArrayList<Pile> piles;
     private int indiceDansLeDeck;
-    private byte monnaie;
-    private byte action;
-    private byte achat;
+    public byte monnaie;
+    public byte action;
+    public byte achat;
     private boolean entrainDeJouer;
     private boolean doitDefausser;
-    private boolean estFinis;
-    private int auTourDuJoueur = 0;
-    private int numeroDeLaPhase = 1;
-    private ArrayList<Joueur> joueurs;
-    private ArrayList<Pile> pilesReserveAction;
-    private ArrayList<Pile> pilesReserveTresorVictoireMalediction;
 
-    public Joueur(String nomJoueur){
+    public Joueur(String nom){
         this.nom = nom;
         pV = 3;
         indiceDansLeDeck=0;
         deck = new Deck();
-    }
-
-    public static void main(String[] args) {
     }
 
     /* On initialise le début du tour */
@@ -39,91 +31,32 @@ public class Joueur {
         this.monnaie = 0;
         this.achat = 1;
         this.action = 1;
-    }
-
-    /* On termine le tour */
-    public void endTurn(){
-        setEntrainDeJouer(false);
-        if(numeroDeLaPhase==3){
-            /* défausser la main au deck, on vérifie si la valeur du deck est égal ou supérieur à 5, si non, on mélange la défausse
-        avec le deck avant de piocher */
-            //if deck < 5
-            //deck.melangeSesCartes();
-            // J'aurais besoin de comprendre comment la classe Pile fonctionne, on dirait qu'on pourrait l'utiliser pour la défausse,
-            // mélange et pioche
-            auTourDuJoueur++;
-            if(auTourDuJoueur<joueurs.size()){
-                auTourDuJoueur=0;
+        setEntrainDeJouer(true);
+        for (int i = 0; i < 5 ; i++) {
+            if(indiceDansLeDeck >= deck.getCartes().size()){
+                break;
             }
+            deck.getCartes().get(indiceDansLeDeck).setLocalisation(LocalisationDesCartes.mainJoueur);
+            indiceDansLeDeck++;
         }
+        piles = Pile.aggregationDeCarteEnPile(deck.getCartes());
     }
 
-    public void joueurTour(Carte carte){
-        /* Initialisation des phases du joueurs */
-        startTurn();
-        /* Phase Action */
-        /* On commence par la première phase, qui est la phase Action */
-        if(numeroDeLaPhase == 1){
-            /* On vérifie si le joueur peut faire des actions */
-            if(action > 0){
-                /* On recherche la carte du joueur dans sa main */
-                carte.getLocalisation().equals(LocalisationDesCartes.mainJoueur);
-                joueurs.get(auTourDuJoueur).poserUneCarte(carte);
-                /* Activation de l'effet de la carte */
-                carte.effet(joueurs);
-            }else{
-                /* On fait avancer la phase du joueur à la phase Achat */
-                numeroDeLaPhase++;
-            }
-        }
-        /* Phase Achat */
-        /* Si le joueur clique sur une carte Achat alors qu'il est en phase 1, sa phase passera à la deuxième phase */
-        if (carte.getType().equals(TypeDeCarte.tresor) && numeroDeLaPhase == 1){
-            numeroDeLaPhase++;
-        }
-        if (numeroDeLaPhase == 2 ){
-            if(carte.getType().equals(TypeDeCarte.tresor)){
-                /* joueur reçoit une carte de la pile si monnaie >= coût et reste dans le tour si il peut encore acheter */
-            }
-        }
-
-        endTurn();
+    public Carte selectCardInHande(Carte carte){
+        return deck.getCartes().stream().filter(item -> item.getLocalisation().equals(LocalisationDesCartes.mainJoueur) && item.getName().equals(carte.getName())).collect(Collectors.toCollection(ArrayList::new)).get(0);
     }
 
-
-
-    public Carte clicqueSurUneCarte(String className){
-        Carte selectedCarte = null;
-        for(Carte carte: deck.getCartes()){
-            if(carte.getClass().getSimpleName().contains(className) && carte.getLocalisation().equals(LocalisationDesCartes.mainJoueur)){
-                return  carte;
-            }
-        }
-        return selectedCarte;
-    }
-
-    public void decrementeAction(int nb){
-        action -= nb;
-    }
-
-    public void incrementeAction(int nb){
-        action += nb;
-    }
-
-    public void decrementeAchat(int nb){
-        achat -= nb;
-    }
-
-    public void incrementeAchat(int nb){
-        achat += nb;
-    }
+    public void acheteCarte(Carte carte){
+        deck.getCartes().add(DistributeurDeCarte.distribueOneCarte(IdCarte.valueOf(carte.getName().toUpperCase())));
+    };
 
     public void piocheDesCarte(int nbDeCarte){
 
     }
 
     public void poserUneCarte(Carte carte){
-        carte.setLocalisation(LocalisationDesCartes.terrain);
+        Carte corespondedcarte = selectCardInHande(carte);
+        corespondedcarte.setLocalisation(LocalisationDesCartes.terrain);
     }
 
     public void defausseUneCarte(Carte carte) {
@@ -198,38 +131,6 @@ public class Joueur {
         return doitDefausser;
     }
 
-    public boolean isEstFinis() {
-        return estFinis;
-    }
-
-    public ArrayList<Joueur> getJoueurs() {
-        return joueurs;
-    }
-
-    public ArrayList<Pile> getPilesReserveAction() {
-        return pilesReserveAction;
-    }
-
-    public ArrayList<Pile> getPilesReserveTresorVictoireMalediction() {
-        return pilesReserveTresorVictoireMalediction;
-    }
-
-    public void setEstFinis(boolean estFinis) {
-        this.estFinis = estFinis;
-    }
-
-    public void setJoueurs(ArrayList<Joueur> joueurs) {
-        this.joueurs = joueurs;
-    }
-
-    public void setPilesReserveAction(ArrayList<Pile> pilesReserveAction) {
-        this.pilesReserveAction = pilesReserveAction;
-    }
-
-    public void setPilesReserveTresorVictoireMalediction(ArrayList<Pile> pilesReserveTresorVictoireMalediction) {
-        this.pilesReserveTresorVictoireMalediction = pilesReserveTresorVictoireMalediction;
-    }
-
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -250,11 +151,5 @@ public class Joueur {
         this.doitDefausser = doitDefausser;
     }
 
-    public void setAuTourDuJoueur(int auTourDuJoueur) {
-        this.auTourDuJoueur = auTourDuJoueur;
-    }
 
-    public void setNumeroDeLaPhase(int numeroDeLaPhase) {
-        this.numeroDeLaPhase = numeroDeLaPhase;
-    }
 }

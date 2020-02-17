@@ -28,7 +28,7 @@ public class Artisan extends Carte {
                     break;
                 }else{
                     joueur.recevoirUneCarteDeValeur(5);
-                    joueur.decrementeAction(1);
+                    //joueur.decrementeAction(1);
                     //joueur.poserUneCarte();
                 }
             }

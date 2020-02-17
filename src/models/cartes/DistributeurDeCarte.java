@@ -20,14 +20,14 @@ public class DistributeurDeCarte {
     private static final HashMap<IdCarte, Class<? extends Carte>> dicoCards = new HashMap<IdCarte, Class<? extends Carte>>();
 
     static {
-        dicoCards.put(IdCarte.ARTISANT, Artisan.class);
+        dicoCards.put(IdCarte.ARTISAN, Artisan.class);
         dicoCards.put(IdCarte.ATELIER, Atelier.class);
         dicoCards.put(IdCarte.BRIGAND, Brigand.class);
         dicoCards.put(IdCarte.BIBLIOTHEQUE, Bibliotheque.class);
         dicoCards.put(IdCarte.BRACONIER, Braconnier.class);
         dicoCards.put(IdCarte.BUREAUCRATE, Bureaucrate.class);
         dicoCards.put(IdCarte.CAVE, Cave.class);
-        dicoCards.put(IdCarte.CHANBRE_DU_CONSEIL, ChambreDuConseil.class);
+        dicoCards.put(IdCarte.CHAMBREDUCONSEIL, ChambreDuConseil.class);
         dicoCards.put(IdCarte.CHAPELLE, Chapelle.class);
         dicoCards.put(IdCarte.DOUVES, Douves.class);
         dicoCards.put(IdCarte.FESTIVAL, Festival.class);
@@ -36,12 +36,12 @@ public class DistributeurDeCarte {
         dicoCards.put(IdCarte.LABORATOIRE, Laboratoire.class);
         dicoCards.put(IdCarte.MARCHAND, Marchand.class);
         dicoCards.put(IdCarte.MARCHE, Marche.class);
-        dicoCards.put(IdCarte.MILICE, Millice.class);
+        dicoCards.put(IdCarte.MILLICE, Millice.class);
         dicoCards.put(IdCarte.MINE, Mine.class);
         dicoCards.put(IdCarte.PRESAGE, Presage.class);
-        dicoCards.put(IdCarte.PRETEUR_SUR_GAGE, PreteurSurGage.class);
+        dicoCards.put(IdCarte.PRETEURSURGAGE, PreteurSurGage.class);
         dicoCards.put(IdCarte.RENOVATION, Renovation.class);
-        dicoCards.put(IdCarte.SALLE_DU_THRONE, SalleDuTrone.class);
+        dicoCards.put(IdCarte.SALLEDUTHRONE, SalleDuTrone.class);
         dicoCards.put(IdCarte.SENTINNELLE, Sentinelle.class);
         dicoCards.put(IdCarte.SORCIERE, Sorciere.class);
         dicoCards.put(IdCarte.VASSAL, Vassal.class);
@@ -93,6 +93,7 @@ public class DistributeurDeCarte {
                 random = (int) (Math.random() * (dicoCards.size()));
                 carte = distribueOneCarte(IdCarte.values()[random]);
             }while (carte.getType().equals(TypeDeCarte.tresor) || carte.getType().equals(TypeDeCarte.victoire));
+            carte.setLocalisation(LocalisationDesCartes.reserve);
             stack.add(new Pile(carte,(byte)20));
         }
         return stack;
@@ -107,6 +108,9 @@ public class DistributeurDeCarte {
         stack.add(new Pile(distribueOneCarte(IdCarte.DUCHE),(byte)8));
         stack.add(new Pile(distribueOneCarte(IdCarte.DOMAINE),(byte)8));
         stack.add(new Pile(distribueOneCarte(IdCarte.MALEDICTION),(byte)10));
+        for(Pile pile: stack){
+            pile.getCarte().setLocalisation(LocalisationDesCartes.reserve);
+        }
         return stack;
     }
 }

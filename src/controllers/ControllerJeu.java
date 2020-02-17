@@ -22,13 +22,17 @@ public class ControllerJeu implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-        try{
-            //Carte selectedCarte = partie.getJoueurs().get(0).clicqueSurUneCarte(mouseEvent.getPickResult().getIntersectedNode().getId());
-            //partie.getJoueurs().get(0).poserUneCarte(selectedCarte);
-            //updateAllGUI();
-        } catch (NullPointerException e){
-            e.printStackTrace();
+        if(mouseEvent.getSource().equals(viewHandler.getViewJeu().getBtnSkipTurn())){
+            partie.skipTurn();
+        } else {
+            try{
+                Carte selectedCarte = partie.cliqueSurUneCarte(mouseEvent.getPickResult().getIntersectedNode().getId());
+                partie.tour(selectedCarte);
+            } catch (NullPointerException e){
+                e.printStackTrace();
+            }
         }
+        updateAllGUI();
     }
 
 
@@ -40,18 +44,18 @@ public class ControllerJeu implements EventHandler<MouseEvent> {
     }
 
     public void updateJoueurInfoGUI(){
-        viewHandler.getViewJeu().updateJoueurInfo(partie.getJoueurs().get(0));
+        viewHandler.getViewJeu().updateJoueurInfo(partie.getJoueurs().get(partie.getAuTourDuJoueur()));
     }
 
     public void updateCarteJoueurGUI(){
-        viewHandler.getViewJeu().updateCarteJoueur(partie.getJoueurs().get(0).getAgregationDeCarteEnPile(),this);
+        viewHandler.getViewJeu().updateCarteJoueur(partie.getJoueurs().get(partie.getAuTourDuJoueur()).piles,this);
     }
 
     public void updateCarteCenterGUI(){
-        viewHandler.getViewJeu().updateCarteCenter(partie.getJoueurs().get(0),partie.getPilesReserveAction(),this);
+        viewHandler.getViewJeu().updateCarteCenter(partie.getJoueurs().get(partie.getAuTourDuJoueur()),partie.getPilesReserveAction(),this);
     }
 
     public void updateCarteReserveLeftGUI(){
-        viewHandler.getViewJeu().updateCarteReserveLeft(partie.getJoueurs().get(0),partie.getPilesReserveTresorVictoireMalediction(), this);
+        viewHandler.getViewJeu().updateCarteReserveLeft(partie.getJoueurs().get(partie.getAuTourDuJoueur()),partie.getPilesReserveTresorVictoireMalediction(), this);
     }
 }

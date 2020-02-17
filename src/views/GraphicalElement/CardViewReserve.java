@@ -74,7 +74,8 @@ public class CardViewReserve {
         img = new ImageView(front);
         img.setPreserveRatio(true);
         img.setFitWidth(width);
-        img.setId(pile.getCarte().getClass().getSimpleName());
+        img.setId(String.valueOf(pile.hashCode()));
+
 
 
 // define crop in image coordinates:

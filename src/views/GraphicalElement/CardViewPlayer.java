@@ -39,7 +39,7 @@ public class CardViewPlayer {
                 "-fx-background-radius: 3;"
         );
 
-        img.setId(pile.getCarte().getClass().getSimpleName());
+        img.setId(String.valueOf(pile.hashCode()));
 
         grpContenairCard.getChildren().addAll(img,vBoxNumber);
     }
