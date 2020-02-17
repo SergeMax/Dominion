@@ -27,10 +27,10 @@ public class CardViewCentre {
     private boolean imgClique;
     private int width = 100;
     private Group grpContenairCard;
-    private ImageView img;
+    private ImageView img,imgPiece;
     private Image front;
-    private VBox vBoxNumber;
-    private Label lblNumber;
+    private VBox vBoxNumber,vboxPiece,vboxPrix;
+    private Label lblNumber,lblPrix;
     private ViewJeu viewJeu;
 
     public CardViewCentre(Joueur joueur, Pile pile) {
@@ -42,6 +42,22 @@ public class CardViewCentre {
         vBoxNumber.getChildren().add(lblNumber);
         vBoxNumber.getStyleClass().add("box_number");
         vBoxNumber.setPadding(new Insets(5));
+
+        vboxPiece = new VBox();
+        imgPiece = new ImageView(Paths.urlImgPiece);
+        imgPiece.setFitWidth(40);
+        imgPiece.setFitHeight(40);
+        vboxPiece.setPadding(new Insets(80,0,0,0));
+
+
+        vboxPrix = new VBox();
+        lblPrix = new Label(String.valueOf(pile.getCarte().getCout()));
+        lblPrix.getStyleClass().add("lbl_box_prix");
+        vboxPrix.getChildren().add(lblPrix);
+        vboxPrix.setPadding(new Insets(-35,0,0,14));
+
+
+        vboxPiece.getChildren().addAll(imgPiece,vboxPrix);
 
         //TODO Ajouter le cout en bas a gauche des images carré centrale.
         // pile.getCarte().getCout();
@@ -89,7 +105,7 @@ public class CardViewCentre {
                 {
                     if (imgClique == false) {
 
-                        grpContenairCard.getChildren().remove(vBoxNumber);
+                        grpContenairCard.getChildren().removeAll(vBoxNumber,vboxPiece);
                         img.setViewport(null);
                         Anim anim = new Anim();
                         anim.animCarteCentraleUP(img, grpContenairCard);
@@ -108,7 +124,7 @@ public class CardViewCentre {
 
                         PauseTransition delayRemove = new PauseTransition(Duration.seconds(0.4));
                         delayRemove.setOnFinished(eventt -> {
-                            grpContenairCard.getChildren().add(vBoxNumber);
+                            grpContenairCard.getChildren().addAll(vBoxNumber,vboxPiece);
                         });
                         delayRemove.play();
 
@@ -133,7 +149,7 @@ public class CardViewCentre {
                 "-fx-background-radius: 3;"
         );
 
-        grpContenairCard.getChildren().addAll(img, vBoxNumber);
+        grpContenairCard.getChildren().addAll(img, vBoxNumber,vboxPiece);
         grpContenairCard.getStyleClass().add("hoverCarteCentral");
     }
 
