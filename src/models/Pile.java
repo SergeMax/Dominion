@@ -6,11 +6,7 @@ import models.cartes.IdCarte;
 import models.cartes.LocalisationDesCartes;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 

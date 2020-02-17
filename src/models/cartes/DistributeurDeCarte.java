@@ -41,7 +41,7 @@ public class DistributeurDeCarte {
         dicoCards.put(IdCarte.PRESAGE, Presage.class);
         dicoCards.put(IdCarte.PRETEURSURGAGE, PreteurSurGage.class);
         dicoCards.put(IdCarte.RENOVATION, Renovation.class);
-        dicoCards.put(IdCarte.SALLEDUTHRONE, SalleDuTrone.class);
+        dicoCards.put(IdCarte.SALLEDUTRONE, SalleDuTrone.class);
         dicoCards.put(IdCarte.SENTINNELLE, Sentinelle.class);
         dicoCards.put(IdCarte.SORCIERE, Sorciere.class);
         dicoCards.put(IdCarte.VASSAL, Vassal.class);

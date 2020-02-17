@@ -50,14 +50,14 @@ public class Partie {
     }
 
     public void tour(Carte carte){
-
+    if(!checkEndGame()) {
         /* PHASE ACTION */
-        if(numeroDeLaPhase==1){
+        if (numeroDeLaPhase == 1) {
             /* SI LE JOUEUR CLIQUE UNE CARTE ACTION DANS LA MAIN */
-            if(joueurs.get(auTourDuJoueur).getDeck().getCartes().stream().filter(item -> (item.getType().equals(TypeDeCarte.actions) || item.getType().equals(TypeDeCarte.attaque_action)) && item.getLocalisation().equals(LocalisationDesCartes.mainJoueur)).collect(Collectors.toCollection(ArrayList::new)).size() != 0){
+            if (joueurs.get(auTourDuJoueur).getDeck().getCartes().stream().filter(item -> (item.getType().equals(TypeDeCarte.actions) || item.getType().equals(TypeDeCarte.attaque_action)) && item.getLocalisation().equals(LocalisationDesCartes.mainJoueur)).collect(Collectors.toCollection(ArrayList::new)).size() != 0) {
                 joueurs.get(auTourDuJoueur).poserUneCarte(carte);
                 joueurs.get(auTourDuJoueur).action--;
-                if(joueurs.get(auTourDuJoueur).getAction() == 0){
+                if (joueurs.get(auTourDuJoueur).getAction() == 0) {
                     numeroDeLaPhase++;
                 }
             } else {
@@ -66,27 +66,28 @@ public class Partie {
         }
 
         /* PHASE ACHAT*/
-        if (numeroDeLaPhase==2){
+        if (numeroDeLaPhase == 2) {
             /* SI LE JOUEUR CLIQUE UNE CARTE DE SA MAIN ET QUE C'EST UNE CARTE TRESOR */
-            if(carte.getLocalisation().equals(LocalisationDesCartes.mainJoueur) && (carte.getName().equals("Cuivre") || carte.getName().equals("Or") || carte.getName().equals("Argent"))){
-                    joueurs.get(auTourDuJoueur).poserUneCarte(carte);
-                    carte.effet(joueurs);
+            if (carte.getLocalisation().equals(LocalisationDesCartes.mainJoueur) && (carte.getName().equals("Cuivre") || carte.getName().equals("Or") || carte.getName().equals("Argent"))) {
+                joueurs.get(auTourDuJoueur).poserUneCarte(carte);
+                carte.effet(joueurs);
                 /* SI LE JOUEUR CLIQUE SUR UNE CARTE DE LA RESERVE ET A ASSEZ DE THUNE ET D'ACHAT*/
-            } else if(carte.getLocalisation().equals(LocalisationDesCartes.reserve) && joueurs.get(auTourDuJoueur).getMonnaie() >= carte.getCout()){
-                    joueurs.get(auTourDuJoueur).acheteCarte(carte);
-                    joueurs.get(auTourDuJoueur).achat--;
+            } else if (carte.getLocalisation().equals(LocalisationDesCartes.reserve) && joueurs.get(auTourDuJoueur).getMonnaie() >= carte.getCout()) {
+                joueurs.get(auTourDuJoueur).acheteCarte(carte);
+                joueurs.get(auTourDuJoueur).achat--;
             }
-            if(joueurs.get(auTourDuJoueur).getAchat() == 0) {
+            if (joueurs.get(auTourDuJoueur).getAchat() == 0) {
                 numeroDeLaPhase++;
             }
         }
         /* FIN DE TOUR */
-        if(numeroDeLaPhase==3){
-            numeroDeLaPhase=1;
+        if (numeroDeLaPhase == 3) {
+            numeroDeLaPhase = 1;
             endTurn();
         }
         joueurs.get(auTourDuJoueur).piles = Pile.aggregationDeCarteEnPile(joueurs.get(auTourDuJoueur).getDeck().getCartes());
         System.out.println(numeroDeLaPhase);
+    }
     }
 
     public void endTurn(){
@@ -95,13 +96,37 @@ public class Partie {
             carteADefausse.setLocalisation(LocalisationDesCartes.defausse);
         }
         if(joueurs.get(auTourDuJoueur).getDeck().getCartes().stream().filter(item -> item.getLocalisation().equals(LocalisationDesCartes.deck)).collect(Collectors.toCollection(ArrayList::new)).size() < 5){
+            System.out.println("Je melange Le deck");
             joueurs.get(auTourDuJoueur).getDeck().melangeSesCartes();
+            joueurs.get(auTourDuJoueur).setIndiceDansLeDeck(-1);
         }
         auTourDuJoueur++;
         if(auTourDuJoueur>=joueurs.size()){
             auTourDuJoueur=0;
         }
         joueurs.get(auTourDuJoueur).startTurn();
+    }
+
+    public boolean checkEndGame(){
+        int tasVide = 0;
+        for(Pile pile: pilesReserveTresorVictoireMalediction){
+            if(pile.getCarte().getName().toUpperCase().equals(IdCarte.DOMAINE.name()) && pile.getNombre() <= 0){
+                return true;
+            }
+            if(pile.getNombre() == 0){
+                tasVide++;
+            }
+        }
+        for(Pile pile: pilesReserveAction){
+            if(pile.getNombre() == 0){
+                tasVide++;
+            }
+        }
+        if(tasVide >= 3){
+            return true;
+        }
+
+        return false;
     }
 
     public boolean isEstFinis() {
