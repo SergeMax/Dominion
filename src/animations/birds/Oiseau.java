@@ -4,8 +4,14 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.geometry.Point3D;
 import javafx.scene.Group;
+import javafx.scene.chart.Axis;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Transform;
+import javafx.stage.Screen;
 import javafx.util.Duration;
 
 
@@ -14,7 +20,8 @@ public class Oiseau {
     private Timeline flyTimeline; // Contenant l'animation de l'oiseau
     private Group grpContainerImgBirds; //
     private Group root; // La racine pour que ton oiseaux sache sur qu'elle paneau il évolue
-
+    private double vitesseRandom ;
+    private boolean sensOiseau;
     /**
      * Constructeur oiseau
      * @param root la racine de notre vue
@@ -22,11 +29,27 @@ public class Oiseau {
     public Oiseau(Group root){
         this.root = root;
         grpContainerImgBirds = new Group();
-        imgBirds = new ImageView("assets/cartes/argent.png"); //1 TODO: indiquer le chemin de l'image
+        imgBirds = new ImageView("assets/logo/oiseauvole.gif"); //1 TODO: indiquer le chemin de l'image
         imgBirds.setPreserveRatio(true);
-        imgBirds.setFitWidth(100); //2 TODO: donne une taille a l'oiseau :)
+        if(Math.random() < 0.5){
+            sensOiseau = true;
+        }else{
+            sensOiseau = false;
+            imgBirds.setRotationAxis(new Point3D(0,1,0));
+            imgBirds.setRotate(-180);
+
+
+        }
+        vitesseRandom = (Math.random() * 10000 ) + 5000;
+        double startRandom = -1 * Math.random() * 250;
+        double sizeRandom = (Math.random() *  60 ) + 10 ;
+        imgBirds.setFitWidth(sizeRandom); //2 TODO: donne une taille a l'oiseau :)
+        grpContainerImgBirds.setLayoutX(startRandom);
+        double hauteurRandom = Math.random() *  250  ;
+        grpContainerImgBirds.setLayoutY(hauteurRandom);
         grpContainerImgBirds.getChildren().add(imgBirds);
         initflyAnimation();
+
     }
 
     //3 TODO: Direction le ControllerMenuPrincipal --->
@@ -40,14 +63,23 @@ public class Oiseau {
 
     private void initflyAnimation(){
         flyTimeline = new Timeline();
-        flyTimeline.getKeyFrames().addAll(
-                new KeyFrame(Duration.ZERO,new KeyValue(grpContainerImgBirds.layoutXProperty(),0)),
-                new KeyFrame(new Duration(500), new KeyValue(grpContainerImgBirds.layoutXProperty(),1000)));// Indice: peut etre qu'on pourrait se servir la variable root pour connaitre la taille d'ecran :) ATTENTION A PRENDRE EN COMPTE LA TAILLE imgBird pour que l'oiseau rentre et sort bien de root
-        flyTimeline.setCycleCount(99);
+        if (sensOiseau){
+            flyTimeline.getKeyFrames().addAll(
+                    new KeyFrame(Duration.ZERO,new KeyValue(grpContainerImgBirds.layoutXProperty(),-200)),
+                    new KeyFrame(new Duration(vitesseRandom), new KeyValue(grpContainerImgBirds.layoutXProperty(), Screen.getPrimary().getBounds().getWidth())));
+        }else{
+            flyTimeline.getKeyFrames().addAll(
+                    new KeyFrame(Duration.ZERO,new KeyValue(grpContainerImgBirds.layoutXProperty(),Screen.getPrimary().getBounds().getWidth())),
+                    new KeyFrame(new Duration(vitesseRandom), new KeyValue(grpContainerImgBirds.layoutXProperty(),-200 )));
+        }
+       // Indice: peut etre qu'on pourrait se servir la variable root pour connaitre la taille d'ecran :) ATTENTION A PRENDRE EN COMPTE LA TAILLE imgBird pour que l'oiseau rentre et sort bien de root
+        flyTimeline.setCycleCount(Animation.INDEFINITE);
     }
     //5 TODO NIVEAU EXTREME : essaye de rajouter des KeyFrame pour que l'oiseau oscille de haut en bas (pour rajouter du realisme :P)
 
-    //6 TODO NIVEAU ENCORE PLUS EXTREME: Fait en sorte qu'un nombre aléatoire generer pour l'axe des X
+
+
+    //6 TODO NIVEAU ENCORE PLUS EXTREME: Fait en sorte qu'un nombre aléatoire generer pour l'axe des Y
 
     /**
      * Attache le conteneur de l'oiseau au root

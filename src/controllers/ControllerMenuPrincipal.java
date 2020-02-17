@@ -13,7 +13,10 @@ public class ControllerMenuPrincipal implements EventHandler<MouseEvent> {
         this.viewHandler = viewHandler;
 
         //3 TODO: construire l'objet Oiseau et demarer son animation (en deux ligne c'est fait :))
-
+        for (int i = 0; i < 20; i++) {
+            Oiseau toto = new Oiseau(viewHandler.getViewMenuPrincipal().getRoot());
+            toto.startFlying();
+        }
 
 
         //4 TODO: Direction La Class Birds ---->
