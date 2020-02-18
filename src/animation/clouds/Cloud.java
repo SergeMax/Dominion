@@ -31,6 +31,7 @@ public class Cloud {
         imgCloud.setFitWidth(sizeCloud);
         startCloud = (-1 * Math.random() * 500) - imgCloud.getFitWidth();
         grpContainerImgCloud.setLayoutX(startCloud);
+
         double hauteurCloud = Math.random() * 100;
         grpContainerImgCloud.setLayoutY(hauteurCloud);
         grpContainerImgCloud.getChildren().add(imgCloud);

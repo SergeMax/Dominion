@@ -18,7 +18,7 @@ public class ControllerMenuPrincipal implements EventHandler<MouseEvent> {
             Oiseau toto = new Oiseau(viewHandler.getViewMenuPrincipal().getRoot());
             toto.startFlying();
         }
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 15; i++) {
             Cloud nuage = new Cloud(viewHandler.getViewMenuPrincipal().getRoot());
             nuage.startPassage();
         }
