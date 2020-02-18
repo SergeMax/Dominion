@@ -30,26 +30,27 @@ public class Partie {
         System.out.println(carte.hashCode());
     }
 
-    public Carte cliqueSurUneCarte(String hashcode){
+    public Pile cliqueSurUneCarte(String hashcode){
         for(Pile pile: joueurs.get(auTourDuJoueur).piles){
             if(String.valueOf(pile.hashCode()).equals(hashcode)){
-                return pile.getCarte();
+                return pile;
             }
         }
         for(Pile pile: pilesReserveAction){
             if(String.valueOf(pile.hashCode()).equals(hashcode)){
-                return pile.getCarte();
+                return pile;
             }
         }
         for(Pile pile: pilesReserveTresorVictoireMalediction){
             if(String.valueOf(pile.hashCode()).equals(hashcode)){
-                return pile.getCarte();
+                return pile;
             }
         }
         return null;
     }
 
-    public void tour(Carte carte){
+    public void tour(Pile pile){
+        Carte carte = pile.getCarte();
     if(!checkEndGame()) {
         /* PHASE ACTION */
         if (numeroDeLaPhase == 1) {
@@ -74,6 +75,7 @@ public class Partie {
                 /* SI LE JOUEUR CLIQUE SUR UNE CARTE DE LA RESERVE ET A ASSEZ DE THUNE ET D'ACHAT*/
             } else if (carte.getLocalisation().equals(LocalisationDesCartes.reserve) && joueurs.get(auTourDuJoueur).getMonnaie() >= carte.getCout()) {
                 joueurs.get(auTourDuJoueur).acheteCarte(carte);
+                pile.nombre--;
                 joueurs.get(auTourDuJoueur).achat--;
             }
             if (joueurs.get(auTourDuJoueur).getAchat() == 0) {

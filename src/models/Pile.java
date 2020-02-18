@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class Pile {
     private Carte carte;
     private LocalisationDesCartes localisationDesCartes;
-    private byte nombre;
+    public byte nombre;
     private boolean estVide;
 
     public Pile(Carte carte, byte nombre) {

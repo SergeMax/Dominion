@@ -3,6 +3,7 @@ package controllers;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import models.Partie;
+import models.Pile;
 import models.cartes.Carte;
 import views.ViewHandler;
 
@@ -24,8 +25,8 @@ public class ControllerJeu implements EventHandler<MouseEvent> {
             partie.endTurn();
         } else {
             try{
-                Carte selectedCarte = partie.cliqueSurUneCarte(mouseEvent.getPickResult().getIntersectedNode().getId());
-                partie.tour(selectedCarte);
+                Pile selectedPile = partie.cliqueSurUneCarte(mouseEvent.getPickResult().getIntersectedNode().getId());
+                partie.tour(selectedPile);
             } catch (NullPointerException e){
                 e.printStackTrace();
             }
