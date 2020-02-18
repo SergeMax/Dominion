@@ -20,6 +20,7 @@ import models.cartes.LocalisationDesCartes;
 import views.GraphicalElement.CardViewCentre;
 import views.GraphicalElement.CardViewPlayer;
 import views.GraphicalElement.CardViewReserve;
+import views.GraphicalElement.CardViewTerrain;
 
 import java.util.ArrayList;
 
@@ -313,13 +314,14 @@ public class ViewJeu {
         for(Pile pile: piles){
             /* ON CREER LA CARTE VIEWS */
             CardViewPlayer cardViewPlayer = new CardViewPlayer(pile);
+            CardViewTerrain cardViewPlayerTerrain = new CardViewTerrain(pile);
             /* ON ATTACHE L'EVENT AU CLIC DU CONTROLER DE LA CARTE */
             cardViewPlayer.getGrpContenairCard().setOnMouseClicked(controllerJeu);
             /* ON ATTACHE LA CARTE VIEWS A LA BONNE BOX SUIVANT SA LOCALISATION */
             if(pile.getCarte().getLocalisation() == LocalisationDesCartes.mainJoueur){
                 boxMainActif.getChildren().add(cardViewPlayer.getGrpContenairCard());
             }else if(pile.getCarte().getLocalisation() == LocalisationDesCartes.terrain) {
-                boxCarteJoue.getChildren().add(cardViewPlayer.getGrpContenairCard()) ;
+                boxCarteJoue.getChildren().add(cardViewPlayerTerrain.getGrpContenairCard()) ;
             }else if(pile.getCarte().getLocalisation() == LocalisationDesCartes.defausse) {
                 boxDefause.getChildren().add(cardViewPlayer.getGrpContenairCard());
             }else if(pile.getCarte().getLocalisation() == LocalisationDesCartes.deck) {
@@ -399,5 +401,9 @@ public class ViewJeu {
 
     public Button getBtnSkipTurn(){
         return  btnSkipTurn;
+    }
+
+    public HBox getBoxCarteJoue() {
+        return boxCarteJoue;
     }
 }

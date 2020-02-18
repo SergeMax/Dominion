@@ -5,22 +5,17 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import models.Joueur;
 import models.Pile;
 import tools.Anim;
 import tools.Paths;
-import views.ViewJeu;
 
 //TODO: Alors !! les CardViews sont appeller dans les methode update du ViewJeu (comme des View d'Article en PHP)
 // On veut se rapporcher du rendu de Dominion Online
@@ -105,22 +100,19 @@ public class CardViewReserve {
         );
 
         imgReset = img;
-
-
         img.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
 
                     Anim anim = new Anim();
-                    anim.animCarteReserveToPioche(grpContenairCard, grpContenairCard, img );
+                    anim.animCarteReserveToPioche(grpContenairCard, grpContenairCard, img);
 
                 PauseTransition delayRemove = new PauseTransition(Duration.seconds(0.33));
                 delayRemove.setOnFinished(eventt -> {
                     grpContenairCard.getChildren().addAll(imgReset, vBoxNumber ,vboxPiece);
                     grpContenairCard.setTranslateX(15);
                     grpContenairCard.setTranslateY(0);
-
                 });
                 delayRemove.play();
 

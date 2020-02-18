@@ -11,7 +11,7 @@ import tools.Paths;
 
 public class CardViewTerrain {
 
-    private int width = 70;
+    private int width = 85;
     private Group grpContenairCard;
     private ImageView img;
     private Image front, back;

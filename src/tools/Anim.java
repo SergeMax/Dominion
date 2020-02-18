@@ -4,14 +4,10 @@ import javafx.animation.*;
 import javafx.geometry.Bounds;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import models.Pile;
-import views.GraphicalElement.CardViewPlayer;
-import views.ViewHandler;
-
-import java.awt.*;
 
 public class Anim {
 
@@ -33,66 +29,58 @@ public class Anim {
      * Plusieurs element vont changer lors de l'animation ; X position Y positon et width de l'image
      */
 
-    public void animGlissCardToTheTarget(Group grpContainerCardStart, Group grpContainerCardEnd, Group root) {
+    public void animGlissCarteMainToTerrain(Group grpContainerCardStart, ImageView img, Label urlImg) {
 
 
         /*Bound in scene permet de recuperer la position dans la scene du node*/
 
-        Bounds boundsInSceneStart = grpContainerCardStart.localToScene(grpContainerCardStart.getBoundsInLocal());
-        Bounds boundsInSceneEnd = grpContainerCardEnd.localToScene(grpContainerCardStart.getBoundsInLocal());
+       // Bounds boundsInSceneStart = grpContainerCardStart.localToScreen(grpContainerCardStart.getBoundsInLocal());
+         Bounds boundsInSceneStart = grpContainerCardStart.localToScene(grpContainerCardStart.getBoundsInLocal());
 
 
         double XPositionOfTheContainerCardStart = boundsInSceneStart.getMinX();
         double YPositionOfTheContainerCardStart = boundsInSceneStart.getMinY();
 
-        double XPositionOfTheContainerCardEnd = boundsInSceneStart.getMinX();
-        double YPositionOfTheContainerCardEnd = boundsInSceneEnd.getMinY();
+      //  double XPositionOfTheContainerCardEnd = boundsInSceneStart.getMinX();
+    //    double YPositionOfTheContainerCardEnd = boundsInSceneEnd.getMinY();
 
-        widthLarge = 100;
-        widthShort = 75;
-        widthIntermed = 130;
 
-        ImageView imgAnim = new ImageView(/*URL De l'image cliqué*/);
+
+        ImageView imgAnim = new ImageView("assets/cartes/cuivre.png");
+      //  System.out.println(imgAnim);
         imgAnim.setPreserveRatio(true);
 
-        imgAnim.setX(XPositionOfTheContainerCardStart);
-        imgAnim.setY(YPositionOfTheContainerCardStart);
+      //  imgAnim.setX(XPositionOfTheContainerCardStart);
+      //  imgAnim.setY(YPositionOfTheContainerCardStart);
 
-        //  if (/* ////taille du conteneur de base (ou de l'image)///// */) {
-        imgAnim.setFitWidth(widthShort);
-        widthDebut = widthShort;
-        widthIntermed = 100;
-        //   } else {
-        imgAnim.setFitWidth(widthLarge);
-        widthDebut = widthLarge;
-        widthIntermed = 130;
-        //    }
+        imgAnim.setFitWidth(140);
 
-
-        // if (/*Pile du groContainerStart est vite alors */) {
-        grpContainerCardStart.setOpacity(0);
+             // if (/*Pile du groContainerStart est vite alors */) {
+       // grpContainerCardStart.setOpacity(0);
         // }
         // car il faut mettre a zero l'opacité du groupe sur lequel va apparaitre la carte cloné
         //Il faut un delay avant d'enlever la pile vide du root car sinon les carte restante vont se
         //superposer sur celle qui est entrain de se déplacer dans l'animation**/
 
+     //   ViewHandler viewHandler = new ViewHandler();
 
-        root.getChildren().add(imgAnim);
+     //   viewHandler.getViewJeu().getBoxCarteJoue().getBoundsInLocal()
+
+        grpContainerCardStart.getChildren().addAll(imgAnim);
 
 
         //Création des KeyFrame puis de la Timeline
 
-        final KeyFrame XmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(imgAnim.xProperty(), XPositionOfTheContainerCardStart));
-        final KeyFrame XmovementEnd = new KeyFrame(Duration.seconds(2), new KeyValue(imgAnim.xProperty(), XPositionOfTheContainerCardEnd, Interpolator.LINEAR));
+        final KeyFrame XmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(grpContainerCardStart.translateXProperty(), XPositionOfTheContainerCardStart));
+        final KeyFrame XmovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(grpContainerCardStart.translateXProperty(), XPositionOfTheContainerCardStart -100, Interpolator.LINEAR));
 
         final KeyFrame widthStart = new KeyFrame(Duration.ZERO, new KeyValue(imgAnim.fitWidthProperty(), widthDebut));
-        final KeyFrame widthIntermediaire = new KeyFrame(Duration.seconds(1), new KeyValue(imgAnim.fitWidthProperty(), widthIntermed));
-        final KeyFrame widthEnd = new KeyFrame(Duration.seconds(2), new KeyValue(imgAnim.fitWidthProperty(), widthDebut, Interpolator.LINEAR));
+        final KeyFrame widthEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(imgAnim.fitWidthProperty(), 85, Interpolator.LINEAR));
 
-        final KeyFrame YmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(imgAnim.yProperty(), YPositionOfTheContainerCardStart));
-        final KeyFrame YmovementEnd = new KeyFrame(Duration.seconds(2), new KeyValue(imgAnim.yProperty(), YPositionOfTheContainerCardEnd, Interpolator.LINEAR));
+        final KeyFrame YmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(grpContainerCardStart.translateYProperty(), YPositionOfTheContainerCardStart));
+        final KeyFrame YmovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(grpContainerCardStart.translateYProperty(), YPositionOfTheContainerCardStart -250, Interpolator.LINEAR));
 
-        timelineGlissement = new Timeline(XmovementStart, YmovementStart, widthStart, widthIntermediaire, XmovementEnd, YmovementEnd, widthEnd);
+        timelineGlissement = new Timeline(XmovementStart, YmovementStart, widthStart, XmovementEnd, YmovementEnd, widthEnd);
         timelineGlissement.setCycleCount(1);
 
         timelineGlissement.play();
@@ -102,8 +90,8 @@ public class Anim {
 
         PauseTransition delayRemove = new PauseTransition(Duration.seconds(2));
         delayRemove.setOnFinished(event -> {
-            root.getChildren().remove(imgAnim);
-            root.getChildren().remove(imgAnim);
+           // grpContainerCardStart.getChildren().remove(imgAnim);
+            grpContainerCardStart.getChildren().clear();
 
         });
         delayRemove.play();
@@ -159,7 +147,6 @@ public class Anim {
     }
 
 
-
     public void animCarteReserveToPioche(Group grpContainerCardStart, Group root, ImageView img) {
 
 
@@ -181,6 +168,7 @@ public class Anim {
 
             ImageView imgAnim = new ImageView("assets/cartes/cuivre.png");
             imgAnim.setPreserveRatio(true);
+        System.out.println("hrllp");
 
           //  imgAnim.setX(XPositionOfTheContainerCardStart);
             //imgAnim.setY(YPositionOfTheContainerCardStart);
