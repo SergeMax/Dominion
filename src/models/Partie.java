@@ -58,7 +58,7 @@ public class Partie {
             /* SI LE JOUEUR CLIQUE UNE CARTE ACTION DANS LA MAIN */
             if (joueurs.get(auTourDuJoueur).getDeck().getCartes().stream().filter(item -> (item.getType().equals(TypeDeCarte.actions) || item.getType().equals(TypeDeCarte.attaque_action)) && item.getLocalisation().equals(LocalisationDesCartes.mainJoueur)).collect(Collectors.toCollection(ArrayList::new)).size() != 0) {
                 joueurs.get(auTourDuJoueur).poserUneCarte(carte);
-                carte.effet(joueurs);
+                carte.effet(this);
                 joueurs.get(auTourDuJoueur).action--;
                 if (joueurs.get(auTourDuJoueur).getAction() == 0) {
                     numeroDeLaPhase++;
@@ -73,7 +73,7 @@ public class Partie {
             /* SI LE JOUEUR CLIQUE UNE CARTE DE SA MAIN ET QUE C'EST UNE CARTE TRESOR */
             if (carte.getLocalisation().equals(LocalisationDesCartes.mainJoueur) && (carte.getName().equals("Cuivre") || carte.getName().equals("Or") || carte.getName().equals("Argent"))) {
                 joueurs.get(auTourDuJoueur).poserUneCarte(carte);
-                carte.effet(joueurs);
+                carte.effet(this);
                 /* SI LE JOUEUR CLIQUE SUR UNE CARTE DE LA RESERVE ET A ASSEZ DE THUNE ET D'ACHAT*/
             } else if (carte.getLocalisation().equals(LocalisationDesCartes.reserve) && joueurs.get(auTourDuJoueur).getMonnaie() >= carte.getCout()) {
                 joueurs.get(auTourDuJoueur).acheteCarte(carte);
