@@ -11,23 +11,36 @@
      -fx-border-width: 1;
      -fx-border-style: dashed;
   }
+  /* css menu*/
 .btnMenu {
     -fx-background-color: #e4d4a0;
     -fx-text-fill: #0676aB;
     -fx-border-color: #a8a8a8;
     -fx-opacity: 0.5;
-    -fx-pref-width:120;
-    -fx-pref-height:10;
+    -fx-max-width:120;
+    -fx-max-height:10;
     -fx-font-weight: bold;
 }
 .btnMenu:hover {
     -fx-cursor: hand;
+    -fx-max-width:120;
+    -fx-max-height:10;
     -fx-fill: black;
     -fx-opacity: 1;
 }
 .banniere {
    -fx-opacity: 0.6;
 }
+.labelMenu {
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-text-fill: #a8a8a8;
+}
+.textFieldMenu{
+    -fx-max-width:200;
+    -fx-opacity: 0.6;
+
+}/* fin css menu*/
 
 .box_number{
     -fx-background-color: red;

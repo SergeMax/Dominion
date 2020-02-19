@@ -6,12 +6,10 @@ import controllers.ControllerMenuPrincipal;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import java.net.URL;
+import java.util.ArrayList;
 
 public class ViewHandler extends Application {
     public Stage primaryStage;
@@ -22,6 +20,7 @@ public class ViewHandler extends Application {
     private ControllerMenuPrincipal controllerMenuPrincipal;
     private ControllerJeu controllerJeu;
     private BorderPane rootGame;
+    private ArrayList<String> listeNomJoueur = new ArrayList<>();
 
 
     @Override
@@ -55,7 +54,7 @@ public class ViewHandler extends Application {
 
     public void afficherMenuPrincipale() {
         viewMenuPrincipal = new ViewMenuPrincipal(root);
-        viewMenuPrincipal.clearAndInitRoot();
+        viewMenuPrincipal.clearAndInitRootMenu();
         controllerMenuPrincipal = new ControllerMenuPrincipal(this);
     }
 
@@ -77,5 +76,13 @@ public class ViewHandler extends Application {
 
     public ViewJeu getViewJeu() {
         return viewJeu;
+    }
+
+    public ArrayList<String> getListeNomJoueur() {
+        return listeNomJoueur;
+    }
+
+    public void setListeNomJoueur(ArrayList<String> listeNomJoueur) {
+        this.listeNomJoueur = listeNomJoueur;
     }
 }
