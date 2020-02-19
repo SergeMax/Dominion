@@ -21,7 +21,9 @@ public class Domaine extends Carte {
     @Override
     public void effet(Partie partie) {
         for (Joueur joueur : partie.getJoueurs()){
+            if(joueur.isEntrainDeJouer()){
 
+            }
         }
     }
 }

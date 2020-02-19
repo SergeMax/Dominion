@@ -6,6 +6,7 @@ import models.cartes.LocalisationDesCartes;
 import models.cartes.TypeDeCarte;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Millice extends Carte {
     /*
@@ -28,7 +29,13 @@ public class Millice extends Carte {
                 joueur.monnaie += 1;
             }
         }
-
-
+        int joueurAdvNbCarteDef = 0;
+        for (Joueur joueur : partie.getJoueurs()){
+            if(!joueur.isEntrainDeJouer()){
+                joueurAdvNbCarteDef = joueur.getDeck().getCartes().stream().filter(item -> item.getLocalisation().equals(LocalisationDesCartes.mainJoueur)).collect(Collectors.toCollection(ArrayList::new)).size() -3;
+                break;
+            }
+        }
+        partie.setHasSpecialEffect(this,joueurAdvNbCarteDef);
     }
 }
