@@ -26,12 +26,6 @@ public class Partie {
         joueurs.get(0).startTurn();
     }
 
-    public static void main(String[] args) {
-        Partie partie = new Partie(2);
-        Carte carte = DistributeurDeCarte.distribueOneCarte(IdCarte.PROVINCE);
-        System.out.println(carte.hashCode());
-    }
-
     public Pile cliqueSurUneCarte(String hashcode){
         for(Pile pile: joueurs.get(auTourDuJoueur).piles){
             if(String.valueOf(pile.hashCode()).equals(hashcode)){
@@ -84,6 +78,9 @@ public class Partie {
                 joueurs.get(auTourDuJoueur).acheteCarte(carte);
                 pile.nombre--;
                 joueurs.get(auTourDuJoueur).achat--;
+                if (carte.getType().equals(TypeDeCarte.victoire)){
+                    carte.effet(this);
+                }
             }
             if (joueurs.get(auTourDuJoueur).getAchat() == 0) {
                 numeroDeLaPhase++;
@@ -97,10 +94,20 @@ public class Partie {
         joueurs.get(auTourDuJoueur).piles = Pile.aggregationDeCarteEnPile(joueurs.get(auTourDuJoueur).getDeck().getCartes());
         System.out.println(numeroDeLaPhase);
     }
+        prepareEffect();
+    }
+
+    public void prepareEffect(){
+        if(hasSpecialEffect != null && effectTurnAction > 0){
+            auTourDuJoueur++;
+            if(auTourDuJoueur>=joueurs.size()){
+                auTourDuJoueur=0;
+            }        }
     }
 
     public void doEffect(){
         if(hasSpecialEffect.getName().toUpperCase().equals(IdCarte.MILLICE.toString())) {
+
 
         } else if(hasSpecialEffect.getName().toUpperCase().equals(IdCarte.SORCIERE.toString())) {
 
