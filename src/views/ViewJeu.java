@@ -38,7 +38,7 @@ public class ViewJeu {
     /* DECLARATION DES CONTENEURS QUI ACCEUILLENT LES CARTES ENVOYER PAR LE CONTROLER*/
     private HBox boxMainActif;
     private VBox boxDeckJActif,boxCarteCentraleEtJoue, boxPvLeft, boxPvRight, boxScoreJoueur,infoJActifVbox;
-    private HBox boxCarteRandomLigne1, boxCarteRandomLigne2,boxCarteJoue, boxDefause, boxPioche;
+    private HBox boxCarteRandomLigne1, boxCarteRandomLigne2,boxCarteJoue, boxDefause, boxPioche, infoJActifHbox;
     private Text scoreJactifText,infoJActifText;
     private Text scoreJPassifText,infoJPassifText;
     private Button btnSkipTurn;
@@ -80,12 +80,6 @@ public class ViewJeu {
     {
         VBox vbox = new VBox();
 
-        HBox hbox = new HBox(20);
-        hbox.setPadding(new Insets(5));
-        hbox.setAlignment(Pos.CENTER);
-
-
-
         HBox scoreJPassifHbox = new HBox();
         scoreJPassifText = new Text("Joueur 2 : 9pv");
         scoreJPassifText.setStyle("-fx-font: 24 arial;");
@@ -97,9 +91,7 @@ public class ViewJeu {
         scoreJPassifHbox.setPadding(new Insets(10, 10, 10, 10));
 
 
-        hbox.getChildren().add(btnSkipTurn);
-
-        vbox.getChildren().addAll(new Separator(),scoreJPassifHbox, hbox);
+        vbox.getChildren().addAll(new Separator(),scoreJPassifHbox);
 
 
         vbox.setMaxHeight(100);
@@ -220,8 +212,9 @@ public class ViewJeu {
 
         HBox scoreJActifHbox = new HBox();
         scoreJactifText = new Text("Joueur 1 : 9pv");
-        scoreJactifText.setStyle("-fx-font: 24 arial;");
+        scoreJactifText.setStyle("-fx-font: 24 arial");
         scoreJactifText.setFill(Color.WHITE);
+        scoreJactifText.getStyleClass().add("vbox_style");
         scoreJActifHbox.getChildren().add(scoreJactifText);
         scoreJActifHbox.setStyle("-fx-background-color:rgba(0,0,0,0.5);");
         scoreJActifHbox.setMaxWidth(100);
@@ -258,7 +251,7 @@ public class ViewJeu {
         rec.widthProperty().bind(stackPane.widthProperty().subtract(5));
         rec.heightProperty().bind(stackPane.heightProperty().subtract(5));
         boxCarteCentraleEtJoue = new VBox();
-        boxCarteCentraleEtJoue.setPadding(new Insets(1));
+        boxCarteCentraleEtJoue.setPadding(new Insets(2));
        // boxCarteCentraleEtJoue.setAlignment(Pos.TOP_CENTER);
         boxCarteCentraleEtJoue.setSpacing(20);
         boxCarteCentraleEtJoue.getStyleClass().add("vbox_style");
@@ -271,14 +264,20 @@ public class ViewJeu {
         boxCarteJoue.getStyleClass().add("vbox_style");
 
         infoJActifVbox = new VBox();
-        infoJActifText = new Text("Joueur 1 : 9pv");
+        infoJActifHbox = new HBox();
+        infoJActifText = new Text("");
+        btnSkipTurn.getStyleClass().add("btnMenu");
         infoJActifText.setStyle("-fx-font: 24 arial;");
         infoJActifText.setFill(Color.WHITE);
-        infoJActifVbox.getChildren().add(infoJActifText);
+        infoJActifHbox.getChildren().addAll(infoJActifText,btnSkipTurn);
+        infoJActifHbox.setMaxWidth(700);
+        infoJActifVbox.getChildren().add(infoJActifHbox);
+        infoJActifVbox.setAlignment(Pos.BOTTOM_CENTER);
         infoJActifVbox.setStyle("-fx-background-color:rgba(0,0,0,0.5);");
-        infoJActifVbox.setMaxWidth(100);
-        infoJActifVbox.setMinHeight(30);
-        infoJActifVbox.setPadding(new Insets(10, 10, 10, 10));
+        infoJActifVbox.setPrefWidth(200);
+        infoJActifVbox.setMinHeight(40);
+        infoJActifHbox.setPadding(new Insets(15, 10, 10, 15));
+
 
         /* BOX CARTE ACTION LIGNE 1 */
         boxCarteRandomLigne1 = new HBox();
@@ -396,7 +395,7 @@ public class ViewJeu {
     }
 
     public void updateJoueurDetail(Joueur joueur){
-        infoJActifText.setText("Pièce : " + joueur.getMonnaie() + "Achat Possible : "+ joueur.getAchat() + "Action : "+ joueur.getAction());
+        infoJActifText.setText("   Pièce : " + joueur.getMonnaie() + "   |   Achat Possible : "+ joueur.getAchat() + "   |   Action : "+ joueur.getAction()+"   |   ");
     }
 
     /**
