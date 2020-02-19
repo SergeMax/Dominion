@@ -24,30 +24,30 @@ public class ControllerJeu implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
 
+        if(mouseEvent.getSource().equals(viewHandler.getViewJeu().getBtnQuitGame())) {
+            viewHandler.afficherMenuPrincipale();
+        }else{
+            PauseTransition delayRemove = new PauseTransition(Duration.seconds(0.6));
+            delayRemove.setOnFinished(eventt -> {
 
-        PauseTransition delayRemove = new PauseTransition(Duration.seconds(0.6));
-        delayRemove.setOnFinished(eventt -> {
+                if(mouseEvent.getSource().equals(viewHandler.getViewJeu().getBtnSkipTurn())){
 
-            if(mouseEvent.getSource().equals(viewHandler.getViewJeu().getBtnSkipTurn())){
+                    partie.endTurn();
+                } else {
 
-                partie.endTurn();
-            } else {
+                    try{
+                        Pile selectedPile = partie.cliqueSurUneCarte(mouseEvent.getPickResult().getIntersectedNode().getId());
+                        partie.tour(selectedPile);
+                    } catch (NullPointerException e){
+                        e.printStackTrace();
+                    }
 
-                try{
-                    Pile selectedPile = partie.cliqueSurUneCarte(mouseEvent.getPickResult().getIntersectedNode().getId());
-                    partie.tour(selectedPile);
-                } catch (NullPointerException e){
-                    e.printStackTrace();
                 }
+                updateAllGUI();
 
-            }
-            updateAllGUI();
-
-        });
-        delayRemove.play();
-
-
-
+            });
+            delayRemove.play();
+        }
     }
 
 

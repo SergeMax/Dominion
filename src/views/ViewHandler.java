@@ -53,6 +53,7 @@ public class ViewHandler extends Application {
     }
 
     public void afficherMenuPrincipale() {
+        scene.setRoot(root);
         viewMenuPrincipal = new ViewMenuPrincipal(root);
         viewMenuPrincipal.clearAndInitRootMenu();
         controllerMenuPrincipal = new ControllerMenuPrincipal(this);
@@ -69,7 +70,6 @@ public class ViewHandler extends Application {
     public void quitterJeu(){
         primaryStage.close();
     }
-
 
     public ViewMenuPrincipal getViewMenuPrincipal() {
         return viewMenuPrincipal;
