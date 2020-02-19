@@ -14,6 +14,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import models.Joueur;
 import models.Pile;
 import models.cartes.LocalisationDesCartes;
@@ -40,7 +41,7 @@ public class ViewJeu {
     private VBox boxDeckJActif,boxCarteCentraleEtJoue, boxPvLeft, boxPvRight, boxScoreJoueur,infoJActifVbox;
     private HBox boxCarteRandomLigne1, boxCarteRandomLigne2,boxCarteJoue, boxDefause, boxPioche, infoJActifHbox;
     private Text scoreJactifText,infoJActifText;
-    private Text scoreJPassifText,infoJPassifText;
+    private Text scoreJPassifText,consoleText;
     private Button btnSkipTurn,btnQuitGame;
 
 
@@ -99,9 +100,16 @@ public class ViewJeu {
         buttonQuitter.setAlignment(Pos.TOP_RIGHT);
         buttonQuitter.getChildren().add(btnQuitGame);
 
+        HBox consolePartie = new HBox();
+        consoleText = new Text("Au tour du joueur 1");
+        consoleText.getStyleClass().add("lbl_console_text");
+        consolePartie.setPadding(new Insets(-40,10,10,10));
+        consolePartie.setAlignment(Pos.CENTER);
+        consolePartie.getChildren().add(consoleText);
 
 
-        vbox.getChildren().addAll(new Separator(),scoreJPassifHbox,buttonQuitter);
+
+        vbox.getChildren().addAll(new Separator(),scoreJPassifHbox,consolePartie,buttonQuitter);
 
 
         vbox.setMaxHeight(100);
