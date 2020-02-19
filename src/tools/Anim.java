@@ -1,12 +1,15 @@
 package tools;
 
 import javafx.animation.*;
+import javafx.collections.ObservableList;
 import javafx.geometry.Bounds;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Duration;
 
 public class Anim {
@@ -88,7 +91,7 @@ public class Anim {
 
         /* Création du delay faisant disparaitre l'image crée (si besoin)*/
 
-        PauseTransition delayRemove = new PauseTransition(Duration.seconds(2));
+        PauseTransition delayRemove = new PauseTransition(Duration.seconds(0.42));
         delayRemove.setOnFinished(event -> {
            // grpContainerCardStart.getChildren().remove(imgAnim);
             grpContainerCardStart.getChildren().clear();
@@ -150,7 +153,7 @@ public class Anim {
 
             /*Bound in scene permet de recuperer la position dans la scene du node*/
 
-            Bounds boundsInSceneStart = img.localToScreen(img.getBoundsInLocal());
+            Bounds boundsInSceneStart = img.localToScreen(grpContainerCardStart.getBoundsInLocal());
          //   Bounds boundsInSceneEnd = grpContainerCardEnd.localToScene(grpContainerCardStart.getBoundsInLocal());
 
             double XPositionOfTheContainerCardStart = boundsInSceneStart.getMinX();
@@ -205,27 +208,12 @@ public class Anim {
         );
 
 
-
-
-            //    }
-
-
-            // if (/*Pile du groContainerStart est vite alors */) {
-          //  grpContainerCardStart.setOpacity(0);
-            // }
-            // car il faut mettre a zero l'opacité du groupe sur lequel va apparaitre la carte cloné
-            //Il faut un delay avant d'enlever la pile vide du root car sinon les carte restante vont se
-            //superposer sur celle qui est entrain de se déplacer dans l'animation**/
-
-
-       // ViewHandler vhandler = new ViewHandler();
-     //   vhandler.getViewJeu().getRoot().getChildren().addAll(imgAnim);
             grpContainerCardStart.getChildren().addAll(imgAnim);
 
             //Création des KeyFrame puis de la Timeline
 
-            final KeyFrame XmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(grpContainerCardStart.translateXProperty(), XPositionOfTheContainerCardStart));
-            final KeyFrame XmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(grpContainerCardStart.translateXProperty(), 100, Interpolator.LINEAR));
+            final KeyFrame XmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(grpContainerCardStart.translateXProperty(), 0));
+            final KeyFrame XmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(grpContainerCardStart.translateXProperty(), 10, Interpolator.LINEAR));
          //   final KeyFrame XmovementEndReset = new KeyFrame(Duration.seconds(0.31), new KeyValue(grpContainerCardStart.translateXProperty(), XPositionOfTheContainerCardStart-100, Interpolator.LINEAR));
 
        //     final KeyFrame widthStart = new KeyFrame(Duration.ZERO, new KeyValue(imgAnim.fitWidthProperty(), widthDebut));

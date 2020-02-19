@@ -87,7 +87,7 @@ public class ViewMenuPrincipal {
         VBox.setMargin(btnJouer, new Insets(20,0,0,-100));
 
         btnRetour = initButtonForm("Retour", 20);
-        VBox.setMargin(btnRetour, new Insets(-41,0,0,92));
+        VBox.setMargin(btnRetour, new Insets(-46,0,0,92));
 
         vBox.getChildren().addAll(btnPlay,btnQuit);
         vBox2.getChildren().add(titre);
