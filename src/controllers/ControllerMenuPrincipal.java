@@ -33,11 +33,16 @@ public class ControllerMenuPrincipal implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
         if (mouseEvent.getSource().equals(viewHandler.getViewMenuPrincipal().getBtnPlay())){
-            viewHandler.afficherJeu();
+            viewHandler.getViewMenuPrincipal().clearAndInitRootFormulaire();
         }
         if (mouseEvent.getSource().equals(viewHandler.getViewMenuPrincipal().getBtnQuit())){
             viewHandler.quitterJeu();
         }
-
+        if (mouseEvent.getSource().equals(viewHandler.getViewMenuPrincipal().getBtnJouer())){
+            viewHandler.getListeNomJoueur().clear();
+            viewHandler.getListeNomJoueur().add(viewHandler.getViewMenuPrincipal().getTextFjoueur1().getText());
+            viewHandler.getListeNomJoueur().add(viewHandler.getViewMenuPrincipal().getTextFjoueur2().getText());
+            viewHandler.afficherJeu();
+        }
     }
 }
