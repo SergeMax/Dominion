@@ -52,7 +52,6 @@ public class ViewMenuPrincipal {
 
         //Vbox de la page formulaire
         vBoxForm = new VBox();
-        vBoxForm.getChildren().add(new Text("Cest le root du form"));
         vBoxForm.setMinWidth(Screen.getPrimary().getBounds().getWidth());
         vBoxForm.setMinHeight(Screen.getPrimary().getBounds().getHeight());
 
@@ -83,10 +82,11 @@ public class ViewMenuPrincipal {
         textFjoueur2 = initTextField();
         VBox.setMargin(textFjoueur2, new Insets(0,0,0,0));
 
-        btnJouer = initButton("Jouer", 20);
-        VBox.setMargin(btnJouer, new Insets(20,0,10,0));
+        btnJouer = initButtonForm("Jouer", 20);
+        VBox.setMargin(btnJouer, new Insets(20,0,0,-100));
 
-        btnRetour = initButton("Retour", 20);
+        btnRetour = initButtonForm("Retour", 20);
+        VBox.setMargin(btnRetour, new Insets(-41,0,0,92));
 
         vBox.getChildren().addAll(btnPlay,btnQuit);
         vBox2.getChildren().add(titre);
@@ -112,6 +112,14 @@ public class ViewMenuPrincipal {
         b.getStyleClass().add("btnMenu");
         return b;
     }
+    public Button initButtonForm(String texteBoutton, int size){
+        Button b = new Button();
+        b.setText(texteBoutton);
+        b.setFont(Font.font(size));
+        b.getStyleClass().add("btnMenuForm");
+        return b;
+    }
+
     private TextField initTextField( ){
         TextField f = new TextField();
         f.getStyleClass().add("textFieldMenu");

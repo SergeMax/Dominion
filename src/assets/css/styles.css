@@ -16,15 +16,23 @@
     -fx-background-color: #e4d4a0;
     -fx-text-fill: #0676aB;
     -fx-border-color: #a8a8a8;
-    -fx-opacity: 0.5;
-    -fx-max-width:120;
-    -fx-max-height:10;
-    -fx-font-weight: bold;
+    -fx-max-width: 150;
+    -fx-opacity: 0.6;
 }
 .btnMenu:hover {
     -fx-cursor: hand;
-    -fx-max-width:120;
-    -fx-max-height:10;
+    -fx-fill: black;
+    -fx-opacity: 1;
+}
+.btnMenuForm {
+    -fx-background-color: #e4d4a0;
+    -fx-text-fill: #0676aB;
+    -fx-border-color: #a8a8a8;
+    -fx-max-width: 90;
+    -fx-opacity: 0.6;
+}
+.btnMenuForm:hover {
+    -fx-cursor: hand;
     -fx-fill: black;
     -fx-opacity: 1;
 }
@@ -39,7 +47,6 @@
 .textFieldMenu{
     -fx-max-width:200;
     -fx-opacity: 0.6;
-
 }/* fin css menu*/
 
 .box_number{
