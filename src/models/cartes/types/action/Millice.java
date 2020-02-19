@@ -28,7 +28,7 @@ public class Millice extends Carte {
                 joueur.monnaie += 1;
             }
         }
-        partie.
+
 
     }
 }
