@@ -18,9 +18,7 @@ import models.Joueur;
 import models.Pile;
 import models.cartes.LocalisationDesCartes;
 import views.GraphicalElement.CardViewCentre;
-import views.GraphicalElement.CardViewPlayer;
-import views.GraphicalElement.CardViewReserve;
-import views.GraphicalElement.CardViewTerrain;
+import views.GraphicalElement.*;
 
 import java.util.ArrayList;
 
@@ -39,10 +37,10 @@ public class ViewJeu {
 
     /* DECLARATION DES CONTENEURS QUI ACCEUILLENT LES CARTES ENVOYER PAR LE CONTROLER*/
     private HBox boxMainActif;
-    private VBox boxDeckJActif,boxCarteCentraleEtJoue, boxPvLeft, boxPvRight, boxScoreJoueur;
+    private VBox boxDeckJActif,boxCarteCentraleEtJoue, boxPvLeft, boxPvRight, boxScoreJoueur,infoJActifVbox;
     private HBox boxCarteRandomLigne1, boxCarteRandomLigne2,boxCarteJoue, boxDefause, boxPioche;
-    private Text scoreJactifText;
-    private Text scoreJPassifText;
+    private Text scoreJactifText,infoJActifText;
+    private Text scoreJPassifText,infoJPassifText;
     private Button btnSkipTurn;
 
 
@@ -272,6 +270,16 @@ public class ViewJeu {
         boxCarteJoue.setTranslateY(20);
         boxCarteJoue.getStyleClass().add("vbox_style");
 
+        infoJActifVbox = new VBox();
+        infoJActifText = new Text("Joueur 1 : 9pv");
+        infoJActifText.setStyle("-fx-font: 24 arial;");
+        infoJActifText.setFill(Color.WHITE);
+        infoJActifVbox.getChildren().add(infoJActifText);
+        infoJActifVbox.setStyle("-fx-background-color:rgba(0,0,0,0.5);");
+        infoJActifVbox.setMaxWidth(100);
+        infoJActifVbox.setMinHeight(30);
+        infoJActifVbox.setPadding(new Insets(10, 10, 10, 10));
+
         /* BOX CARTE ACTION LIGNE 1 */
         boxCarteRandomLigne1 = new HBox();
         boxCarteRandomLigne1.setPadding(new Insets(1));
@@ -290,7 +298,7 @@ public class ViewJeu {
         boxCarteRandomLigne2.getStyleClass().add("vbox_style");
         boxCarteRandomLigne2.setSpacing(-15);
 
-        boxCarteCentraleEtJoue.getChildren().addAll(boxCarteRandomLigne1, boxCarteRandomLigne2, boxCarteJoue );
+        boxCarteCentraleEtJoue.getChildren().addAll(boxCarteRandomLigne1, boxCarteRandomLigne2, boxCarteJoue,infoJActifVbox);
         boxCarteCentraleEtJoue.setTranslateY(40);
         stackPane.getChildren().addAll(rec, boxCarteCentraleEtJoue);
 
@@ -383,8 +391,12 @@ public class ViewJeu {
      * @param joueur
      */
     public void updateJoueurInfo(Joueur joueur){
-        scoreJactifText.setText(joueur.getNom()+" : " + joueur.getpV() + " PV" + "PO :" + joueur.getMonnaie() + " PACH :" + joueur.getAchat() + " PACT : " + joueur.getAction());
+        scoreJactifText.setText(joueur.getNom()+" : " + joueur.getpV() + " PV");
         scoreJPassifText.setText(joueur.getNom()+" : " + joueur.getpV()+ " PV");
+    }
+
+    public void updateJoueurDetail(Joueur joueur){
+        infoJActifText.setText("Pièce : " + joueur.getMonnaie() + "Achat Possible : "+ joueur.getAchat() + "Action : "+ joueur.getAction());
     }
 
     /**

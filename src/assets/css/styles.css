@@ -37,12 +37,6 @@
     -fx-text-fill: white;
 }
 
-.lbl_box_prix{
-    -fx-text-fill: black;
-    -fx-font-weight: bold;
-    -fx-font-size: 20px;
-}
-
 .hoverCarteCentral:hover {
  -fx-border-color: red;
      -fx-border-insets: 5;
