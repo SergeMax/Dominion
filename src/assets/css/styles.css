@@ -47,7 +47,13 @@
 }
 
 .lbl_box_number{
-    -fx-text-fill: white;
+     -fx-text-fill: white;
+ }
+
+.lbl_box_prix{
+    -fx-text-fill: black;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
 }
 
 .hoverCarteCentral:hover {
