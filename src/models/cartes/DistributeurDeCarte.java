@@ -92,6 +92,7 @@ public class DistributeurDeCarte {
             do {
                 random = (int) (Math.random() * (dicoCards.size()));
                 carte = distribueOneCarte(IdCarte.values()[random]);
+
             }while (carte.getType().equals(TypeDeCarte.tresor) || carte.getType().equals(TypeDeCarte.victoire));
             carte.setLocalisation(LocalisationDesCartes.reserve);
             stack.add(new Pile(carte,(byte)20));

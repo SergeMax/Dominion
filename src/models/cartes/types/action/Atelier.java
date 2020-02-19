@@ -24,6 +24,7 @@ public class Atelier extends Carte {
         for(Joueur joueur: partie.getJoueurs()){
             if (joueur.isEntrainDeJouer()){
                 joueur.recevoirUneCarteDeValeur(4);
+
             }
         }
     }
