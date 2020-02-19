@@ -71,6 +71,7 @@ public class ViewMenuPrincipal {
 
         titre = new ImageView("assets/logo/logo_dominion.png");
         titre.getStyleClass().add("banniere");
+        titre.setTranslateY(-30);
 
         joueur1 = initLabel("Pseudo joueur 1");
         VBox.setMargin(joueur1, new Insets(10,0,10,0));

@@ -103,8 +103,8 @@ public class ViewJeu {
 
         ImageView dominion = new ImageView("assets/logo/logo_dominion.png");
         dominion.setFitWidth(600);
-        dominion.setTranslateX(50);
-        dominion.setTranslateY(20);
+        dominion.setTranslateX(40);
+        dominion.setTranslateY(60);
 
         dominion.setRotate(17);
         dominion.setOpacity(0.4);
@@ -113,12 +113,14 @@ public class ViewJeu {
 
         HBox consolePartie = new HBox();
         consoleText = new Text("Au tour du joueur 1");
+        consoleText.setFill(Color.DARKSLATEGREY);
+        consoleText.setStyle("-fx-font: 34 arial;");
         consoleText.getStyleClass().add("lbl_console_text");
         consolePartie.setPadding(new Insets(-40,10,10,10));
         consolePartie.setAlignment(Pos.CENTER);
         consolePartie.getChildren().addAll(consoleText, dominion);
         consolePartie.setTranslateX(50);
-        consolePartie.setTranslateY(-30);
+        consolePartie.setTranslateY(-70);
 
 
 
@@ -131,7 +133,7 @@ public class ViewJeu {
       //  vbox.setMinWidth(1680);
 
         vbox.setTranslateX(225);
-        vbox.getStyleClass().add("vbox_style");
+     //   vbox.getStyleClass().add("vbox_style");
         return vbox;
     }
 
@@ -151,7 +153,7 @@ public class ViewJeu {
         vbox.getChildren().addAll(new Text(""),
                 new Text(""), new Text(""));
         hbox.getChildren().addAll(new Separator(Orientation.VERTICAL), vbox);
-        hbox.getStyleClass().add("vbox_style");
+     //   hbox.getStyleClass().add("vbox_style");
 
         return hbox;
     }
@@ -180,13 +182,13 @@ public class ViewJeu {
         boxPvLeft.setAlignment(Pos.TOP_RIGHT);
         boxPvLeft.setMaxWidth(100);
         boxPvLeft.setMinWidth(100);
-        boxPvLeft.getStyleClass().add("vbox_style");
+       // boxPvLeft.getStyleClass().add("vbox_style");
         boxPvLeft.setSpacing(5);
 
         boxPvRight = new VBox();
         boxPvRight.setPadding(new Insets(1));
         boxPvRight.setAlignment(Pos.TOP_RIGHT);
-        boxPvRight.getStyleClass().add("vbox_style");
+       // boxPvRight.getStyleClass().add("vbox_style");
         boxPvRight.setSpacing(5);
         boxPvRight.setMaxWidth(100);
         boxPvRight.setMinWidth(100);
@@ -195,17 +197,19 @@ public class ViewJeu {
 
         hbox.getChildren().addAll(boxPvLeft, boxPvRight);
         vBoxContainer.getChildren().addAll(hbox,boxScoreJoueur);
-        vBoxContainer.getStyleClass().add("vbox_style");
+     //   vBoxContainer.getStyleClass().add("vbox_style");
         vBoxContainer.setTranslateY(-100);
 
 
-        hbox.setMinWidth(200);
+        hbox.setMinWidth(260);
 
         hbox.setMaxHeight(800);
 
         hbox.setTranslateY(50);
+        hbox.setTranslateX(18);
 
-        hbox.getStyleClass().add("vbox_style");
+
+        // hbox.getStyleClass().add("vbox_style");
 
         return vBoxContainer;
     }
@@ -224,22 +228,23 @@ public class ViewJeu {
         boxMainActif = new HBox(); // Zone carte Main
        // hbox.setAlignment(Pos.CENTER_LEFT);
         boxDeckJActif = new VBox();
-        boxDeckJActif.setPadding(new Insets(1));
+        boxDeckJActif.setPadding(new Insets(-50, 10, -60, 25));
         boxDeckJActif.setAlignment(Pos.CENTER_LEFT);
 
-        boxDeckJActif.setMinHeight(180);
-        boxDeckJActif.setMinWidth(260);
-        boxDeckJActif.getStyleClass().add("vbox_style");
+        //boxDeckJActif.setMinHeight(180);
+        boxDeckJActif.setMinWidth(230);
+     //   boxDeckJActif.getStyleClass().add("vbox_style");
         boxMainActif.setSpacing(-20);
 
 
         boxMainActif.setPadding(new Insets(5));
-        boxMainActif.getStyleClass().add("vbox_style");
+      //  boxMainActif.getStyleClass().add("vbox_style");
         boxMainActif.setAlignment(Pos.CENTER);
         boxMainActif.setPrefWidth(1500);
         boxMainActif.setSpacing(-20);
+        boxMainActif.setTranslateY(30);
 
-        HBox hBoxDefausePioche = new HBox(20);
+        HBox hBoxDefausePioche = new HBox(0);
         hBoxDefausePioche.setPadding(new Insets(5));
         hBoxDefausePioche.setAlignment(Pos.CENTER);
         boxDefause = new HBox();
@@ -249,30 +254,33 @@ public class ViewJeu {
         scoreJactifText = new Text("Joueur 1 : 9pv");
         scoreJactifText.setStyle("-fx-font: 24 arial");
         scoreJactifText.setFill(Color.WHITE);
-        scoreJactifText.getStyleClass().add("vbox_style");
+      //  scoreJactifText.getStyleClass().add("vbox_style");
         scoreJActifHbox.getChildren().add(scoreJactifText);
         scoreJActifHbox.setStyle("-fx-background-color:rgba(0,0,0,0.5);");
         scoreJActifHbox.setMaxWidth(100);
         scoreJActifHbox.setMinHeight(30);
         scoreJActifHbox.setPadding(new Insets(10, 10, 10, 10));
+        scoreJActifHbox.setTranslateY(-40);
 
 
         hBoxDefausePioche.getChildren().addAll(boxDefause,boxPioche);
         boxDeckJActif.getChildren().addAll(scoreJActifHbox, hBoxDefausePioche);
         boxDeckJActif.setTranslateY(-30);
         boxDeckJActif.setTranslateX(0);
+        boxDeckJActif.getStyleClass().add("custom-dashed-border");
+        boxDeckJActif.maxHeight(60);
+
 
         hbox.getChildren().addAll(boxDeckJActif);
         hbox.getChildren().addAll(boxMainActif);
 
         hbox.setMinHeight(200);
         hbox.setMaxHeight(400);
-        hbox.setTranslateY(50);
+        hbox.setTranslateY(0);
        // hbox.setTranslateX(-50);
 
 
-        hbox.setPadding(new Insets(-15, 50, 0, 10));
-        hbox.getStyleClass().add("vbox_style");
+        hbox.setPadding(new Insets(0, 0, 0, 0));
 
         return hbox;
     }
@@ -294,14 +302,14 @@ public class ViewJeu {
         boxCarteCentraleEtJoue.setPadding(new Insets(2));
        // boxCarteCentraleEtJoue.setAlignment(Pos.TOP_CENTER);
         boxCarteCentraleEtJoue.setSpacing(20);
-        boxCarteCentraleEtJoue.getStyleClass().add("vbox_style");
+   //     boxCarteCentraleEtJoue.getStyleClass().add("vbox_style");
         boxCarteJoue = new HBox();
         boxCarteJoue.setPadding(new Insets(1));
         boxCarteJoue.setAlignment(Pos.BOTTOM_CENTER);
         boxCarteJoue.setPrefHeight(300);
         boxCarteJoue.setMinHeight(100);
         boxCarteJoue.setTranslateY(20);
-        boxCarteJoue.getStyleClass().add("vbox_style");
+       // boxCarteJoue.getStyleClass().add("vbox_style");
 
         infoJActifVbox = new VBox();
         infoJActifHbox = new HBox();
@@ -317,15 +325,20 @@ public class ViewJeu {
         infoJActifVbox.setPrefWidth(200);
         infoJActifVbox.setMinHeight(40);
         infoJActifHbox.setPadding(new Insets(15, 10, 10, 15));
+       // infoJActifHbox.setTranslateX(230);
+
+
 
 
         /* BOX CARTE ACTION LIGNE 1 */
         boxCarteRandomLigne1 = new HBox();
         boxCarteRandomLigne1.setPadding(new Insets(1));
         boxCarteRandomLigne1.setAlignment(Pos.TOP_CENTER);
-        boxCarteRandomLigne1.getStyleClass().add("vbox_style");
+       // boxCarteRandomLigne1.getStyleClass().add("vbox_style");
         boxCarteRandomLigne1.setMinHeight(150);
         boxCarteRandomLigne1.setSpacing(-15);
+        boxCarteRandomLigne1.setTranslateX(-30);
+        boxCarteRandomLigne1.setTranslateY(30);
 
         /* BOX CARTE ACTION LIGNE 2 */
         boxCarteRandomLigne2 = new HBox();
@@ -334,12 +347,15 @@ public class ViewJeu {
         boxCarteRandomLigne2.setMinHeight(150);
         boxCarteRandomLigne2.setMinHeight(150);
         boxCarteRandomLigne2.setTranslateY(-20);
-        boxCarteRandomLigne2.getStyleClass().add("vbox_style");
+        boxCarteRandomLigne2.setTranslateX(-30);
+        boxCarteRandomLigne2.setTranslateY(30);
+
+        //  boxCarteRandomLigne2.getStyleClass().add("vbox_style");
         boxCarteRandomLigne2.setSpacing(-15);
 
         boxCarteCentraleEtJoue.getChildren().addAll(boxCarteRandomLigne1, boxCarteRandomLigne2, boxCarteJoue,infoJActifVbox);
-        boxCarteCentraleEtJoue.setTranslateY(40);
-       // boxCarteCentraleEtJoue.setTranslateX(-100);
+        boxCarteCentraleEtJoue.setTranslateY(0);
+       // boxCarteCentraleEtJoue.setTranslateX(30);
 
         stackPane.getChildren().addAll(rec, boxCarteCentraleEtJoue);
 

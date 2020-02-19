@@ -37,7 +37,7 @@
     -fx-opacity: 1;
 }
 .banniere {
-   -fx-opacity: 0.6;
+   -fx-opacity: 0.75;
 }
 .labelMenu {
     -fx-font-weight: bold;
@@ -74,4 +74,10 @@
      -fx-border-width: 1;
      -fx-border-style: dashed;
 -fx-min-width: 250;
+}
+
+.custom-dashed-border {
+    -fx-border-color: rgba(221, 207, 150, 0.3) ;
+    -fx-border-width: 11 ;
+
 }

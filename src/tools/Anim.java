@@ -103,12 +103,12 @@ public class Anim {
 
     public void animCarteCentraleUP(ImageView img, Group group) {
 
-        final KeyFrame widthmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(img.scaleXProperty(), 1.5));
+        final KeyFrame widthmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(img.scaleXProperty(), 1.7));
         final KeyFrame widthmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(img.scaleXProperty(), 2.5, Interpolator.LINEAR));
 
 
-        final KeyFrame XmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateXProperty(), 10));
-        final KeyFrame XmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(group.translateXProperty(), 100, Interpolator.LINEAR));
+        final KeyFrame XmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateXProperty(), 40));
+        final KeyFrame XmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(group.translateXProperty(), 110, Interpolator.LINEAR));
 
         final KeyFrame YmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateYProperty(), -30));
         final KeyFrame YmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(group.translateYProperty(), -110, Interpolator.LINEAR));
