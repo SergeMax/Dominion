@@ -57,10 +57,15 @@ public class ControllerJeu implements EventHandler<MouseEvent> {
         updateCarteReserveLeftGUI();
         updateCarteCenterGUI();
         updateCarteJoueurGUI();
+        updateJoueurPassifInfoGUI();
     }
 
     public void updateJoueurInfoGUI(){
         viewHandler.getViewJeu().updateJoueurInfo(partie.getJoueurs().get(partie.getAuTourDuJoueur()));
+    }
+
+    public void updateJoueurPassifInfoGUI(){
+        viewHandler.getViewJeu().updateJoueurPassifInfo(partie.getJoueurs().get(partie.getJoueurAdverse()));
     }
 
     public void updateJoueurDetailGUI(){
