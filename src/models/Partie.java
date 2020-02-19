@@ -9,6 +9,7 @@ public class Partie {
     private boolean estFinis;
     private int auTourDuJoueur = 0;
     private int numeroDeLaPhase = 1;
+    private Carte hasSpecialEffect = null;
     private ArrayList<Joueur> joueurs;
     private ArrayList<Pile> pilesReserveAction;
     private ArrayList<Pile> pilesReserveTresorVictoireMalediction;
@@ -57,6 +58,7 @@ public class Partie {
             /* SI LE JOUEUR CLIQUE UNE CARTE ACTION DANS LA MAIN */
             if (joueurs.get(auTourDuJoueur).getDeck().getCartes().stream().filter(item -> (item.getType().equals(TypeDeCarte.actions) || item.getType().equals(TypeDeCarte.attaque_action)) && item.getLocalisation().equals(LocalisationDesCartes.mainJoueur)).collect(Collectors.toCollection(ArrayList::new)).size() != 0) {
                 joueurs.get(auTourDuJoueur).poserUneCarte(carte);
+                carte.effet(joueurs);
                 joueurs.get(auTourDuJoueur).action--;
                 if (joueurs.get(auTourDuJoueur).getAction() == 0) {
                     numeroDeLaPhase++;
@@ -169,5 +171,9 @@ public class Partie {
 
     public int getNumeroDeLaPhase() {
         return numeroDeLaPhase;
+    }
+
+    public void setHasSpecialEffect(Carte hasSpecialEffect) {
+        this.hasSpecialEffect = hasSpecialEffect;
     }
 }
