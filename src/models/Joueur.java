@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class Joueur {
     private String nom;
-    private int pV;
+    public int pV;
     private Deck deck;
     public ArrayList<Pile> piles;
     private int indiceDansLeDeck;

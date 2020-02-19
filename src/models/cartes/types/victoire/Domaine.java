@@ -14,7 +14,7 @@ public class Domaine extends Carte {
 
     public Domaine() {
         setCout(2);
-        setType(TypeDeCarte.tresor);
+        setType(TypeDeCarte.victoire);
         setLocalisation(LocalisationDesCartes.reserve);
     }
 
@@ -22,7 +22,7 @@ public class Domaine extends Carte {
     public void effet(Partie partie) {
         for (Joueur joueur : partie.getJoueurs()){
             if(joueur.isEntrainDeJouer()){
-
+                joueur.pV += 1;
             }
         }
     }
