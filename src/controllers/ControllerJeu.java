@@ -17,7 +17,7 @@ public class ControllerJeu implements EventHandler<MouseEvent> {
 
     public ControllerJeu(ViewHandler viewHandler) {
         this.viewHandler = viewHandler;
-        partie = new Partie(2);
+        partie = new Partie(viewHandler.getListeNomJoueur());
         updateAllGUI();
         this.viewHandler.getViewJeu().setEvent(this);
     }

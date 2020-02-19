@@ -15,11 +15,11 @@ public class Partie {
     private ArrayList<Pile> pilesReserveAction;
     private ArrayList<Pile> pilesReserveTresorVictoireMalediction;
 
-    public Partie(int nombreDeJoueur){
+    public Partie(ArrayList<String> nombreDeJoueur){
         estFinis= false;
         joueurs = new ArrayList<Joueur>();
-        for(int i = 0; i < nombreDeJoueur; i++ ){
-            Joueur joueur = new Joueur("Joueur " + (i+1));
+        for(int i = 0; i < nombreDeJoueur.size(); i++ ){
+            Joueur joueur = new Joueur(nombreDeJoueur.get(i));
             joueur.prepareTurn();
             joueurs.add(joueur);
         }
