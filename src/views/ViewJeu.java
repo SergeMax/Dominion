@@ -346,14 +346,14 @@ public class ViewJeu {
             cardViewPlayer.getGrpContenairCard().setOnMouseClicked(controllerJeu);
             /* ON ATTACHE LA CARTE VIEWS A LA BONNE BOX SUIVANT SA LOCALISATION */
             if(pile.getCarte().getLocalisation() == LocalisationDesCartes.mainJoueur){
-                boxMainActif.getChildren().add(cardViewPlayer.getGrpContenairCard());
+                boxMainActif.getChildren().add(cardViewPlayer);
             }else if(pile.getCarte().getLocalisation() == LocalisationDesCartes.terrain) {
-                boxCarteJoue.getChildren().add(cardViewPlayerTerrain.getGrpContenairCard()) ;
+                boxCarteJoue.getChildren().add(cardViewPlayerTerrain) ;
             }else if(pile.getCarte().getLocalisation() == LocalisationDesCartes.defausse) {
-                boxDefause.getChildren().add(cardViewPlayer.getGrpContenairCard());
+                boxDefause.getChildren().add(cardViewPlayer);
             }else if(pile.getCarte().getLocalisation() == LocalisationDesCartes.deck) {
                 cardViewPlayer.setImageViewBack();
-                boxPioche.getChildren().add(cardViewPlayer.getGrpContenairCard());
+                boxPioche.getChildren().add(cardViewPlayer);
             }
         }
     }
@@ -371,9 +371,9 @@ public class ViewJeu {
             CardViewCentre cardViewPlayer = new CardViewCentre(joueur,pile);
             cardViewPlayer.getGrpContenairCard().setOnMouseClicked(controllerJeu);
             if(i < 5 ){
-                boxCarteRandomLigne1.getChildren().add(cardViewPlayer.getGrpContenairCard()) ;
+                boxCarteRandomLigne1.getChildren().add(cardViewPlayer) ;
             } else {
-                boxCarteRandomLigne2.getChildren().add(cardViewPlayer.getGrpContenairCard()) ;
+                boxCarteRandomLigne2.getChildren().add(cardViewPlayer) ;
             }
             i++;
         }
@@ -393,9 +393,9 @@ public class ViewJeu {
             CardViewReserve cardViewReserve = new CardViewReserve(joueur, pile);
             cardViewReserve.getGrpContenairCard().setOnMouseClicked(controllerJeu);
             if(i < 3 ){
-                boxPvRight.getChildren().add(cardViewReserve.getGrpContenairCard()) ;
+                boxPvRight.getChildren().add(cardViewReserve) ;
             } else {
-                boxPvLeft.getChildren().add(cardViewReserve.getGrpContenairCard()) ;
+                boxPvLeft.getChildren().add(cardViewReserve) ;
             }
             i++;
         }

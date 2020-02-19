@@ -5,11 +5,12 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import models.Pile;
 import tools.Paths;
 
-public class CardViewTerrain {
+public class CardViewTerrain extends Pane{
 
     private int width = 85;
     private Group grpContenairCard;
@@ -17,9 +18,13 @@ public class CardViewTerrain {
     private Image front, back;
     private VBox vBoxNumber;
     private Label lblNumber;
+    private Pile pile;
+
 
     public CardViewTerrain(Pile pile){
+        this.pile=pile;
         grpContenairCard = new Group();
+        this.getChildren().add(grpContenairCard);
         front = new Image(pile.getCarte().getUrlImgCarte());
         back = new Image(Paths.urlImgBack);
         vBoxNumber = new VBox();

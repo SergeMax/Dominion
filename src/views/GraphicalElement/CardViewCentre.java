@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -21,7 +22,7 @@ import tools.Paths;
 import views.ViewJeu;
 
 //TODO: Va voir dans CardReserve ---> :)
-public class CardViewCentre {
+public class CardViewCentre extends Pane {
 
     private final ImageView imgReset;
     private boolean imgClique;
@@ -32,9 +33,12 @@ public class CardViewCentre {
     private VBox vBoxNumber,vboxPiece,vboxPrix;
     private Label lblNumber,lblPrix;
     private ViewJeu viewJeu;
+    private Pile pile;
 
     public CardViewCentre(Joueur joueur, Pile pile) {
+        this.pile = pile;
         grpContenairCard = new Group();
+        this.getChildren().add(grpContenairCard);
         front = new Image(pile.getCarte().getUrlImgCarte());
         vBoxNumber = new VBox();
         lblNumber = new Label(String.valueOf(pile.getNombre()));

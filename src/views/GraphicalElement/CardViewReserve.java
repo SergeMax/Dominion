@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -22,7 +23,7 @@ import tools.Paths;
 // Pour le moment On en a 3 View : les carte du Joueur(ViewPlayer)/ du Centre(ViewCentre) / de Gauche(ViewGauche)
 // Ces cartes ce comportent presque de la même Facon (a voir pour faire de l'heritage, c'est pas obligatoire, je te laisse en decider)
 // Tu peux tout modifier ameliorer le code, changer la taille sur toute les view card (On voulais que les cartes reserve soi carré)
-public class CardViewReserve {
+public class CardViewReserve extends Pane {
 
     private final ImageView imgReset;
     private int width = 90;
@@ -36,9 +37,12 @@ public class CardViewReserve {
     private VBox vBoxAcheterLaCarte;
     private Label lblAcheterLaCarte = new Label("+");
     private boolean imgClique = false;
+    private Pile pile;
 
     public CardViewReserve(Joueur joueur, Pile pile) {
+        this.pile = pile;
         grpContenairCard = new Group();
+        this.getChildren().add(grpContenairCard);
         front = new Image(pile.getCarte().getUrlImgCarte());
         vBoxNumber = new VBox();
         lblNumber = new Label(String.valueOf(pile.getNombre()));

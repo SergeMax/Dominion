@@ -8,13 +8,14 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import models.Pile;
 import tools.Anim;
 import tools.Paths;
 //TODO: Va voir dans CardReserve ---> :)
-public class CardViewPlayer {
+public class CardViewPlayer extends Pane {
 
     private final ImageView imgReset;
     private int width = 140;
@@ -23,9 +24,12 @@ public class CardViewPlayer {
     private Image front, back;
     private VBox vBoxNumber;
     private Label lblNumber;
+    private Pile pile;
 
     public CardViewPlayer(Pile pile){
+        this.pile = pile;
         grpContenairCard = new Group();
+        this.getChildren().add(grpContenairCard);
         front = new Image(pile.getCarte().getUrlImgCarte());
         back = new Image(Paths.urlImgBack);
         vBoxNumber = new VBox();

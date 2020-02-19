@@ -98,9 +98,9 @@ public class Partie {
         joueurs.get(auTourDuJoueur).piles = Pile.aggregationDeCarteEnPile(joueurs.get(auTourDuJoueur).getDeck().getCartes());
         System.out.println(numeroDeLaPhase);
     }
-        if(hasSpecialEffect != null && effectTurnAction != 0){
+        if(hasSpecialEffect != null && effectTurnAction == 0){
             switchPlayer();
-            processEffect();
+            processEffect(pile);
         }
     }
 
@@ -114,8 +114,12 @@ public class Partie {
     public void processEffect(Pile pile){
         if(hasSpecialEffect.getName().toUpperCase().equals(IdCarte.MILLICE.toString())) {
             if(pile.getCarte().getLocalisation().equals(LocalisationDesCartes.mainJoueur)){
-                joueurs.get(auTourDuJoueur).defausseUneCarte(pile.getCarte());
-                effectTurnAction--;
+                if(effectTurnAction != 0 ){
+                    joueurs.get(auTourDuJoueur).defausseUneCarte(pile.getCarte());
+                    effectTurnAction--;
+                } else {
+                    effectTurnAction = joueurs.get(auTourDuJoueur).getDeck().getCartes().stream().filter(item -> item.getLocalisation().equals(LocalisationDesCartes.mainJoueur)).collect(Collectors.toCollection(ArrayList::new)).size() - 3;
+                }
             }
 
         } else if(hasSpecialEffect.getName().toUpperCase().equals(IdCarte.SORCIERE.toString())) {
