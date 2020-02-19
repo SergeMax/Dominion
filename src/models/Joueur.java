@@ -59,7 +59,8 @@ public class Joueur {
     }
 
     public void defausseUneCarte(Carte carte) {
-
+        Carte corespondedcarte = selectCardInHande(carte);
+        corespondedcarte.setLocalisation(LocalisationDesCartes.defausse);
     }
 
     public void ecarteUneCarte(Carte carte){

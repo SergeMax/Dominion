@@ -49,10 +49,11 @@ public class Partie {
 
     public void tour(Pile pile){
         Carte carte = pile.getCarte();
+
     if(!checkEndGame()) {
         /* SI ON EST DANS UNE PHASE SPECIAL */
         if(hasSpecialEffect != null){
-            doEffect();
+            processEffect(pile);
         }
         /* PHASE ACTION */
         if(numeroDeLaPhase == 1) {
@@ -97,24 +98,33 @@ public class Partie {
         joueurs.get(auTourDuJoueur).piles = Pile.aggregationDeCarteEnPile(joueurs.get(auTourDuJoueur).getDeck().getCartes());
         System.out.println(numeroDeLaPhase);
     }
-        prepareEffect();
-    }
-
-    public void prepareEffect(){
-        if(hasSpecialEffect != null && effectTurnAction > 0){
-            auTourDuJoueur++;
-            if(auTourDuJoueur>=joueurs.size()){
-                auTourDuJoueur=0;
-            }
+        if(hasSpecialEffect != null && effectTurnAction != 0){
+            switchPlayer();
+            processEffect();
         }
     }
 
-    public void doEffect(){
-        if(hasSpecialEffect.getName().toUpperCase().equals(IdCarte.MILLICE.toString())) {
+    public void switchPlayer() {
+            auTourDuJoueur++;
+            if (auTourDuJoueur >= joueurs.size()) {
+                auTourDuJoueur = 0;
+            }
+    }
 
+    public void processEffect(Pile pile){
+        if(hasSpecialEffect.getName().toUpperCase().equals(IdCarte.MILLICE.toString())) {
+            if(pile.getCarte().getLocalisation().equals(LocalisationDesCartes.mainJoueur)){
+                joueurs.get(auTourDuJoueur).defausseUneCarte(pile.getCarte());
+                effectTurnAction--;
+            }
 
         } else if(hasSpecialEffect.getName().toUpperCase().equals(IdCarte.SORCIERE.toString())) {
 
+        }
+
+        if(effectTurnAction == 0){
+            switchPlayer();
+            hasSpecialEffect = null;
         }
     }
 
@@ -198,9 +208,8 @@ public class Partie {
         return numeroDeLaPhase;
     }
 
-    public void setHasSpecialEffect(Carte hasSpecialEffect, int effectTurnAction) {
+    public void setHasSpecialEffect(Carte hasSpecialEffect) {
         this.hasSpecialEffect = hasSpecialEffect;
-        this.effectTurnAction = effectTurnAction;
     }
 
     public int getJoueurAdverse(){
