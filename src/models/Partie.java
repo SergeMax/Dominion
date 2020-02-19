@@ -9,6 +9,8 @@ public class Partie {
     private boolean estFinis;
     private int auTourDuJoueur = 0;
     private int numeroDeLaPhase = 1;
+    private Carte hasSpecialEffect = null;
+    private int effectTurnAction = 0;
     private ArrayList<Joueur> joueurs;
     private ArrayList<Pile> pilesReserveAction;
     private ArrayList<Pile> pilesReserveTresorVictoireMalediction;
@@ -52,11 +54,16 @@ public class Partie {
     public void tour(Pile pile){
         Carte carte = pile.getCarte();
     if(!checkEndGame()) {
+        /* SI LE JOUEUR A POSER UNE CARTE SPECIAL */
+        if(hasSpecialEffect != null){
+            doEffect();
+        }
         /* PHASE ACTION */
-        if (numeroDeLaPhase == 1) {
+        if(numeroDeLaPhase == 1) {
             /* SI LE JOUEUR CLIQUE UNE CARTE ACTION DANS LA MAIN */
             if (joueurs.get(auTourDuJoueur).getDeck().getCartes().stream().filter(item -> (item.getType().equals(TypeDeCarte.actions) || item.getType().equals(TypeDeCarte.attaque_action)) && item.getLocalisation().equals(LocalisationDesCartes.mainJoueur)).collect(Collectors.toCollection(ArrayList::new)).size() != 0) {
                 joueurs.get(auTourDuJoueur).poserUneCarte(carte);
+                carte.effet(this);
                 joueurs.get(auTourDuJoueur).action--;
                 if (joueurs.get(auTourDuJoueur).getAction() == 0) {
                     numeroDeLaPhase++;
@@ -71,7 +78,7 @@ public class Partie {
             /* SI LE JOUEUR CLIQUE UNE CARTE DE SA MAIN ET QUE C'EST UNE CARTE TRESOR */
             if (carte.getLocalisation().equals(LocalisationDesCartes.mainJoueur) && (carte.getName().equals("Cuivre") || carte.getName().equals("Or") || carte.getName().equals("Argent"))) {
                 joueurs.get(auTourDuJoueur).poserUneCarte(carte);
-                carte.effet(joueurs);
+                carte.effet(this);
                 /* SI LE JOUEUR CLIQUE SUR UNE CARTE DE LA RESERVE ET A ASSEZ DE THUNE ET D'ACHAT*/
             } else if (carte.getLocalisation().equals(LocalisationDesCartes.reserve) && joueurs.get(auTourDuJoueur).getMonnaie() >= carte.getCout()) {
                 joueurs.get(auTourDuJoueur).acheteCarte(carte);
@@ -90,6 +97,14 @@ public class Partie {
         joueurs.get(auTourDuJoueur).piles = Pile.aggregationDeCarteEnPile(joueurs.get(auTourDuJoueur).getDeck().getCartes());
         System.out.println(numeroDeLaPhase);
     }
+    }
+
+    public void doEffect(){
+        if(hasSpecialEffect.getName().toUpperCase().equals(IdCarte.MILLICE.toString())) {
+
+        } else if(hasSpecialEffect.getName().toUpperCase().equals(IdCarte.SORCIERE.toString())) {
+
+        }
     }
 
     public void endTurn(){
@@ -169,5 +184,10 @@ public class Partie {
 
     public int getNumeroDeLaPhase() {
         return numeroDeLaPhase;
+    }
+
+    public void setHasSpecialEffect(Carte hasSpecialEffect, int effectTurnAction) {
+        this.hasSpecialEffect = hasSpecialEffect;
+        this.effectTurnAction = effectTurnAction;
     }
 }

@@ -1,5 +1,7 @@
 package models.cartes.types.victoire;
 
+import models.Joueur;
+import models.Partie;
 import models.cartes.Carte;
 import models.cartes.LocalisationDesCartes;
 import models.cartes.TypeDeCarte;
@@ -14,5 +16,12 @@ public class Domaine extends Carte {
         setCout(2);
         setType(TypeDeCarte.tresor);
         setLocalisation(LocalisationDesCartes.reserve);
+    }
+
+    @Override
+    public void effet(Partie partie) {
+        for (Joueur joueur : partie.getJoueurs()){
+
+        }
     }
 }

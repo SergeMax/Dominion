@@ -1,6 +1,7 @@
 package models.cartes;
 
 import models.Joueur;
+import models.Partie;
 import tools.Paths;
 
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public abstract class Carte {
         return this.getClass().getSimpleName();
     }
 
-    public void effet(ArrayList<Joueur> joueurs){
+    public void effet(Partie partie){
 
     }
 }

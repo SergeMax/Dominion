@@ -1,5 +1,6 @@
 package models.cartes.types.action;
 import models.Joueur;
+import models.Partie;
 import models.cartes.Carte;
 import models.cartes.LocalisationDesCartes;
 import models.cartes.TypeDeCarte;
@@ -19,12 +20,12 @@ public class Artisan extends Carte {
         setLocalisation(LocalisationDesCartes.reserve);
     }
 
-    public void effet(ArrayList<Joueur> joueurs) {
-        for(Joueur joueur: joueurs){
+    public void effet(Partie partie) {
+        for(Joueur joueur: partie.getJoueurs()){
             /* On vérifie si le joueur est entrain de jouer et donc peut utiliser la carte*/
             if (joueur.isEntrainDeJouer()){
                 /* On vérifie si le joueur peut-utiliser une carte action */
-                if(joueur.getAction() == 0){
+                if(joueur.action == 0){
                     break;
                 }else{
                     joueur.recevoirUneCarteDeValeur(5);
