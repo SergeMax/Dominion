@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -53,7 +54,7 @@ public class ViewJeu {
         btnQuitGame = new Button("QUITTER");
         boxMenu = initMenu();
         vBoxLeft = initLeftHBox();
-        hBoxRigth = initRightHBox();
+    //    hBoxRigth = initRightHBox();
         centerPane = initCenterPane();
         hBoxFooter = initFooter();
 
@@ -66,7 +67,7 @@ public class ViewJeu {
         root.getChildren().clear();
         root.setBackground(new Background( new BackgroundImage(new Image("assets/background/backgroundJeux.jpg"),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         root.setTop(boxMenu);
-        root.setRight(hBoxRigth);
+     //   root.setRight(hBoxRigth);
         root.setBottom(hBoxFooter);
         root.setLeft(vBoxLeft);
         root.setCenter(centerPane);
@@ -89,7 +90,7 @@ public class ViewJeu {
         scoreJPassifHbox.getChildren().add(scoreJPassifText);
         scoreJPassifHbox.setStyle("-fx-background-color:rgba(0,0,0,0.5);");
         scoreJPassifHbox.setMaxWidth(100);
-        scoreJPassifHbox.setMinHeight(30);
+        scoreJPassifHbox.setMinHeight(50);
         scoreJPassifHbox.setPadding(new Insets(10, 10, 10, 10));
 
         HBox buttonQuitter = new HBox();
@@ -100,12 +101,24 @@ public class ViewJeu {
         buttonQuitter.setAlignment(Pos.TOP_RIGHT);
         buttonQuitter.getChildren().add(btnQuitGame);
 
+        ImageView dominion = new ImageView("assets/logo/logo_dominion.png");
+        dominion.setFitWidth(600);
+        dominion.setTranslateX(50);
+        dominion.setTranslateY(20);
+
+        dominion.setRotate(17);
+        dominion.setOpacity(0.4);
+
+        dominion.setPreserveRatio(true);
+
         HBox consolePartie = new HBox();
         consoleText = new Text("Au tour du joueur 1");
         consoleText.getStyleClass().add("lbl_console_text");
         consolePartie.setPadding(new Insets(-40,10,10,10));
         consolePartie.setAlignment(Pos.CENTER);
-        consolePartie.getChildren().add(consoleText);
+        consolePartie.getChildren().addAll(consoleText, dominion);
+        consolePartie.setTranslateX(50);
+        consolePartie.setTranslateY(-30);
 
 
 
@@ -115,7 +128,7 @@ public class ViewJeu {
         vbox.setMaxHeight(100);
         vbox.setMinHeight(90);
         vbox.setMaxWidth(1680);
-        vbox.setMinWidth(1680);
+      //  vbox.setMinWidth(1680);
 
         vbox.setTranslateX(225);
         vbox.getStyleClass().add("vbox_style");
@@ -217,6 +230,8 @@ public class ViewJeu {
         boxDeckJActif.setMinHeight(180);
         boxDeckJActif.setMinWidth(260);
         boxDeckJActif.getStyleClass().add("vbox_style");
+        boxMainActif.setSpacing(-20);
+
 
         boxMainActif.setPadding(new Insets(5));
         boxMainActif.getStyleClass().add("vbox_style");
@@ -244,12 +259,17 @@ public class ViewJeu {
 
         hBoxDefausePioche.getChildren().addAll(boxDefause,boxPioche);
         boxDeckJActif.getChildren().addAll(scoreJActifHbox, hBoxDefausePioche);
+        boxDeckJActif.setTranslateY(-30);
+        boxDeckJActif.setTranslateX(0);
+
         hbox.getChildren().addAll(boxDeckJActif);
         hbox.getChildren().addAll(boxMainActif);
 
         hbox.setMinHeight(200);
         hbox.setMaxHeight(400);
         hbox.setTranslateY(50);
+       // hbox.setTranslateX(-50);
+
 
         hbox.setPadding(new Insets(-15, 50, 0, 10));
         hbox.getStyleClass().add("vbox_style");
@@ -319,6 +339,8 @@ public class ViewJeu {
 
         boxCarteCentraleEtJoue.getChildren().addAll(boxCarteRandomLigne1, boxCarteRandomLigne2, boxCarteJoue,infoJActifVbox);
         boxCarteCentraleEtJoue.setTranslateY(40);
+       // boxCarteCentraleEtJoue.setTranslateX(-100);
+
         stackPane.getChildren().addAll(rec, boxCarteCentraleEtJoue);
 
         return stackPane;

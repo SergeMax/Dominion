@@ -108,10 +108,10 @@ public class Anim {
 
 
         final KeyFrame XmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateXProperty(), 10));
-        final KeyFrame XmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(group.translateXProperty(), 50, Interpolator.LINEAR));
+        final KeyFrame XmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(group.translateXProperty(), 100, Interpolator.LINEAR));
 
         final KeyFrame YmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateYProperty(), -30));
-        final KeyFrame YmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(group.translateYProperty(), -100, Interpolator.LINEAR));
+        final KeyFrame YmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(group.translateYProperty(), -110, Interpolator.LINEAR));
 
 
         final KeyFrame heightmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(img.scaleYProperty(), 1.5));
@@ -129,7 +129,7 @@ public class Anim {
         final KeyFrame widthmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(img.scaleXProperty(), 2));
         final KeyFrame widthmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(img.scaleXProperty(), 1, Interpolator.EASE_IN));
 
-        final KeyFrame XmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateXProperty(), 50));
+        final KeyFrame XmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateXProperty(), 110));
         final KeyFrame XmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(group.translateXProperty(), 0, Interpolator.EASE_IN));
 
         final KeyFrame YmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(group.translateYProperty(), -70));
@@ -146,15 +146,12 @@ public class Anim {
 
     }
 
-
     public void animCarteReserveToPioche(Group grpContainerCardStart, Group root, ImageView img) {
-
 
             /*Bound in scene permet de recuperer la position dans la scene du node*/
 
             Bounds boundsInSceneStart = img.localToScreen(img.getBoundsInLocal());
          //   Bounds boundsInSceneEnd = grpContainerCardEnd.localToScene(grpContainerCardStart.getBoundsInLocal());
-
 
             double XPositionOfTheContainerCardStart = boundsInSceneStart.getMinX();
             double YPositionOfTheContainerCardStart = boundsInSceneStart.getMinY();
@@ -223,7 +220,7 @@ public class Anim {
 
        // ViewHandler vhandler = new ViewHandler();
      //   vhandler.getViewJeu().getRoot().getChildren().addAll(imgAnim);
-grpContainerCardStart.getChildren().addAll(imgAnim);
+            grpContainerCardStart.getChildren().addAll(imgAnim);
 
             //Création des KeyFrame puis de la Timeline
 

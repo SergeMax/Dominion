@@ -2,6 +2,7 @@ package controllers;
 
 import javafx.animation.PauseTransition;
 import javafx.event.EventHandler;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import models.Partie;
@@ -26,7 +27,7 @@ public class ControllerJeu implements EventHandler<MouseEvent> {
 
         if(mouseEvent.getSource().equals(viewHandler.getViewJeu().getBtnQuitGame())) {
             viewHandler.afficherMenuPrincipale();
-        }else{
+        }else if(mouseEvent.getButton() == MouseButton.PRIMARY){
             PauseTransition delayRemove = new PauseTransition(Duration.seconds(0.6));
             delayRemove.setOnFinished(eventt -> {
 
