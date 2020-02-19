@@ -1,7 +1,9 @@
 package controllers;
 
+import javafx.animation.PauseTransition;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
 import models.Partie;
 import models.Pile;
 import models.cartes.Carte;
@@ -21,17 +23,31 @@ public class ControllerJeu implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-        if(mouseEvent.getSource().equals(viewHandler.getViewJeu().getBtnSkipTurn())){
-            partie.endTurn();
-        } else {
-            try{
-                Pile selectedPile = partie.cliqueSurUneCarte(mouseEvent.getPickResult().getIntersectedNode().getId());
-                partie.tour(selectedPile);
-            } catch (NullPointerException e){
-                e.printStackTrace();
+
+
+        PauseTransition delayRemove = new PauseTransition(Duration.seconds(0.6));
+        delayRemove.setOnFinished(eventt -> {
+
+            if(mouseEvent.getSource().equals(viewHandler.getViewJeu().getBtnSkipTurn())){
+
+                partie.endTurn();
+            } else {
+
+                try{
+                    Pile selectedPile = partie.cliqueSurUneCarte(mouseEvent.getPickResult().getIntersectedNode().getId());
+                    partie.tour(selectedPile);
+                } catch (NullPointerException e){
+                    e.printStackTrace();
+                }
+
             }
-        }
-        updateAllGUI();
+            updateAllGUI();
+
+        });
+        delayRemove.play();
+
+
+
     }
 
 

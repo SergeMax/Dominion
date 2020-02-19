@@ -152,7 +152,7 @@ public class Anim {
 
             /*Bound in scene permet de recuperer la position dans la scene du node*/
 
-            Bounds boundsInSceneStart = grpContainerCardStart.localToScreen(grpContainerCardStart.getBoundsInLocal());
+            Bounds boundsInSceneStart = img.localToScreen(img.getBoundsInLocal());
          //   Bounds boundsInSceneEnd = grpContainerCardEnd.localToScene(grpContainerCardStart.getBoundsInLocal());
 
 
@@ -166,9 +166,9 @@ public class Anim {
             widthShort = 75;
             widthIntermed = 130;
 
-            ImageView imgAnim = new ImageView("assets/cartes/cuivre.png");
+            ImageView imgAnim = new ImageView("assets/cartes/backCard.png");
             imgAnim.setPreserveRatio(true);
-        System.out.println("hrllp");
+            System.out.println("hrllp");
 
           //  imgAnim.setX(XPositionOfTheContainerCardStart);
             //imgAnim.setY(YPositionOfTheContainerCardStart);
@@ -262,7 +262,7 @@ grpContainerCardStart.getChildren().addAll(imgAnim);
 
         /*Bound in scene permet de recuperer la position dans la scene du node*/
 
-        Bounds boundsInSceneStart = root.localToParent(grpContainerCardStart.getBoundsInLocal());
+        Bounds boundsInSceneStart = img.localToParent(grpContainerCardStart.getBoundsInLocal());
         //   Bounds boundsInSceneEnd = grpContainerCardEnd.localToScene(grpContainerCardStart.getBoundsInLocal());
 
 
@@ -276,7 +276,7 @@ grpContainerCardStart.getChildren().addAll(imgAnim);
         widthShort = 75;
         widthIntermed = 130;
 
-        ImageView imgAnim = new ImageView("assets/cartes/cuivre.png");
+        ImageView imgAnim = new ImageView("assets/cartes/backCard.png");
         imgAnim.setPreserveRatio(true);
 
         //  imgAnim.setX(XPositionOfTheContainerCardStart);

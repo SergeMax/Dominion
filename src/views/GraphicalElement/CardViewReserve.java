@@ -27,11 +27,11 @@ public class CardViewReserve {
     private final ImageView imgReset;
     private int width = 90;
     private Group grpContenairCard;
-    private ImageView img,imgPiece;
+    private ImageView img, imgPiece;
     private Image front;
     /* BOX QUI CONTIENT LE NOMBRE DE CARTE DE LA PILE */
-    private VBox vBoxNumber,vboxPiece,vboxPrix;
-    private Label lblNumber,lblPrix;
+    private VBox vBoxNumber, vboxPiece, vboxPrix;
+    private Label lblNumber, lblPrix;
     /* BOX QUI DEVRA CONTENIR SI L'UTILISATEUR PEUT OU PAS ACHETER LA CARTE */
     private VBox vBoxAcheterLaCarte;
     private Label lblAcheterLaCarte = new Label("+");
@@ -51,17 +51,17 @@ public class CardViewReserve {
         imgPiece = new ImageView(Paths.urlImgPiece);
         imgPiece.setFitWidth(30);
         imgPiece.setFitHeight(30);
-        vboxPiece.setPadding(new Insets(60,0,0,0));
+        vboxPiece.setPadding(new Insets(60, 0, 0, 0));
 
 
         vboxPrix = new VBox();
         lblPrix = new Label(String.valueOf(pile.getCarte().getCout()));
         lblPrix.getStyleClass().add("lbl_box_prix");
         vboxPrix.getChildren().add(lblPrix);
-        vboxPrix.setPadding(new Insets(-30,0,0,9));
+        vboxPrix.setPadding(new Insets(-30, 0, 0, 9));
 
 
-        vboxPiece.getChildren().addAll(imgPiece,vboxPrix);
+        vboxPiece.getChildren().addAll(imgPiece, vboxPrix);
         //TODO: INITIALISER LA VBOX ET L'AJOUTER AU GrpRootContenaire DE LA VIEW CARD SEULEMENT SI LE JOUEUR A ASSEZ DE PIECE D'OR*/
 
 
@@ -70,7 +70,6 @@ public class CardViewReserve {
         img.setPreserveRatio(true);
         img.setFitWidth(width);
         img.setId(String.valueOf(pile.hashCode()));
-
 
 
 // define crop in image coordinates:
@@ -100,26 +99,43 @@ public class CardViewReserve {
         );
 
         imgReset = img;
-        img.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+        img.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                Anim anim = new Anim();
+                anim.animCarteReserveToPioche(grpContenairCard, grpContenairCard, img);
+
+                PauseTransition delayRemove = new PauseTransition(Duration.seconds(0.33));
+                delayRemove.setOnFinished(eventt -> {
+                    grpContenairCard.getChildren().addAll(imgReset, vBoxNumber, vboxPiece);
+                    grpContenairCard.setTranslateX(15);
+                    grpContenairCard.setTranslateY(0);
+                });
+                delayRemove.play();
+            }
+        });
+
+      /*  img.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
 
-                    Anim anim = new Anim();
-                    anim.animCarteReserveToPioche(grpContenairCard, grpContenairCard, img);
+                Anim anim = new Anim();
+                anim.animCarteReserveToPioche(grpContenairCard, grpContenairCard, img);
 
                 PauseTransition delayRemove = new PauseTransition(Duration.seconds(0.33));
                 delayRemove.setOnFinished(eventt -> {
-                    grpContenairCard.getChildren().addAll(imgReset, vBoxNumber ,vboxPiece);
+                    grpContenairCard.getChildren().addAll(imgReset, vBoxNumber, vboxPiece);
                     grpContenairCard.setTranslateX(15);
                     grpContenairCard.setTranslateY(0);
                 });
                 delayRemove.play();
 
             }
-        });
+        });*/
 
-        grpContenairCard.getChildren().addAll(img, vBoxNumber,vboxPiece);
+        grpContenairCard.getChildren().addAll(img, vBoxNumber, vboxPiece);
 
         grpContenairCard.setTranslateX(15);
     }
