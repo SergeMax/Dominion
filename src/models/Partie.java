@@ -19,11 +19,13 @@ public class Partie {
         estFinis= false;
         joueurs = new ArrayList<Joueur>();
         for(int i = 0; i < nombreDeJoueur; i++ ){
-            joueurs.add(new Joueur("Joueur " + (i+1)));
+            Joueur joueur = new Joueur("Joueur " + (i+1));
+            joueur.prepareTurn();
+            joueurs.add(joueur);
         }
+        joueurs.get(auTourDuJoueur).setEntrainDeJouer(true);
         pilesReserveAction = DistributeurDeCarte.radomPileAction();
         pilesReserveTresorVictoireMalediction = DistributeurDeCarte.distribuePileTresorVictoireMalediction();
-        joueurs.get(0).startTurn();
     }
 
     public Pile cliqueSurUneCarte(String hashcode){
@@ -48,7 +50,7 @@ public class Partie {
     public void tour(Pile pile){
         Carte carte = pile.getCarte();
     if(!checkEndGame()) {
-        /* SI LE JOUEUR A POSER UNE CARTE SPECIAL */
+        /* SI ON EST DANS UNE PHASE SPECIAL */
         if(hasSpecialEffect != null){
             doEffect();
         }
@@ -77,6 +79,7 @@ public class Partie {
             } else if (carte.getLocalisation().equals(LocalisationDesCartes.reserve) && joueurs.get(auTourDuJoueur).getMonnaie() >= carte.getCout()) {
                 joueurs.get(auTourDuJoueur).acheteCarte(carte);
                 pile.nombre--;
+                joueurs.get(auTourDuJoueur).monnaie -= carte.getCout();
                 joueurs.get(auTourDuJoueur).achat--;
                 if (carte.getType().equals(TypeDeCarte.victoire)){
                     carte.effet(this);
@@ -102,7 +105,8 @@ public class Partie {
             auTourDuJoueur++;
             if(auTourDuJoueur>=joueurs.size()){
                 auTourDuJoueur=0;
-            }        }
+            }
+        }
     }
 
     public void doEffect(){
@@ -124,11 +128,12 @@ public class Partie {
             joueurs.get(auTourDuJoueur).getDeck().melangeSesCartes();
             joueurs.get(auTourDuJoueur).setIndiceDansLeDeck(-1);
         }
+        joueurs.get(auTourDuJoueur).prepareTurn();
         auTourDuJoueur++;
         if(auTourDuJoueur>=joueurs.size()){
             auTourDuJoueur=0;
         }
-        joueurs.get(auTourDuJoueur).startTurn();
+        joueurs.get(auTourDuJoueur).setEntrainDeJouer(true);
     }
 
     public boolean checkEndGame(){

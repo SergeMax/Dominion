@@ -26,12 +26,10 @@ public class Joueur {
         deck = new Deck();
     }
 
-    /* On initialise le début du tour */
-    public void startTurn(){
+    public void prepareTurn() {
         this.monnaie = 0;
         this.achat = 1;
         this.action = 1;
-        setEntrainDeJouer(true);
         for (int i = 0; i < 5 ; i++) {
             indiceDansLeDeck++;
             if(indiceDansLeDeck >= deck.getCartes().size() -1){

@@ -88,14 +88,23 @@ public class DistributeurDeCarte {
         ArrayList<Pile> stack = new ArrayList<Pile>();
         Carte carte = null;
         int random = 0;
+        boolean carteIsNotUnique = false;
         for (int i = 0; i < 10; i++) {
             do {
+                carteIsNotUnique = false;
                 random = (int) (Math.random() * (dicoCards.size()));
                 carte = distribueOneCarte(IdCarte.values()[random]);
-
-            }while (carte.getType().equals(TypeDeCarte.tresor) || carte.getType().equals(TypeDeCarte.victoire));
+                if(i != 0){
+                    for(Pile pile: stack){
+                        if(carte.getName().equals(pile.getCarte().getName())){
+                            carteIsNotUnique = true;
+                            break;
+                        }
+                    }
+                }
+            }while (carte.getType().equals(TypeDeCarte.tresor) || carte.getType().equals(TypeDeCarte.victoire) || carteIsNotUnique);
             carte.setLocalisation(LocalisationDesCartes.reserve);
-            stack.add(new Pile(carte,(byte)20));
+            stack.add(new Pile(carte,(byte)10));
         }
         return stack;
     }
