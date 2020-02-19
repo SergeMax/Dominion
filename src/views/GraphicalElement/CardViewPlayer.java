@@ -25,6 +25,8 @@ public class CardViewPlayer extends Pane {
     private VBox vBoxNumber;
     private Label lblNumber;
     private Pile pile;
+    /**/
+
 
     public CardViewPlayer(Pile pile){
         this.pile = pile;
