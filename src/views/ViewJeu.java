@@ -95,7 +95,7 @@ public class ViewJeu {
         btnQuitGame.getStyleClass().add("btnMenu");
         btnQuitGame.setMinWidth(150);
         btnQuitGame.setMinHeight(50);
-        buttonQuitter.setPadding(new Insets(-50,0,0,0));
+        buttonQuitter.setPadding(new Insets(-50,10,10,10));
         buttonQuitter.setAlignment(Pos.TOP_RIGHT);
         buttonQuitter.getChildren().add(btnQuitGame);
 
@@ -403,6 +403,10 @@ public class ViewJeu {
      */
     public void updateJoueurInfo(Joueur joueur){
         scoreJactifText.setText(joueur.getNom()+" : " + joueur.getpV() + " PV");
+        scoreJPassifText.setText(joueur.getNom()+" : " + joueur.getpV()+ " PV");
+    }
+
+    public void updateJoueurPassifInfo(Joueur joueur){
         scoreJPassifText.setText(joueur.getNom()+" : " + joueur.getpV()+ " PV");
     }
 
