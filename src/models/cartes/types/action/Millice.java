@@ -26,16 +26,10 @@ public class Millice extends Carte {
     public void effet(Partie partie) {
         for (Joueur joueur : partie.getJoueurs()) {
             if (joueur.isEntrainDeJouer()){
-                joueur.monnaie += 1;
+                joueur.monnaie += 2;
             }
         }
-        int joueurAdvNbCarteDef = 0;
-        for (Joueur joueur : partie.getJoueurs()){
-            if(!joueur.isEntrainDeJouer()){
-                joueurAdvNbCarteDef = joueur.getDeck().getCartes().stream().filter(item -> item.getLocalisation().equals(LocalisationDesCartes.mainJoueur)).collect(Collectors.toCollection(ArrayList::new)).size() -3;
-                break;
-            }
-        }
-        partie.setHasSpecialEffect(this,joueurAdvNbCarteDef);
+
+        partie.setHasSpecialEffect(this);
     }
 }
