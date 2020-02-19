@@ -100,7 +100,7 @@ public class Partie {
     }
         if(hasSpecialEffect != null && effectTurnAction != 0){
             switchPlayer();
-            processEffect();
+            processEffect(pile);
         }
     }
 
