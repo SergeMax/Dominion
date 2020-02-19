@@ -52,7 +52,6 @@ public class ViewMenuPrincipal {
 
         //Vbox de la page formulaire
         vBoxForm = new VBox();
-        vBoxForm.getChildren().add(new Text("Cest le root du form"));
         vBoxForm.setMinWidth(Screen.getPrimary().getBounds().getWidth());
         vBoxForm.setMinHeight(Screen.getPrimary().getBounds().getHeight());
 
@@ -83,9 +82,15 @@ public class ViewMenuPrincipal {
         textFjoueur2 = initTextField();
         VBox.setMargin(textFjoueur2, new Insets(0,0,0,0));
 
+        btnJouer = initButtonForm("Jouer", 20);
+        VBox.setMargin(btnJouer, new Insets(20,0,0,-100));
+
+        btnRetour = initButtonForm("Retour", 20);
+        VBox.setMargin(btnRetour, new Insets(-41,0,0,92));
+
         vBox.getChildren().addAll(btnPlay,btnQuit);
         vBox2.getChildren().add(titre);
-        vBoxPseudo.getChildren().addAll(joueur1, textFjoueur1,joueur2, textFjoueur2);
+        vBoxPseudo.getChildren().addAll(joueur1, textFjoueur1,joueur2, textFjoueur2,btnJouer, btnRetour);
 
     }
 
@@ -107,6 +112,14 @@ public class ViewMenuPrincipal {
         b.getStyleClass().add("btnMenu");
         return b;
     }
+    public Button initButtonForm(String texteBoutton, int size){
+        Button b = new Button();
+        b.setText(texteBoutton);
+        b.setFont(Font.font(size));
+        b.getStyleClass().add("btnMenuForm");
+        return b;
+    }
+
     private TextField initTextField( ){
         TextField f = new TextField();
         f.getStyleClass().add("textFieldMenu");
@@ -123,33 +136,24 @@ public class ViewMenuPrincipal {
     public void setEvent(ControllerMenuPrincipal controllerMenuPrincipal){
         btnPlay.setOnMouseClicked(controllerMenuPrincipal);
         btnQuit.setOnMouseClicked(controllerMenuPrincipal);
+        btnJouer.setOnMouseClicked(controllerMenuPrincipal);
+        btnRetour.setOnMouseClicked(controllerMenuPrincipal);
     }
 
     //setter
     public void setBtnPlay(Button btnPlay) { this.btnPlay = btnPlay; }
     public void setBtnQuit(Button btnQuit) { this.btnQuit = btnQuit; }
 
-
     //getter
     public Button getBtnPlay() { return btnPlay; }
     public Button getBtnQuit() { return btnQuit; }
-    public Group getRoot(){
-        return root;
-    }
+    public Group getRoot(){ return root; }
 
-    public Button getBtnJouer() {
-        return btnJouer;
-    }
+    public Button getBtnJouer() { return btnJouer; }
+    public Button getBtnRetour() { return btnRetour; }
 
-    public Button getBtnRetour() {
-        return btnRetour;
-    }
+    public TextField getTextFjoueur1() { return textFjoueur1; }
+    public TextField getTextFjoueur2() { return textFjoueur2; }
 
-    public TextField getTextFjoueur1() {
-        return textFjoueur1;
-    }
 
-    public TextField getTextFjoueur2() {
-        return textFjoueur2;
-    }
 }

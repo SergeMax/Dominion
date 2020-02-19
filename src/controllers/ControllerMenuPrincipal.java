@@ -44,5 +44,8 @@ public class ControllerMenuPrincipal implements EventHandler<MouseEvent> {
             viewHandler.getListeNomJoueur().add(viewHandler.getViewMenuPrincipal().getTextFjoueur2().getText());
             viewHandler.afficherJeu();
         }
+        if (mouseEvent.getSource().equals(viewHandler.getViewMenuPrincipal().getBtnRetour())){
+            viewHandler.afficherMenuPrincipale();
+        }
     }
 }

@@ -41,14 +41,15 @@ public class ViewJeu {
     private HBox boxCarteRandomLigne1, boxCarteRandomLigne2,boxCarteJoue, boxDefause, boxPioche, infoJActifHbox;
     private Text scoreJactifText,infoJActifText;
     private Text scoreJPassifText,infoJPassifText;
-    private Button btnSkipTurn;
+    private Button btnSkipTurn,btnQuitGame;
 
 
 
     public ViewJeu(BorderPane root) {
         this.root = root;
         /* INIT DES ELEMENTS */
-        btnSkipTurn = new Button("PASSE LE TOUR");
+        btnSkipTurn = new Button("PASSER LE TOUR");
+        btnQuitGame = new Button("QUITTER");
         boxMenu = initMenu();
         vBoxLeft = initLeftHBox();
         hBoxRigth = initRightHBox();
@@ -90,14 +91,25 @@ public class ViewJeu {
         scoreJPassifHbox.setMinHeight(30);
         scoreJPassifHbox.setPadding(new Insets(10, 10, 10, 10));
 
+        HBox buttonQuitter = new HBox();
+        btnQuitGame.getStyleClass().add("btnMenu");
+        btnQuitGame.setMinWidth(150);
+        btnQuitGame.setMinHeight(50);
+        buttonQuitter.setPadding(new Insets(-50,0,0,0));
+        buttonQuitter.setAlignment(Pos.TOP_RIGHT);
+        buttonQuitter.getChildren().add(btnQuitGame);
 
-        vbox.getChildren().addAll(new Separator(),scoreJPassifHbox);
+
+
+        vbox.getChildren().addAll(new Separator(),scoreJPassifHbox,buttonQuitter);
 
 
         vbox.setMaxHeight(100);
         vbox.setMinHeight(90);
+        vbox.setMaxWidth(1680);
+        vbox.setMinWidth(1680);
 
-        vbox.setTranslateX(200);
+        vbox.setTranslateX(225);
         vbox.getStyleClass().add("vbox_style");
         return vbox;
     }
@@ -404,6 +416,7 @@ public class ViewJeu {
      */
     public void setEvent(ControllerJeu controllerJeu){
         btnSkipTurn.setOnMouseClicked(controllerJeu);
+        btnQuitGame.setOnMouseClicked(controllerJeu);
     }
 
     public BorderPane getRoot() {
@@ -412,6 +425,10 @@ public class ViewJeu {
 
     public Button getBtnSkipTurn(){
         return  btnSkipTurn;
+    }
+
+    public Button getBtnQuitGame() {
+        return btnQuitGame;
     }
 
     public HBox getBoxCarteJoue() {
