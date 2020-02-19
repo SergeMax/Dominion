@@ -202,4 +202,13 @@ public class Partie {
         this.hasSpecialEffect = hasSpecialEffect;
         this.effectTurnAction = effectTurnAction;
     }
+
+    public int getJoueurAdverse(){
+        for(int i = 0; i < joueurs.size(); i++){
+            if(!joueurs.get(i).isEntrainDeJouer()){
+                return i;
+            }
+        }
+        return 0;
+    }
 }
