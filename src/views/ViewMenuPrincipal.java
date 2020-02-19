@@ -36,7 +36,7 @@ public class ViewMenuPrincipal {
         vBox2.setMinHeight(Screen.getPrimary().getBounds().getHeight());
         vBox.setAlignment(Pos.CENTER);
         vBox2.setAlignment(Pos.BOTTOM_CENTER);
-        vBox.setBackground(new Background( new BackgroundImage(new
+        vBox2.setBackground(new Background( new BackgroundImage(new
                 Image("assets/logo/background.jpg"),BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 
@@ -59,8 +59,8 @@ public class ViewMenuPrincipal {
 
     public void clearAndInitRoot(){
         root.getChildren().clear();
-        root.getChildren().add(vBox);
         root.getChildren().add(vBox2);
+        root.getChildren().add(vBox);
     }
     public ImageView initImageView(int width, int heignt){
         ImageView im = new ImageView();

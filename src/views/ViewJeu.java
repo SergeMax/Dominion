@@ -18,9 +18,7 @@ import models.Joueur;
 import models.Pile;
 import models.cartes.LocalisationDesCartes;
 import views.GraphicalElement.CardViewCentre;
-import views.GraphicalElement.CardViewPlayer;
-import views.GraphicalElement.CardViewReserve;
-import views.GraphicalElement.CardViewTerrain;
+import views.GraphicalElement.*;
 
 import java.util.ArrayList;
 
