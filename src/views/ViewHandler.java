@@ -70,6 +70,7 @@ public class ViewHandler extends Application {
         primaryStage.close();
     }
 
+
     public ViewMenuPrincipal getViewMenuPrincipal() {
         return viewMenuPrincipal;
     }
