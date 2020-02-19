@@ -56,23 +56,20 @@ public class CardViewPlayer extends Pane {
 
         img.setId(String.valueOf(pile.hashCode()));
         imgReset = img;
-        img.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-
+        img.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) {
-
+            public void handle(MouseEvent t) {
                 Anim anim = new Anim();
                 anim.animGlissCarteMainToTerrain(grpContenairCard, img, urlImg );
 
-                PauseTransition delayRemove = new PauseTransition(Duration.seconds(0.33));
+                PauseTransition delayRemove = new PauseTransition(Duration.seconds(0.4));
                 delayRemove.setOnFinished(eventt -> {
 
-                   // grpContenairCard.getChildren().addAll(imgReset);
+                    grpContenairCard.getChildren().addAll(imgReset);
                     grpContenairCard.setTranslateX(0);
                     grpContenairCard.setTranslateY(0);
                 });
-                delayRemove.play();
-
+                //   delayRemove.play();
             }
         });
 

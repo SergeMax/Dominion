@@ -38,52 +38,39 @@ public class Anim {
         /*Bound in scene permet de recuperer la position dans la scene du node*/
 
        // Bounds boundsInSceneStart = grpContainerCardStart.localToScreen(grpContainerCardStart.getBoundsInLocal());
-         Bounds boundsInSceneStart = grpContainerCardStart.localToScene(grpContainerCardStart.getBoundsInLocal());
+         Bounds boundsInSceneStart = img.localToScene(grpContainerCardStart.getBoundsInLocal());
 
 
         double XPositionOfTheContainerCardStart = boundsInSceneStart.getMinX();
         double YPositionOfTheContainerCardStart = boundsInSceneStart.getMinY();
 
-      //  double XPositionOfTheContainerCardEnd = boundsInSceneStart.getMinX();
-    //    double YPositionOfTheContainerCardEnd = boundsInSceneEnd.getMinY();
+        grpContainerCardStart.getChildren().clear();
 
-
-
-        ImageView imgAnim = new ImageView("assets/cartes/cuivre.png");
-      //  System.out.println(imgAnim);
+        String url = urlImg.getText();
+        System.out.println(url);
+        ImageView imgAnim = new ImageView(url);
+        System.out.println(imgAnim);
         imgAnim.setPreserveRatio(true);
 
-      //  imgAnim.setX(XPositionOfTheContainerCardStart);
-      //  imgAnim.setY(YPositionOfTheContainerCardStart);
-
+        System.out.println("oui");
         imgAnim.setFitWidth(140);
 
-             // if (/*Pile du groContainerStart est vite alors */) {
-       // grpContainerCardStart.setOpacity(0);
-        // }
-        // car il faut mettre a zero l'opacité du groupe sur lequel va apparaitre la carte cloné
-        //Il faut un delay avant d'enlever la pile vide du root car sinon les carte restante vont se
-        //superposer sur celle qui est entrain de se déplacer dans l'animation**/
-
-     //   ViewHandler viewHandler = new ViewHandler();
-
-     //   viewHandler.getViewJeu().getBoxCarteJoue().getBoundsInLocal()
 
         grpContainerCardStart.getChildren().addAll(imgAnim);
 
 
         //Création des KeyFrame puis de la Timeline
 
-        final KeyFrame XmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(grpContainerCardStart.translateXProperty(), XPositionOfTheContainerCardStart));
-        final KeyFrame XmovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(grpContainerCardStart.translateXProperty(), XPositionOfTheContainerCardStart -100, Interpolator.LINEAR));
+        final KeyFrame XmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(grpContainerCardStart.translateXProperty(), 0));
+        final KeyFrame XmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(grpContainerCardStart.translateXProperty(), -300, Interpolator.LINEAR));
 
-        final KeyFrame widthStart = new KeyFrame(Duration.ZERO, new KeyValue(imgAnim.fitWidthProperty(), widthDebut));
-        final KeyFrame widthEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(imgAnim.fitWidthProperty(), 85, Interpolator.LINEAR));
+         final KeyFrame widthStart = new KeyFrame(Duration.ZERO, new KeyValue(imgAnim.fitWidthProperty(), 130));
+        final KeyFrame widthEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(imgAnim.fitWidthProperty(), 120, Interpolator.LINEAR));
 
-        final KeyFrame YmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(grpContainerCardStart.translateYProperty(), YPositionOfTheContainerCardStart));
-        final KeyFrame YmovementEnd = new KeyFrame(Duration.seconds(0.4), new KeyValue(grpContainerCardStart.translateYProperty(), YPositionOfTheContainerCardStart -250, Interpolator.LINEAR));
+        final KeyFrame YmovementStart = new KeyFrame(Duration.ZERO, new KeyValue(grpContainerCardStart.translateYProperty(), 0));
+        final KeyFrame YmovementEnd = new KeyFrame(Duration.seconds(0.3), new KeyValue(grpContainerCardStart.translateYProperty(), -250, Interpolator.LINEAR));
 
-        timelineGlissement = new Timeline(XmovementStart, YmovementStart, widthStart, XmovementEnd, YmovementEnd, widthEnd);
+        timelineGlissement = new Timeline(XmovementStart, YmovementStart, widthStart,  XmovementEnd, YmovementEnd, widthEnd);
         timelineGlissement.setCycleCount(1);
 
         timelineGlissement.play();
@@ -94,10 +81,10 @@ public class Anim {
         PauseTransition delayRemove = new PauseTransition(Duration.seconds(0.42));
         delayRemove.setOnFinished(event -> {
            // grpContainerCardStart.getChildren().remove(imgAnim);
-            grpContainerCardStart.getChildren().clear();
+          //  grpContainerCardStart.getChildren().clear();
 
         });
-        delayRemove.play();
+      //  delayRemove.play();
 
 
     }

@@ -28,7 +28,7 @@ public class ControllerJeu implements EventHandler<MouseEvent> {
         if(mouseEvent.getSource().equals(viewHandler.getViewJeu().getBtnQuitGame())) {
             viewHandler.afficherMenuPrincipale();
         }else if(mouseEvent.getButton() == MouseButton.PRIMARY){
-            PauseTransition delayRemove = new PauseTransition(Duration.seconds(0.6));
+            PauseTransition delayRemove = new PauseTransition(Duration.seconds(0.33));
             delayRemove.setOnFinished(eventt -> {
 
                 if(mouseEvent.getSource().equals(viewHandler.getViewJeu().getBtnSkipTurn())){
