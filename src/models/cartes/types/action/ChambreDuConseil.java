@@ -1,5 +1,6 @@
 package models.cartes.types.action;
 import models.Joueur;
+import models.Partie;
 import models.cartes.Carte;
 import models.cartes.LocalisationDesCartes;
 import models.cartes.TypeDeCarte;
@@ -21,8 +22,8 @@ public class ChambreDuConseil extends Carte {
     }
 
     @Override
-    public void effet(ArrayList<Joueur> joueurs) {
-        for(Joueur joueur: joueurs){
+    public void effet(Partie partie) {
+        for(Joueur joueur: partie.getJoueurs()){
             if (joueur.isEntrainDeJouer()){
                 joueur.piocheDesCarte(4);
             }else{
