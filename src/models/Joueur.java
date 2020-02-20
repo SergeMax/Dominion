@@ -3,8 +3,6 @@ package models;
 import models.cartes.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.logging.Filter;
 import java.util.stream.Collectors;
 
 public class Joueur {

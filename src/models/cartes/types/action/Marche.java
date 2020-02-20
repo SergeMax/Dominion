@@ -5,8 +5,6 @@ import models.cartes.Carte;
 import models.cartes.LocalisationDesCartes;
 import models.cartes.TypeDeCarte;
 
-import java.util.ArrayList;
-
 public class Marche extends Carte {
     /*
         Donne 1 Carte, 1 Action, 1 Achat et 1 pièce

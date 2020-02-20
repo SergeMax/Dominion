@@ -5,8 +5,6 @@ import models.cartes.Carte;
 import models.cartes.LocalisationDesCartes;
 import models.cartes.TypeDeCarte;
 
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class Millice extends Carte {
     /*

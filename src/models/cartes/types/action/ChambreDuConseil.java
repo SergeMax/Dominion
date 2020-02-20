@@ -5,7 +5,6 @@ import models.cartes.Carte;
 import models.cartes.LocalisationDesCartes;
 import models.cartes.TypeDeCarte;
 
-import java.util.ArrayList;
 
 public class ChambreDuConseil extends Carte {
     /*
