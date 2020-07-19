@@ -325,7 +325,7 @@ public class ViewJeu {
         infoJActifVbox.setPrefWidth(200);
         infoJActifVbox.setMinHeight(40);
         infoJActifHbox.setPadding(new Insets(15, 10, 10, 15));
-       // infoJActifHbox.setTranslateX(230);
+        infoJActifHbox.setTranslateY(18);
 
 
 
